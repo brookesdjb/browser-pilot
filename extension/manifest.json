@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Enhanced Browser MCP",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "description": "Browser automation with full DevTools access for MCP",
   
   "permissions": [

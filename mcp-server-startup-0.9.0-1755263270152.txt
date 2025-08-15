@@ -1,0 +1,297 @@
+Hello World! MCP Server v0.9.0 started at 2025-08-15T13:07:50.152Z
+
+=== WebSocket Messages ===
+
+[2025-08-15T13:07:50.157Z] SYSTEM: ExtensionBridge initialized with WebSocket logging
+
+[2025-08-15T13:08:39.763Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog/drugs?accountId=FeedlotCopy&siteId=68749ed38b056891eba3fb9f"
+  }
+}
+
+[2025-08-15T13:08:39.840Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog/drugs?accountId=FeedlotCopy&siteId=68749ed38b056891eba3fb9f"
+  }
+}
+
+[2025-08-15T13:08:39.853Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "f26e8e77-31e8-43fa-b2e6-3529028ff11c",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "DrugsRouterComponent - Starting component determination",
+    "timestamp": 1755263319852,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.853Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "cfb607aa-cdbf-4599-9c24-0653673dc5de",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "DrugsRouterComponent - AccountId from URL: FeedlotCopy",
+    "timestamp": 1755263319852,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.853Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "2cc8ed91-8bd8-4a9c-b179-0efa879f0903",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "DrugsRouterComponent - SiteId from URL: 68749ed38b056891eba3fb9f",
+    "timestamp": 1755263319853,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.853Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "b191f633-2bca-441c-8807-90641b2bfcea",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "DrugsRouterComponent - Decoded token: {\"description\":\"Object\",\"overflow\":true,\"properties\":[{\"name\":\"ver\",\"type\":\"number\",\"value\":\"1\"},{\"name\":\"jti\",\"type\":\"string\",\"value\":\"AT.rJ2ec9Fo4jfdHi-HopFRv8kXe7fTtUiusUiMKBzqjNQ\"},{\"name\":\"iss\",\"type\":\"string\",\"value\":\"https://dev-185756.okta.com/oauth2/default\"},{\"name\":\"aud\",\"type\":\"string\",\"value\":\"api://default\"},{\"name\":\"iat\",\"type\":\"number\",\"value\":\"1755261100\"}],\"type\":\"object\"}",
+    "timestamp": 1755263319853,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.853Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "0a1f8571-b1a2-4f62-abf5-8ba088061d98",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "DrugsRouterComponent - Application roles wrapper: {\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"ApplicationName\",\"type\":\"string\",\"value\":\"ahmcatalogtooluidev\"},{\"name\":\"ApplicationRoles\",\"subtype\":\"array\",\"type\":\"object\",\"value\":\"Array(1)\"}],\"type\":\"object\"}",
+    "timestamp": 1755263319853,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.854Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "bc55a12c-9482-4b72-9c86-1af6718eaabb",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "DrugsRouterComponent - Checking siteAdmin scope: {\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"Type\",\"type\":\"string\",\"value\":\"AccountId\"},{\"name\":\"Value\",\"type\":\"string\",\"value\":\"FeedlotCopy\"}],\"type\":\"object\"} against URL accountId: FeedlotCopy",
+    "timestamp": 1755263319854,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.854Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "1eb594df-69a5-4f0d-97fb-4f2de91161ce",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "DrugsRouterComponent - SiteAdmin role with matching AccountId found, showing SiteDrugsPageComponent",
+    "timestamp": 1755263319854,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.854Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "8eac20de-9268-494c-9a6e-d31fd79e538c",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "DrugsRouterComponent - Checking siteAdmin scope: {\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"Type\",\"type\":\"string\",\"value\":\"siteId\"},{\"name\":\"Value\",\"type\":\"string\",\"value\":\"68749ed38b056891eba3fb9f\"}],\"type\":\"object\"} against URL accountId: FeedlotCopy",
+    "timestamp": 1755263319854,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.854Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "373cfb49-cfcc-4599-9d9b-4759de1818d6",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "DrugsRouterComponent - SiteAdmin role found: {\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"Role\",\"type\":\"string\",\"value\":\"SiteAdmin\"},{\"name\":\"Scopes\",\"subtype\":\"array\",\"type\":\"object\",\"value\":\"Array(2)\"}],\"type\":\"object\"}",
+    "timestamp": 1755263319853,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.856Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "66db21dd-d1e5-4456-83ad-bdd007659ab0",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "{\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"ApplicationName\",\"type\":\"string\",\"value\":\"ahmcatalogtooluidev\"},{\"name\":\"ApplicationRoles\",\"subtype\":\"array\",\"type\":\"object\",\"value\":\"Array(1)\"}],\"type\":\"object\"}",
+    "timestamp": 1755263319856,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.856Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "a3c9af22-5b47-4757-9a2e-a32653fae499",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "Site context",
+    "timestamp": 1755263319856,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.856Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "028dbad2-071b-420d-9908-7251f44f11d0",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "{\"description\":\"Object\",\"overflow\":false,\"properties\":[],\"type\":\"object\"}",
+    "timestamp": 1755263319856,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T13:08:39.864Z] INCOMING: {
+  "type": "network_request",
+  "data": {
+    "id": "66152.4299",
+    "tabId": 1713408284,
+    "method": "GET",
+    "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+    "requestHeaders": {
+      "AHM_AccountId": "FeedlotCopy",
+      "Accept": "application/json, text/plain, */*",
+      "Authorization": "Bearer eyJraWQiOiIzdXlSREJZYngwMFR6eXRlWXpuS181cml0Y0U5SnpyMks1QXNqOEVfVTdzIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULnJKMmVjOUZvNGpmZEhpLUhvcEZSdjhrWGU3ZlR0VWl1c1VpTUtCenFqTlEiLCJpc3MiOiJodHRwczovL2Rldi0xODU3NTYub2t0YS5jb20vb2F1dGgyL2RlZmF1bHQiLCJhdWQiOiJhcGk6Ly9kZWZhdWx0IiwiaWF0IjoxNzU1MjYxMTAwLCJleHAiOjE3NTUzNDc1MDAsImNpZCI6IjBvYTFrcWx5dGJ4SWNrSkNzMzU4IiwidWlkIjoiMDB1MWxlaGdidHhRNGRvTkkzNTgiLCJzY3AiOlsiYXBwbGljYXRpb25fcm9sZXMiLCJvcGVuaWQiLCJwcm9maWxlIiwiZW1haWwiLCJhcHBfbGJsIl0sImF1dGhfdGltZSI6MTc1NTI1MzY5OCwiYXBwbiI6ImFobWNhdGFsb2d0b29sdWlkZXYiLCJzdWIiOiJzaXRlLWFkbWluQHlvcG1haWwuY29tIiwiYXBwbl9ybHMiOiJ7XCJBcHBsaWNhdGlvbk5hbWVcIjpcImFobWNhdGFsb2d0b29sdWlkZXZcIixcIkFwcGxpY2F0aW9uUm9sZXNcIjpbe1wiUm9sZVwiOlwiU2l0ZUFkbWluXCIsXCJTY29wZXNcIjpbe1wiVHlwZVwiOlwic2l0ZUlkXCIsXCJWYWx1ZVwiOlwiNjg3NDllZDM4YjA1Njg5MWViYTNmYjlmXCJ9LHtcIlR5cGVcIjpcIkFjY291bnRJZFwiLFwiVmFsdWVcIjpcIkZlZWRsb3RDb3B5XCJ9XX1dfSIsIm9ubGluZV91c2VyIjpmYWxzZX0.q4TxfH71JIEN4kQAyG-eFZHSx7GpwAVXpG9XSsYaH09-p6JTP2v8cHUfP89vp7N0gAnToUKDl4-rh2bY8GUx3s9shNgKQgmWmmWeOZQM3aXImBFgdfC6zIhLhsM7mz31awhhG1sH7MAnWi90w6I9oQ23L-Wrx3mF37v1vT_pSKNxOMbPAlrgknXfSuVvmJf9KdIi_ccacEQV9hEMfy7wOj1xXDIXO8vGDbLaPOyyUVYI0OQWnyCwHfgDEvEu0S1IHHpeXspfFXhXsTwPws7scUOv9JNZ8IwMj5ZQLLWc1PY9UJ3kqeRwonYLYlWR7vY3GhcH1KSQckhynZxO6Yw09Q",
+      "Referer": "http://localhost:4200/catalog/drugs?accountId=FeedlotCopy&siteId=68749ed38b056891eba3fb9f",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\""
+    },
+    "timing": {
+      "startTime": 61861805.146
+    },
+    "timestamp": 1755263319864,
+    "type": "xhr"
+  }
+}
+
+[2025-08-15T13:08:41.006Z] INCOMING: {
+  "type": "network_request",
+  "data": {
+    "id": "66152.4299",
+    "tabId": 1713408284,
+    "method": "GET",
+    "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+    "requestHeaders": {
+      "AHM_AccountId": "FeedlotCopy",
+      "Accept": "application/json, text/plain, */*",
+      "Authorization": "Bearer eyJraWQiOiIzdXlSREJZYngwMFR6eXRlWXpuS181cml0Y0U5SnpyMks1QXNqOEVfVTdzIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULnJKMmVjOUZvNGpmZEhpLUhvcEZSdjhrWGU3ZlR0VWl1c1VpTUtCenFqTlEiLCJpc3MiOiJodHRwczovL2Rldi0xODU3NTYub2t0YS5jb20vb2F1dGgyL2RlZmF1bHQiLCJhdWQiOiJhcGk6Ly9kZWZhdWx0IiwiaWF0IjoxNzU1MjYxMTAwLCJleHAiOjE3NTUzNDc1MDAsImNpZCI6IjBvYTFrcWx5dGJ4SWNrSkNzMzU4IiwidWlkIjoiMDB1MWxlaGdidHhRNGRvTkkzNTgiLCJzY3AiOlsiYXBwbGljYXRpb25fcm9sZXMiLCJvcGVuaWQiLCJwcm9maWxlIiwiZW1haWwiLCJhcHBfbGJsIl0sImF1dGhfdGltZSI6MTc1NTI1MzY5OCwiYXBwbiI6ImFobWNhdGFsb2d0b29sdWlkZXYiLCJzdWIiOiJzaXRlLWFkbWluQHlvcG1haWwuY29tIiwiYXBwbl9ybHMiOiJ7XCJBcHBsaWNhdGlvbk5hbWVcIjpcImFobWNhdGFsb2d0b29sdWlkZXZcIixcIkFwcGxpY2F0aW9uUm9sZXNcIjpbe1wiUm9sZVwiOlwiU2l0ZUFkbWluXCIsXCJTY29wZXNcIjpbe1wiVHlwZVwiOlwic2l0ZUlkXCIsXCJWYWx1ZVwiOlwiNjg3NDllZDM4YjA1Njg5MWViYTNmYjlmXCJ9LHtcIlR5cGVcIjpcIkFjY291bnRJZFwiLFwiVmFsdWVcIjpcIkZlZWRsb3RDb3B5XCJ9XX1dfSIsIm9ubGluZV91c2VyIjpmYWxzZX0.q4TxfH71JIEN4kQAyG-eFZHSx7GpwAVXpG9XSsYaH09-p6JTP2v8cHUfP89vp7N0gAnToUKDl4-rh2bY8GUx3s9shNgKQgmWmmWeOZQM3aXImBFgdfC6zIhLhsM7mz31awhhG1sH7MAnWi90w6I9oQ23L-Wrx3mF37v1vT_pSKNxOMbPAlrgknXfSuVvmJf9KdIi_ccacEQV9hEMfy7wOj1xXDIXO8vGDbLaPOyyUVYI0OQWnyCwHfgDEvEu0S1IHHpeXspfFXhXsTwPws7scUOv9JNZ8IwMj5ZQLLWc1PY9UJ3kqeRwonYLYlWR7vY3GhcH1KSQckhynZxO6Yw09Q",
+      "Referer": "http://localhost:4200/catalog/drugs?accountId=FeedlotCopy&siteId=68749ed38b056891eba3fb9f",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\""
+    },
+    "timing": {
+      "startTime": 61861805.146
+    },
+    "timestamp": 1755263319864,
+    "type": "xhr",
+    "status": 200,
+    "statusText": "OK",
+    "responseHeaders": {
+      "Access-Control-Allow-Origin": "*",
+      "api-supported-versions": "1",
+      "connection": "close",
+      "content-length": "97801",
+      "content-type": "application/json; charset=utf-8",
+      "date": "Fri, 15 Aug 2025 13:08:40 GMT",
+      "via": "1.1 a70d15c0de6117f8c3e081ecba9408a4.cloudfront.net (CloudFront)",
+      "x-amz-apigw-id": "PWSl5Fa_joEEv1A=",
+      "x-amz-cf-id": "3ifGnf6tqMOpkpbousw0srMQFAiwbwhm3bT7CKcas6jQni7cem44HQ==",
+      "x-amz-cf-pop": "TLV50-C2",
+      "x-amzn-remapped-connection": "keep-alive",
+      "x-amzn-remapped-content-length": "97801",
+      "x-amzn-remapped-date": "Fri, 15 Aug 2025 13:08:40 GMT",
+      "x-amzn-remapped-server": "Kestrel",
+      "x-amzn-requestid": "77563213-f84c-434b-96b6-3145b6a1c129",
+      "x-cache": "Miss from cloudfront"
+    },
+    "responseSize": 656
+  }
+}
+
+[2025-08-15T13:08:41.575Z] INCOMING: {
+  "type": "network_request",
+  "data": {
+    "id": "66152.4299",
+    "tabId": 1713408284,
+    "method": "GET",
+    "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+    "requestHeaders": {
+      "AHM_AccountId": "FeedlotCopy",
+      "Accept": "application/json, text/plain, */*",
+      "Authorization": "Bearer eyJraWQiOiIzdXlSREJZYngwMFR6eXRlWXpuS181cml0Y0U5SnpyMks1QXNqOEVfVTdzIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULnJKMmVjOUZvNGpmZEhpLUhvcEZSdjhrWGU3ZlR0VWl1c1VpTUtCenFqTlEiLCJpc3MiOiJodHRwczovL2Rldi0xODU3NTYub2t0YS5jb20vb2F1dGgyL2RlZmF1bHQiLCJhdWQiOiJhcGk6Ly9kZWZhdWx0IiwiaWF0IjoxNzU1MjYxMTAwLCJleHAiOjE3NTUzNDc1MDAsImNpZCI6IjBvYTFrcWx5dGJ4SWNrSkNzMzU4IiwidWlkIjoiMDB1MWxlaGdidHhRNGRvTkkzNTgiLCJzY3AiOlsiYXBwbGljYXRpb25fcm9sZXMiLCJvcGVuaWQiLCJwcm9maWxlIiwiZW1haWwiLCJhcHBfbGJsIl0sImF1dGhfdGltZSI6MTc1NTI1MzY5OCwiYXBwbiI6ImFobWNhdGFsb2d0b29sdWlkZXYiLCJzdWIiOiJzaXRlLWFkbWluQHlvcG1haWwuY29tIiwiYXBwbl9ybHMiOiJ7XCJBcHBsaWNhdGlvbk5hbWVcIjpcImFobWNhdGFsb2d0b29sdWlkZXZcIixcIkFwcGxpY2F0aW9uUm9sZXNcIjpbe1wiUm9sZVwiOlwiU2l0ZUFkbWluXCIsXCJTY29wZXNcIjpbe1wiVHlwZVwiOlwic2l0ZUlkXCIsXCJWYWx1ZVwiOlwiNjg3NDllZDM4YjA1Njg5MWViYTNmYjlmXCJ9LHtcIlR5cGVcIjpcIkFjY291bnRJZFwiLFwiVmFsdWVcIjpcIkZlZWRsb3RDb3B5XCJ9XX1dfSIsIm9ubGluZV91c2VyIjpmYWxzZX0.q4TxfH71JIEN4kQAyG-eFZHSx7GpwAVXpG9XSsYaH09-p6JTP2v8cHUfP89vp7N0gAnToUKDl4-rh2bY8GUx3s9shNgKQgmWmmWeOZQM3aXImBFgdfC6zIhLhsM7mz31awhhG1sH7MAnWi90w6I9oQ23L-Wrx3mF37v1vT_pSKNxOMbPAlrgknXfSuVvmJf9KdIi_ccacEQV9hEMfy7wOj1xXDIXO8vGDbLaPOyyUVYI0OQWnyCwHfgDEvEu0S1IHHpeXspfFXhXsTwPws7scUOv9JNZ8IwMj5ZQLLWc1PY9UJ3kqeRwonYLYlWR7vY3GhcH1KSQckhynZxO6Yw09Q",
+      "Referer": "http://localhost:4200/catalog/drugs?accountId=FeedlotCopy&siteId=68749ed38b056891eba3fb9f",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\""
+    },
+    "timing": {
+      "startTime": 61861805.146,
+      "duration": 1713.4950000047684
+    },
+    "timestamp": 1755263319864,
+    "type": "xhr",
+    "status": 200,
+    "statusText": "OK",
+    "responseHeaders": {
+      "Access-Control-Allow-Origin": "*",
+      "api-supported-versions": "1",
+      "connection": "close",
+      "content-length": "97801",
+      "content-type": "application/json; charset=utf-8",
+      "date": "Fri, 15 Aug 2025 13:08:40 GMT",
+      "via": "1.1 a70d15c0de6117f8c3e081ecba9408a4.cloudfront.net (CloudFront)",
+      "x-amz-apigw-id": "PWSl5Fa_joEEv1A=",
+      "x-amz-cf-id": "3ifGnf6tqMOpkpbousw0srMQFAiwbwhm3bT7CKcas6jQni7cem44HQ==",
+      "x-amz-cf-pop": "TLV50-C2",
+      "x-amzn-remapped-connection": "keep-alive",
+      "x-amzn-remapped-content-length": "97801",
+      "x-amzn-remapped-date": "Fri, 15 Aug 2025 13:08:40 GMT",
+      "x-amzn-remapped-server": "Kestrel",
+      "x-amzn-requestid": "77563213-f84c-434b-96b6-3145b6a1c129",
+      "x-cache": "Miss from cloudfront"
+    },
+    "responseSize": 656
+  }
+}

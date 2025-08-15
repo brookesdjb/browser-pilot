@@ -1,0 +1,196 @@
+[2025-08-15T13:05:24.726Z] WebSocket message received
+{
+  "type": "command",
+  "id": "61c3494c-2d76-4610-8b95-8fa8b45e210a"
+}
+
+[2025-08-15T13:05:25.581Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.601Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.626Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.644Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:05:25.644Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.3873",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "totalRequests": 9
+}
+
+[2025-08-15T13:05:25.657Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.658Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T13:05:25.659Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:05:25.659Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.3873",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "status": 200,
+  "totalRequests": 9
+}
+
+[2025-08-15T13:05:25.662Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:05:25.662Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.3873",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "status": 200,
+  "totalRequests": 9
+}
+
+[2025-08-15T13:05:25.711Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T13:05:25.721Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.721Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.722Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.721Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.722Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.722Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.722Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.722Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.721Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.725Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.725Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.725Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:05:25.734Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:05:25.734Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.3927",
+  "method": "GET",
+  "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+  "totalRequests": 10
+}
+
+[2025-08-15T13:05:26.411Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:05:26.411Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.3927",
+  "method": "GET",
+  "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+  "status": 200,
+  "totalRequests": 10
+}
+
+[2025-08-15T13:05:26.453Z] WebSocket message received
+{
+  "type": "command",
+  "id": "f5550dd0-f8d2-45d5-b4a3-013926eff4bc"
+}
+
+[2025-08-15T13:05:26.547Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:05:26.547Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.3927",
+  "method": "GET",
+  "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+  "status": 200,
+  "totalRequests": 10
+}
+
+[2025-08-15T13:05:27.672Z] WebSocket message received
+{
+  "type": "command",
+  "id": "024fe195-d3b8-48c6-a9b9-d11c57e35b3c"
+}
+

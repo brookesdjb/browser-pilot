@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const tabUrlEl = document.getElementById('tab-url');
   const mcpStatusEl = document.getElementById('mcp-status');
   const mcpConnectionEl = document.getElementById('mcp-connection');
+  const mcpVersionEl = document.getElementById('mcp-version');
+  const versionTextEl = document.getElementById('version-text');
   const logsCountEl = document.getElementById('logs-count');
   
   try {
@@ -30,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       logsCountEl.textContent = allLogs.data.length;
       
-      // Check MCP server connection (by checking if log file exists)
+      // Check MCP server connection and get version
       await checkMcpConnection();
       
     } else {
@@ -48,10 +50,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function checkMcpConnection() {
   const mcpStatusEl = document.getElementById('mcp-status');
   const mcpConnectionEl = document.getElementById('mcp-connection');
+  const mcpVersionEl = document.getElementById('mcp-version');
+  const versionTextEl = document.getElementById('version-text');
   
   try {
-    // Check if MCP server is connected by looking for the communication file
-    // This is a simple check - in production you'd have a more robust method
+    // Check if MCP server is connected and get version info
     const response = await chrome.runtime.sendMessage({
       type: 'mcp_check_connection'
     });
@@ -59,12 +62,29 @@ async function checkMcpConnection() {
     if (response && response.connected) {
       mcpConnectionEl.textContent = 'Connected';
       mcpStatusEl.className = 'status connected';
+      
+      // Try to get version information
+      try {
+        const versionResponse = await chrome.runtime.sendMessage({
+          type: 'mcp_get_version'
+        });
+        
+        if (versionResponse && versionResponse.version) {
+          versionTextEl.textContent = versionResponse.version;
+          mcpVersionEl.style.display = 'block';
+        }
+      } catch (versionError) {
+        console.log('Could not fetch MCP server version:', versionError);
+      }
+      
     } else {
       mcpConnectionEl.textContent = 'Not Connected';
       mcpStatusEl.className = 'status disconnected';
+      mcpVersionEl.style.display = 'none';
     }
   } catch (error) {
     mcpConnectionEl.textContent = 'Unknown';
     mcpStatusEl.className = 'status disconnected';
+    mcpVersionEl.style.display = 'none';
   }
 }

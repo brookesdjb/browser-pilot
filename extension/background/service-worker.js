@@ -6,6 +6,8 @@ class ConsoleLogCollector {
     this.logs = [];
     this.maxLogs = 1000;
     this.attachedTabs = new Set();
+    this.pendingNetworkRequests = new Map(); // requestId -> request data
+    this.mcpServerVersion = null; // Store server version from connection
     this.wsConnection = null;
     this.wsUrl = 'ws://localhost:8899';
     this.reconnectInterval = 5000; // 5 seconds
@@ -34,6 +36,11 @@ class ConsoleLogCollector {
           const message = JSON.parse(event.data);
           if (message.type === 'connection_confirmed') {
             console.log('MCP server connection confirmed, sessionId:', message.sessionId);
+            // Store server version if provided
+            if (message.serverVersion) {
+              this.mcpServerVersion = message.serverVersion;
+              console.log('MCP server version:', this.mcpServerVersion);
+            }
           } else if (message.type === 'command') {
             this.handleCommand(message);
           }
@@ -321,6 +328,11 @@ class ConsoleLogCollector {
       throw new Error(`Failed to get cookies: ${error.message}`);
     }
   }
+
+  async getMcpServerVersion() {
+    // Return the version we got from connection confirmation
+    return Promise.resolve(this.mcpServerVersion || 'Unknown');
+  }
   
   setupTabListeners() {
     // Listen for tab updates to attach debugger
@@ -356,6 +368,9 @@ class ConsoleLogCollector {
       // Enable Console domain 
       await chrome.debugger.sendCommand({tabId}, 'Console.enable');
       
+      // Enable Network domain for request monitoring
+      await chrome.debugger.sendCommand({tabId}, 'Network.enable');
+      
       this.attachedTabs.add(tabId);
       console.log(`Debugger attached to tab ${tabId}`);
       
@@ -382,8 +397,128 @@ class ConsoleLogCollector {
       }
     }
   }
+
+  handleNetworkEvent(tabId, method, params) {
+    try {
+      const requestId = params.requestId;
+      
+      switch (method) {
+        case 'Network.requestWillBeSent':
+          // Start tracking new request
+          const request = params.request;
+          
+          // Only track XHR and Fetch requests
+          if (params.type !== 'XHR' && params.type !== 'Fetch') {
+            return;
+          }
+          
+          const networkRequest = {
+            id: requestId,
+            tabId: tabId,
+            method: request.method,
+            url: request.url,
+            requestHeaders: request.headers || {},
+            requestBody: request.postData || undefined,
+            timing: {
+              startTime: params.timestamp * 1000, // Convert to milliseconds
+            },
+            timestamp: Date.now(),
+            type: params.type.toLowerCase()
+          };
+          
+          this.pendingNetworkRequests.set(requestId, networkRequest);
+          
+          // Send initial request data to MCP server
+          this.sendToMcpServer({
+            type: 'network_request',
+            data: networkRequest
+          });
+          break;
+          
+        case 'Network.responseReceived':
+          // Update request with response info
+          const pendingRequest = this.pendingNetworkRequests.get(requestId);
+          if (pendingRequest) {
+            const response = params.response;
+            const updatedRequest = {
+              ...pendingRequest,
+              status: response.status,
+              statusText: response.statusText,
+              responseHeaders: response.headers || {},
+              responseSize: response.encodedDataLength || 0
+            };
+            
+            this.pendingNetworkRequests.set(requestId, updatedRequest);
+            
+            // Send updated request data to MCP server
+            this.sendToMcpServer({
+              type: 'network_request',
+              data: updatedRequest
+            });
+          }
+          break;
+          
+        case 'Network.loadingFinished':
+          // Finalize request timing
+          const finishingRequest = this.pendingNetworkRequests.get(requestId);
+          if (finishingRequest) {
+            const finalRequest = {
+              ...finishingRequest,
+              timing: {
+                ...finishingRequest.timing,
+                duration: (params.timestamp * 1000) - finishingRequest.timing.startTime
+              }
+            };
+            
+            // Send final request data to MCP server
+            this.sendToMcpServer({
+              type: 'network_request',
+              data: finalRequest
+            });
+            
+            // Clean up - remove from pending requests
+            this.pendingNetworkRequests.delete(requestId);
+          }
+          break;
+          
+        case 'Network.loadingFailed':
+          // Handle failed requests
+          const failedRequest = this.pendingNetworkRequests.get(requestId);
+          if (failedRequest) {
+            const errorRequest = {
+              ...failedRequest,
+              status: 0,
+              statusText: params.errorText || 'Network Error',
+              timing: {
+                ...failedRequest.timing,
+                duration: (params.timestamp * 1000) - failedRequest.timing.startTime
+              }
+            };
+            
+            // Send failed request data to MCP server
+            this.sendToMcpServer({
+              type: 'network_request',
+              data: errorRequest
+            });
+            
+            // Clean up - remove from pending requests
+            this.pendingNetworkRequests.delete(requestId);
+          }
+          break;
+      }
+    } catch (error) {
+      console.error('Error handling network event:', error);
+    }
+  }
   
   handleDebuggerEvent(tabId, method, params) {
+    // Handle network events
+    if (method.startsWith('Network.')) {
+      this.handleNetworkEvent(tabId, method, params);
+      return;
+    }
+    
+    // Handle console events
     if (method === 'Runtime.consoleAPICalled') {
       this.addConsoleLog(tabId, {
         level: params.type,
@@ -480,6 +615,24 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     
     sendResponse({success: true, connected});
     return true;
+  }
+  
+  if (message.type === 'mcp_get_version') {
+    // Get MCP server version by sending command
+    if (consoleCollector.wsConnection && consoleCollector.wsConnection.readyState === WebSocket.OPEN) {
+      consoleCollector.getMcpServerVersion()
+        .then(version => {
+          sendResponse({success: true, version});
+        })
+        .catch(error => {
+          console.error('Failed to get MCP server version:', error);
+          sendResponse({success: false, error: error.message});
+        });
+      return true; // Keep message channel open for async response
+    } else {
+      sendResponse({success: false, error: 'MCP server not connected'});
+      return true;
+    }
   }
 });
 

@@ -8,11 +8,12 @@ import { promises as fs } from 'fs';
 import { ConsoleLogsTool } from './tools/console-logs.js';
 import { BrowserNavigationTool } from './tools/browser-navigation.js';
 import { BrowserStorageTool } from './tools/browser-storage.js';
+import { BrowserNetworkTool } from './tools/browser-network.js';
 import { versionTool, executeGetVersion } from './tools/version.js';
 import { ExtensionBridge } from './utils/extension-bridge.js';
 
 const SERVER_NAME = 'enhanced-browser-mcp';
-const SERVER_VERSION = '0.8.0';
+const SERVER_VERSION = '0.9.0';
 
 async function createServer(wsLogFilePath?: string): Promise<Server> {
   const server = new Server(
@@ -34,6 +35,7 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
   const consoleLogsTool = new ConsoleLogsTool(extensionBridge);
   const browserNavigationTool = new BrowserNavigationTool(extensionBridge);
   const browserStorageTool = new BrowserStorageTool(extensionBridge);
+  const browserNetworkTool = new BrowserNetworkTool(extensionBridge);
 
   // List available tools
   server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -45,6 +47,7 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
         browserStorageTool.getLocalStorageSchema(),
         browserStorageTool.getSessionStorageSchema(),
         browserStorageTool.getCookiesSchema(),
+        browserNetworkTool.getSchema(),
         versionTool
       ],
     };
@@ -73,6 +76,9 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
           
         case 'get_cookies':
           return await browserStorageTool.executeGetCookies(args);
+          
+        case 'get_network_requests':
+          return await browserNetworkTool.execute(args);
           
         case 'get_version':
           const versionInfo = await executeGetVersion();

@@ -25,7 +25,7 @@ interface TabLogData {
 }
 
 interface WebSocketMessage {
-  type: 'console_log' | 'tab_info' | 'heartbeat' | 'command' | 'command_response' | 'navigation_event';
+  type: 'console_log' | 'tab_info' | 'heartbeat' | 'command' | 'command_response' | 'navigation_event' | 'network_request';
   data: any;
   id?: string; // For request/response correlation
   commandId?: string; // For navigation event correlation
@@ -40,6 +40,26 @@ interface NavigationState {
   stabilityTimer: ReturnType<typeof setTimeout> | null;
 }
 
+interface NetworkRequest {
+  id: string;
+  tabId: number;
+  method: string;
+  url: string;
+  status?: number;
+  statusText?: string;
+  requestHeaders: Record<string, string>;
+  responseHeaders: Record<string, string>;
+  requestBody?: string;
+  responseBody?: string;
+  timing?: {
+    startTime: number;
+    duration?: number;
+  };
+  responseSize?: number;
+  timestamp: number;
+  type: string; // xhr, fetch, document, etc.
+}
+
 export class ExtensionBridge {
   private sessionId: string;
   private logFilePath: string;
@@ -51,8 +71,10 @@ export class ExtensionBridge {
   private extensionClients: Set<WebSocket> = new Set();
   private debugClients: Set<WebSocket> = new Set();
   private logs: ConsoleLog[] = [];
+  private networkRequests: Map<number, NetworkRequest[]> = new Map(); // tabId -> requests
   private tabInfo: Map<number, { title: string; url: string }> = new Map();
   private maxLogs: number = 1000;
+  private maxNetworkRequests: number = 500;
   private pendingCommands: Map<string, { resolve: Function; reject: Function; timeout: NodeJS.Timeout }> = new Map();
   private activeNavigations: Map<string, NavigationState> = new Map();
   private readonly STABILITY_TIMEOUT = 1500; // 1.5 seconds of stability required
@@ -91,7 +113,7 @@ export class ExtensionBridge {
             
             // Identify client type on first meaningful message
             if (!clientIdentified) {
-              if (message.type === 'console_log' || message.type === 'tab_info' || message.type === 'command_response' || message.type === 'navigation_event') {
+              if (message.type === 'console_log' || message.type === 'tab_info' || message.type === 'command_response' || message.type === 'navigation_event' || message.type === 'network_request') {
                 this.extensionClients.add(ws);
                 console.error('Identified as extension client');
               } else {
@@ -128,8 +150,12 @@ export class ExtensionBridge {
           this.debugClients.delete(ws);
         });
 
-        // Send connection confirmation
-        ws.send(JSON.stringify({ type: 'connection_confirmed', sessionId: this.sessionId }));
+        // Send connection confirmation with version info
+        ws.send(JSON.stringify({ 
+          type: 'connection_confirmed', 
+          sessionId: this.sessionId,
+          serverVersion: '0.9.0'
+        }));
       });
 
       console.error(`WebSocket server started on port ${this.wsPort}`);
@@ -178,6 +204,9 @@ export class ExtensionBridge {
       case 'navigation_event':
         this.handleNavigationEvent(message);
         break;
+      case 'network_request':
+        this.addNetworkRequest(message.data);
+        break;
     }
   }
 
@@ -209,6 +238,42 @@ export class ExtensionBridge {
 
     // Persist to file
     this.persistLogsToFile().catch(console.error);
+  }
+
+  private addNetworkRequest(requestData: NetworkRequest): void {
+    const { tabId } = requestData;
+    
+    // Initialize tab's request array if needed
+    if (!this.networkRequests.has(tabId)) {
+      this.networkRequests.set(tabId, []);
+    }
+    
+    const tabRequests = this.networkRequests.get(tabId)!;
+    
+    // Check if this is an update to an existing request
+    const existingIndex = tabRequests.findIndex(req => req.id === requestData.id);
+    
+    if (existingIndex !== -1) {
+      // Update existing request
+      tabRequests[existingIndex] = { ...tabRequests[existingIndex], ...requestData };
+    } else {
+      // Add new request at the beginning (most recent first)
+      tabRequests.unshift(requestData);
+      
+      // Keep only maxNetworkRequests entries per tab
+      if (tabRequests.length > this.maxNetworkRequests) {
+        tabRequests.splice(this.maxNetworkRequests);
+      }
+    }
+    
+    this.debugLog('Network request added/updated', { 
+      tabId, 
+      requestId: requestData.id, 
+      method: requestData.method, 
+      url: requestData.url,
+      status: requestData.status,
+      totalRequests: tabRequests.length 
+    });
   }
 
   private async persistLogsToFile(): Promise<void> {
@@ -285,6 +350,12 @@ export class ExtensionBridge {
       navigationState.lastStableUrl = eventData.url;
       navigationState.lastStableTime = Date.now();
       this.debugLog('Updated last stable URL', { commandId, url: eventData.url });
+    }
+
+    // Clear network requests on navigation start (new page load)
+    if (eventData.event === 'navigation_started' && eventData.tabId) {
+      this.networkRequests.delete(eventData.tabId);
+      this.debugLog('Cleared network requests for new navigation', { tabId: eventData.tabId, commandId });
     }
 
     // Handle navigation errors immediately
@@ -535,6 +606,55 @@ export class ExtensionBridge {
     process.on('exit', cleanup);
   }
 
+  async getNetworkRequests(params: any = {}): Promise<any> {
+    const { tabId, limit = 50, method, status, since } = params;
+    
+    // Determine target tab
+    let targetTabId = tabId;
+    if (!targetTabId && this.extensionClients.size > 0) {
+      // Use the most recently active tab with requests
+      const tabsWithRequests = Array.from(this.networkRequests.keys());
+      targetTabId = tabsWithRequests[0] || null;
+    }
+    
+    if (!targetTabId) {
+      return {
+        tabId: null,
+        totalCount: 0,
+        requests: [],
+        since: since || null
+      };
+    }
+    
+    const tabRequests = this.networkRequests.get(targetTabId) || [];
+    let filteredRequests = [...tabRequests];
+    
+    // Apply filters
+    if (method) {
+      filteredRequests = filteredRequests.filter(req => 
+        req.method.toLowerCase() === method.toLowerCase()
+      );
+    }
+    
+    if (status) {
+      filteredRequests = filteredRequests.filter(req => req.status === status);
+    }
+    
+    if (since) {
+      filteredRequests = filteredRequests.filter(req => req.timestamp >= since);
+    }
+    
+    // Apply limit
+    const requests = filteredRequests.slice(0, limit);
+    
+    return {
+      tabId: targetTabId,
+      totalCount: filteredRequests.length,
+      requests,
+      since: since || null
+    };
+  }
+
   async getConsoleLogs(params: any = {}): Promise<TabLogData[]> {
     try {
       // If we have WebSocket connections, use real-time data
@@ -712,6 +832,12 @@ export class ExtensionBridge {
   }
 
   async sendCommand(command: string, params: any = {}, timeout: number = 10000): Promise<any> {
+    // Handle network requests locally if we have cached data
+    if (command === 'get_network_requests') {
+      const result = await this.getNetworkRequests(params);
+      return { success: true, data: result };
+    }
+
     return new Promise((resolve, reject) => {
       if (this.extensionClients.size === 0) {
         reject(new Error('No extension clients connected'));
