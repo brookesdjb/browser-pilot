@@ -31,7 +31,7 @@ export class BrowserAutomationTool {
   getClickElementSchema() {
     return {
       name: 'click_element',
-      description: 'Click on web elements using JavaScript execution via Chrome extension. IMPORTANT: Use get_dom_snapshot first to inspect elements and find correct selectors, especially for dynamic content with generated IDs.',
+      description: 'Click on web elements using JavaScript execution via Chrome extension. IMPORTANT: Use get_dom_snapshot first to inspect elements and find correct selectors, especially for dynamic content with generated IDs. Example workflow: 1) get_dom_snapshot to find elements, 2) click_element with correct selector.',
       inputSchema: {
         type: 'object',
         properties: {
@@ -70,7 +70,7 @@ export class BrowserAutomationTool {
   getTypeTextSchema() {
     return {
       name: 'type_text',
-      description: 'Type text into input elements using JavaScript execution via Chrome extension. IMPORTANT: Use get_dom_snapshot first to inspect input elements and find correct selectors, as form field IDs are often dynamically generated.',
+      description: 'Type text into input elements using JavaScript execution via Chrome extension. IMPORTANT: Use get_dom_snapshot first to inspect input elements and find correct selectors, as form field IDs are often dynamically generated. Example workflow: 1) get_dom_snapshot to find input fields, 2) type_text with correct selector.',
       inputSchema: {
         type: 'object',
         properties: {
@@ -191,6 +191,7 @@ export class BrowserAutomationTool {
         if (clickResult.selector) {
           responseText += `- Selector: ${clickResult.selector}\n`;
         }
+        responseText += `\n💡 **Pro Tip:** For complex workflows, use get_dom_snapshot to inspect page changes after interactions.\n`;
         
         // Wait after click
         const waitTime = params.waitAfterClick ?? 500;
@@ -325,6 +326,7 @@ export class BrowserAutomationTool {
         if (typeResult.submitted) {
           responseText += `- Submitted: Yes (Enter pressed)\\n`;
         }
+        responseText += `\\n💡 **Pro Tip:** After form submission, use get_dom_snapshot to verify page changes or error messages.\\n`;
         
         // Wait after typing
         const waitTime = params.waitAfterType ?? 500;

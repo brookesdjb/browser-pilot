@@ -396,7 +396,7 @@ export class BrowserDomTool {
   getSchema() {
     return {
       name: 'get_dom_snapshot',
-      description: 'Get a snapshot of the current page DOM. ESSENTIAL: Use this tool before click_element or type_text to inspect page structure, find correct element selectors, and identify dynamic IDs. This prevents selector failures and ensures reliable automation.',
+      description: 'Get a snapshot of the current page DOM. ESSENTIAL: Use this tool before click_element or type_text to inspect page structure, find correct element selectors, and identify dynamic IDs. This prevents selector failures and ensures reliable automation. Example: get_dom_snapshot → find button selector → click_element.',
       inputSchema: {
         type: 'object',
         properties: {
@@ -413,7 +413,7 @@ export class BrowserDomTool {
           },
           selector: {
             type: 'string',
-            description: 'CSS selector to capture specific element (captures full document if not specified)',
+            description: 'CSS selector to capture specific element (captures full document if not specified). Common patterns: "button" for buttons, "input[type=\'password\']" for password fields, "[data-testid=\'login\']" for test elements.',
             optional: true
           },
           maxLength: {

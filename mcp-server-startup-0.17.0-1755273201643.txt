@@ -9866,3 +9866,294 @@ Hello World! MCP Server v0.17.0 started at 2025-08-15T15:53:21.643Z
     "lineNumber": 0
   }
 }
+
+[2025-08-15T16:12:43.720Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "f2cbfe44-58b2-4eee-ae3d-38debb18f93b",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Bridge created in content script",
+    "timestamp": 1755274363720,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.720Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "1ca998b3-9a1d-4c20-af07-6dc3ee6ab287",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Enhanced Browser MCP content script loaded",
+    "timestamp": 1755274363720,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.746Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "241a8b2f-9f62-4619-b2c4-f33b605d41e3",
+    "tabId": 1094724651,
+    "level": "debug",
+    "message": "[vite] connecting...",
+    "timestamp": 1755274363742,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.768Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "19d0f4c3-19ef-4fa5-9aa4-bfe1a3c1147c",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Angular is running in development mode.",
+    "timestamp": 1755274363768,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.771Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "c68c3b6a-3131-400f-b227-a01e9305caa9",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionService] Initializing service",
+    "timestamp": 1755274363770,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.772Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "0d3b0cb2-745d-46ed-9267-393c40325b20",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionService] Auth state changed: {\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"isAuthenticated\",\"type\":\"boolean\",\"value\":\"false\"},{\"name\":\"hasAccessToken\",\"type\":\"boolean\",\"value\":\"false\"}],\"type\":\"object\"}",
+    "timestamp": 1755274363772,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.771Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "d9ebd509-86b2-4521-a0a0-ec6ef029c7dc",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionService] Loading from storage: {\"type\":\"null\"}",
+    "timestamp": 1755274363770,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.772Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "6982158e-4609-4064-b565-1e8ff0d682d2",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionGuard] Guard activated for route: /catalog",
+    "timestamp": 1755274363772,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.773Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "b098d483-973c-4be6-a0c5-c3479f495178",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionGuard] Available accounts: 0 {\"description\":\"Array(0)\",\"overflow\":false,\"properties\":[],\"subtype\":\"array\",\"type\":\"object\"}",
+    "timestamp": 1755274363772,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.773Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "9c01980b-9a6c-4708-8258-d846cc2beb53",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionGuard] Current state: {\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"selectedAccount\",\"subtype\":\"null\",\"type\":\"object\",\"value\":\"null\"},{\"name\":\"hasValidSelection\",\"type\":\"boolean\",\"value\":\"false\"},{\"name\":\"accountsLength\",\"type\":\"number\",\"value\":\"0\"}],\"type\":\"object\"}",
+    "timestamp": 1755274363773,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.774Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "c177be39-e0b4-49bf-b63b-4780ab92fdfa",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionGuard] No accounts loaded yet, allowing navigation",
+    "timestamp": 1755274363773,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.778Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "ebf8433b-d853-4c96-a68c-d287c9759054",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionService] Application roles wrapper: {\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"ApplicationName\",\"type\":\"string\",\"value\":\"ahmcatalogtooluidev\"},{\"name\":\"ApplicationRoles\",\"subtype\":\"array\",\"type\":\"object\",\"value\":\"Array(1)\"}],\"type\":\"object\"}",
+    "timestamp": 1755274363777,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.778Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "ab746a6c-df2a-4472-bb8a-ba97a0937638",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionService] Decoded JWT: {\"description\":\"Object\",\"overflow\":true,\"properties\":[{\"name\":\"ver\",\"type\":\"number\",\"value\":\"1\"},{\"name\":\"jti\",\"type\":\"string\",\"value\":\"AT.6fsYzn8hpik2Q-NKG0dgw33_OhN1n0DKbjYYfiC1R1Y\"},{\"name\":\"iss\",\"type\":\"string\",\"value\":\"https://dev-185756.okta.com/oauth2/default\"},{\"name\":\"aud\",\"type\":\"string\",\"value\":\"api://default\"},{\"name\":\"iat\",\"type\":\"number\",\"value\":\"1755273762\"}],\"type\":\"object\"}",
+    "timestamp": 1755274363777,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.777Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "ef0ba18f-9f35-4948-9f7c-05bd5aec8160",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionService] Extracting accounts from JWT token",
+    "timestamp": 1755274363777,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.777Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "1259ec16-843f-4c30-9802-2579d1f09ecc",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionService] Auth state changed: {\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"isAuthenticated\",\"type\":\"boolean\",\"value\":\"true\"},{\"name\":\"hasAccessToken\",\"type\":\"boolean\",\"value\":\"true\"}],\"type\":\"object\"}",
+    "timestamp": 1755274363777,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.779Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "52c4411c-38d8-4167-86d6-0a13655045e4",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionService] Processing role: {\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"Role\",\"type\":\"string\",\"value\":\"Admin\"},{\"name\":\"Scopes\",\"subtype\":\"array\",\"type\":\"object\",\"value\":\"Array(1)\"}],\"type\":\"object\"}",
+    "timestamp": 1755274363777,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.780Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "62b8bfe8-d7d1-48d6-aa48-bceac82e7e88",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionService] Found account: {\"description\":\"Object\",\"overflow\":false,\"properties\":[{\"name\":\"accountId\",\"type\":\"string\",\"value\":\"FeedlotCopy\"},{\"name\":\"role\",\"type\":\"string\",\"value\":\"Admin\"},{\"name\":\"siteId\",\"type\":\"undefined\",\"value\":\"undefined\"}],\"type\":\"object\"}",
+    "timestamp": 1755274363778,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.780Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "ff642c2b-ccc4-439f-a2f9-6d11194ca438",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AccountSelectionService] Total accounts found: 1 {\"description\":\"Array(1)\",\"overflow\":false,\"properties\":[{\"name\":\"0\",\"type\":\"object\",\"value\":\"Object\"}],\"subtype\":\"array\",\"type\":\"object\"}",
+    "timestamp": 1755274363778,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.780Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T16:12:43.780Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "b64ed1d8-7e4c-4e9c-96d0-31f2518089a7",
+    "tabId": 1094724651,
+    "level": "debug",
+    "message": "[vite] connected.",
+    "timestamp": 1755274363779,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.847Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T16:12:43.848Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "0c3e0bb3-0abb-456d-a4ac-b4033fa71b89",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AuthService] Initializing - DEPRECATED auto-selection disabled",
+    "timestamp": 1755274363848,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T16:12:43.848Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "854d7d5e-3d8b-4db3-9fb4-c5abd1747094",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[AuthService] JWT parsed, but account auto-selection disabled. Use AccountSelectionService.",
+    "timestamp": 1755274363848,
+    "url": "page",
+    "lineNumber": 0
+  }
+}

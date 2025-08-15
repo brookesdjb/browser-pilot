@@ -48,17 +48,24 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
   server.setRequestHandler(ListToolsRequestSchema, async () => {
     return {
       tools: [
-        consoleLogsTool.getSchema(),
+        // Primary inspection tools first
+        browserDomTool.getSchema(),
+        browserScreenshotTool.getSchema(),
+        
+        // Navigation and automation tools
         browserNavigationTool.getNavigateSchema(),
         browserNavigationTool.getCurrentUrlSchema(),
+        browserAutomationTool.getClickElementSchema(),
+        browserAutomationTool.getTypeTextSchema(),
+        
+        // Data extraction tools
         browserStorageTool.getLocalStorageSchema(),
         browserStorageTool.getSessionStorageSchema(),
         browserStorageTool.getCookiesSchema(),
         browserNetworkTool.getSchema(),
-        browserDomTool.getSchema(),
-        browserScreenshotTool.getSchema(),
-        browserAutomationTool.getClickElementSchema(),
-        browserAutomationTool.getTypeTextSchema(),
+        consoleLogsTool.getSchema(),
+        
+        // Utility tools
         versionTool
       ],
     };
