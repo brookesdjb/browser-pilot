@@ -1,0 +1,45 @@
+[2025-08-15T12:45:18.782Z] ExtensionBridge initialized
+{
+  "sessionId": "a58ca811-097d-475b-b456-3d012dbf7503"
+}
+
+[2025-08-15T12:45:34.093Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T12:45:34.118Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T12:46:12.694Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "c086a210-31d4-49b8-9a88-94d4d42c7b19"
+}
+
+[2025-08-15T12:46:36.436Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "73865bc7-7897-46a3-8336-8d7f860b2871"
+}
+
+[2025-08-15T12:47:43.797Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "0e6e78e3-bbc7-4c9c-8588-39a7e8f012a3"
+}
+
+[2025-08-15T12:48:21.895Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "b1716adc-39d7-467a-8fa8-275ecf212a94"
+}
+
+[2025-08-15T12:48:45.952Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "9c06d722-f209-4417-841e-5b4a827083f4"
+}
+

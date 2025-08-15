@@ -1,0 +1,156 @@
+Hello World! MCP Server v0.8.0 started at 2025-08-15T12:45:18.779Z
+
+=== WebSocket Messages ===
+
+[2025-08-15T12:45:18.782Z] SYSTEM: ExtensionBridge initialized with WebSocket logging
+
+[2025-08-15T12:45:34.093Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T12:45:34.118Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T12:46:12.687Z] OUTGOING: {
+  "type": "command",
+  "id": "c086a210-31d4-49b8-9a88-94d4d42c7b19",
+  "data": {
+    "command": "get_local_storage",
+    "params": {}
+  }
+}
+
+[2025-08-15T12:46:12.694Z] INCOMING: {
+  "type": "command_response",
+  "id": "c086a210-31d4-49b8-9a88-94d4d42c7b19",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1713408284,
+      "items": {
+        "actions": "[{\"id\":\"1\",\"name\":\"Action 1\"},{\"id\":\"2\",\"name\":\"Action 2\"},{\"id\":\"3\",\"name\":\"Action 3\"}]",
+        "drugs": "[]",
+        "events": "[{\"id\":\"event_001\",\"name\":\"UserLogin\",\"displayName\":\"User Login Event\",\"description\":\"Triggered when a user logs into the application.\",\"diagnosis\":\"Respiratory\",\"inputParameters\":\"group\",\"incrementTreatmentsCount\":true,\"category\":\"inventory\",\"fields\":[{\"id\":\"field_ip_address\",\"name\":\"IP Address\",\"displayName\":\"User IP Address\",\"fieldType\":\"Custom\",\"fieldValueType\":\"String\",\"validation\":true,\"validationType\":\"ip\",\"description\":\"The IP address from which the user is logging in.\",\"defaultValue\":\"\",\"mandatory\":false,\"updateValidationType\":\"none\",\"lookupTableValues\":[],\"constantValue\":null,\"nullable\":false,\"UIComponent\":\"String\"}],\"actions\":[{\"id\":\"1\",\"name\":\"Action Name Number 01 Long Name\"}]},{\"id\":\"event_002\",\"name\":\"FileUpload\",\"displayName\":\"File Upload Event\",\"description\":\"Triggered when a user uploads a file to the application.\",\"diagnosis\":\"Respiratory\",\"inputParameters\":\"singleAnimal\",\"incrementTreatmentsCount\":true,\"category\":\"treatment\",\"fields\":[{\"id\":\"field_file_size\",\"name\":\"File Size\",\"displayName\":\"Size of Uploaded File\",\"fieldType\":\"Custom\",\"fieldValueType\":\"Int\",\"validation\":true,\"validationType\":\"max\",\"description\":\"The size of the uploaded file in bytes.\",\"defaultValue\":0,\"mandatory\":true,\"updateValidationType\":\"none\",\"lookupTableValues\":[],\"constantValue\":null,\"nullable\":false,\"UIComponent\":\"Int\"}],\"actions\":[]},{\"id\":\"event_003\",\"name\":\"Purchase\",\"displayName\":\"Purchase Event\",\"description\":\"Triggered when a user makes a purchase.\",\"diagnosis\":\"Respiratory\",\"inputParameters\":\"group\",\"incrementTreatmentsCount\":true,\"category\":\"inventory\",\"fields\":[{\"id\":\"field_payment_method\",\"name\":\"Payment Method\",\"displayName\":\"Method of Payment\",\"fieldType\":\"System\",\"fieldValueType\":\"String\",\"validation\":true,\"validationType\":\"enum\",\"description\":\"The payment method used for the purchase.\",\"defaultValue\":\"credit_card\",\"mandatory\":true,\"updateValidationType\":\"none\",\"lookupTableValues\":[\"credit_card\",\"paypal\",\"bank_transfer\"],\"constantValue\":null,\"nullable\":false,\"UIComponent\":\"String\"}],\"actions\":[]},{\"id\":\"event_004\",\"name\":\"PasswordReset\",\"displayName\":\"Password Reset Event\",\"description\":\"Triggered when a user requests a password reset.\",\"diagnosis\":\"Respiratory\",\"inputParameters\":\"singleAnimal\",\"incrementTreatmentsCount\":false,\"category\":\"treatment\",\"fields\":[],\"actions\":[]},{\"id\":\"event_005\",\"name\":\"ProfileUpdate\",\"displayName\":\"Profile Update Event\",\"description\":\"Triggered when a user updates their profile information.\",\"diagnosis\":\"Respiratory\",\"inputParameters\":\"group\",\"incrementTreatmentsCount\":false,\"category\":\"inventory\",\"fields\":[{\"id\":\"field_new_email\",\"name\":\"New Email\",\"displayName\":\"New Email Address\",\"fieldType\":\"Readonly\",\"fieldValueType\":\"Double\",\"validation\":true,\"validationType\":\"email\",\"description\":\"The new email address of the user.\",\"defaultValue\":\"\",\"mandatory\":true,\"updateValidationType\":\"none\",\"lookupTableValues\":[],\"constantValue\":null,\"nullable\":false,\"UIComponent\":\"Double\"},{\"id\":\"field_new_phone\",\"name\":\"New Phone Number\",\"displayName\":\"New Phone Number\",\"fieldType\":\"System\",\"fieldValueType\":\"Long\",\"validation\":false,\"validationType\":\"none\",\"description\":\"The new phone number of the user.\",\"defaultValue\":\"\",\"mandatory\":false,\"updateValidationType\":\"none\",\"lookupTableValues\":[],\"constantValue\":null,\"nullable\":false,\"UIComponent\":\"Long\"}],\"actions\":[]}]",
+        "fields": "[{\"id\":\"1\",\"name\":\"Field 1 name\",\"displayName\":\"Display name of field 1\",\"fieldType\":\"System\",\"fieldValueType\":\"Boolean\",\"validation\":false,\"validationType\":\"Check for range of values\",\"description\":\"Description of field 1\",\"defaultValue\":true,\"mandatory\":true,\"updateValidationType\":\"Update validation type\",\"lookupTableValues\":[],\"constantValue\":0,\"nullable\":false,\"UIComponent\":\"Boolean\"},{\"id\":\"2\",\"name\":\"Field 2 name\",\"displayName\":\"Display name of field 2\",\"fieldType\":\"System\",\"fieldValueType\":\"LookupTable\",\"validation\":true,\"validationType\":\"Check for range of values\",\"description\":\"Description of field 2\",\"defaultValue\":0,\"mandatory\":false,\"updateValidationType\":\"Update validation type\",\"lookupTableValues\":[\"Value 1\",\"Value 2\"],\"constantValue\":5,\"nullable\":false,\"UIComponent\":\"LookupTable\"},{\"id\":\"3\",\"name\":\"Field 3 name\",\"displayName\":\"Display name of field 3\",\"fieldType\":\"System\",\"fieldValueType\":\"Int\",\"validation\":true,\"validationType\":\"Check for range of values\",\"description\":\"Description of field 3\",\"defaultValue\":0,\"mandatory\":false,\"updateValidationType\":\"Update validation type\",\"lookupTableValues\":[],\"constantValue\":0,\"nullable\":false,\"UIComponent\":\"Int\"},{\"id\":\"4\",\"name\":\"Field 4 name\",\"displayName\":\"Display name of field 4\",\"fieldType\":\"System\",\"fieldValueType\":\"String\",\"validation\":true,\"validationType\":\"Check for range of values\",\"description\":\"Description of field 4\",\"defaultValue\":\"Test\",\"mandatory\":false,\"updateValidationType\":\"Update validation type\",\"lookupTableValues\":[],\"constantValue\":0,\"nullable\":false,\"UIComponent\":\"String\"}]",
+        "okta-cache-storage": "{\"https://dev-185756.okta.com/oauth2/default/.well-known/openid-configuration\":{\"expiresAt\":1755336969,\"response\":{\"issuer\":\"https://dev-185756.okta.com/oauth2/default\",\"authorization_endpoint\":\"https://dev-185756.okta.com/oauth2/default/v1/authorize\",\"token_endpoint\":\"https://dev-185756.okta.com/oauth2/default/v1/token\",\"userinfo_endpoint\":\"https://dev-185756.okta.com/oauth2/default/v1/userinfo\",\"registration_endpoint\":\"https://dev-185756.okta.com/oauth2/v1/clients\",\"jwks_uri\":\"https://dev-185756.okta.com/oauth2/default/v1/keys\",\"response_types_supported\":[\"code\",\"id_token\",\"code id_token\",\"code token\",\"id_token token\",\"code id_token token\"],\"response_modes_supported\":[\"query\",\"fragment\",\"form_post\",\"okta_post_message\"],\"grant_types_supported\":[\"authorization_code\",\"implicit\",\"refresh_token\",\"password\",\"urn:ietf:params:oauth:grant-type:device_code\"],\"subject_types_supported\":[\"public\"],\"id_token_signing_alg_values_supported\":[\"RS256\"],\"scopes_supported\":[\"openid\",\"profile\",\"email\",\"address\",\"phone\",\"offline_access\",\"device_sso\"],\"token_endpoint_auth_methods_supported\":[\"client_secret_basic\",\"client_secret_post\",\"client_secret_jwt\",\"private_key_jwt\",\"none\"],\"claims_supported\":[\"iss\",\"ver\",\"sub\",\"aud\",\"iat\",\"exp\",\"jti\",\"auth_time\",\"amr\",\"idp\",\"nonce\",\"name\",\"nickname\",\"preferred_username\",\"given_name\",\"middle_name\",\"family_name\",\"email\",\"email_verified\",\"profile\",\"zoneinfo\",\"locale\",\"address\",\"phone_number\",\"picture\",\"website\",\"gender\",\"birthdate\",\"updated_at\",\"at_hash\",\"c_hash\"],\"code_challenge_methods_supported\":[\"S256\"],\"introspection_endpoint\":\"https://dev-185756.okta.com/oauth2/default/v1/introspect\",\"introspection_endpoint_auth_methods_supported\":[\"client_secret_basic\",\"client_secret_post\",\"client_secret_jwt\",\"private_key_jwt\",\"none\"],\"revocation_endpoint\":\"https://dev-185756.okta.com/oauth2/default/v1/revoke\",\"revocation_endpoint_auth_methods_supported\":[\"client_secret_basic\",\"client_secret_post\",\"client_secret_jwt\",\"private_key_jwt\",\"none\"],\"end_session_endpoint\":\"https://dev-185756.okta.com/oauth2/default/v1/logout\",\"request_parameter_supported\":true,\"request_object_signing_alg_values_supported\":[\"HS256\",\"HS384\",\"HS512\",\"RS256\",\"RS384\",\"RS512\",\"ES256\",\"ES384\",\"ES512\"],\"device_authorization_endpoint\":\"https://dev-185756.okta.com/oauth2/default/v1/device/authorize\",\"dpop_signing_alg_values_supported\":[\"RS256\",\"RS384\",\"RS512\",\"ES256\",\"ES384\",\"ES512\"],\"headers\":{\"cache-control\":\"max-age=86400, must-revalidate\",\"content-type\":\"application/json\",\"expires\":\"Fri, 15 Aug 2025 11:44:36 GMT\"}}},\"https://dev-185756.okta.com/oauth2/default/v1/keys\":{\"expiresAt\":1755336987,\"response\":{\"keys\":[{\"kty\":\"RSA\",\"alg\":\"RS256\",\"kid\":\"TKg9n6fph8TBfSaHqD5gnWNg5o5NJkouxfopW-a4HMM\",\"use\":\"sig\",\"e\":\"AQAB\",\"n\":\"tQtffC5P3dIJAsKAQba76ccx4ZmfIipNJEuPv_k7_buN3o1-zZn22kJudbuHC4_1ri5r9jowUJsgFApzEod8aqMvzS3SoPldonJez8NbZahvpXhLhEsKnXKe9ZXNvhVKUwDf9K79bE0Il1OZpV-uWAJTjh29kpfvu4hjtNsIYRcNL9oR8H_8gI3rfbnv-S1QXqRTIhCL9kGKfcmJgD1iGNNcMYmExXB6qhgWyWzW4XSTqDZbFD6tPuFVxqkGxys0w6zInTzmuRwqUQsdSHr1DL4wRxkUl9eAPexpBNz7Xjm75czNe0GdbII7PS46xE2Nvfm8EjEnqttSp-EHLLUAxQ\"},{\"kty\":\"RSA\",\"alg\":\"RS256\",\"kid\":\"3uyRDBYbx00TzyteYznK_5ritcE9Jzr2K5Asj8E_U7s\",\"use\":\"sig\",\"e\":\"AQAB\",\"n\":\"9bISRMbagZo8xUN848e-Aeoe-yZSgJH8Tv0f-9quEsTKznF0ReucDM4ufzRaFHQb91WQU9tPM2SFHwtx6LBd3LeUxzHzxo47nIoY81PiCUZukPqdRciz2KT49TwYqd_I5p6LQ4jxaA5RdikEz-ZNqoN1_Hu7SUNygU1nAJ62oJULgQhHXM9Okp4zifhhqu4sEGhva7eKKSqmudUSm2Lh-CjIKlfk9nHFhXkdeeCXPHCXrid054pSV2xT7KoUPf99ent1IFEVxcAMmzsSOooNJNq803A0tPQ6Iz3P7uVYTpb9dLyqXXTzsj6ZtwLOZNn3ZOEKEhWhBwjIegBuas40Aw\"}],\"headers\":{\"cache-control\":\"max-age=2731006, must-revalidate\",\"content-type\":\"application/json\",\"expires\":\"Mon, 15 Sep 2025 03:23:32 GMT\"}}}}",
+        "okta-original-uri-storage": "{}",
+        "okta-shared-transaction-storage": "{\"K11FjxvyTOez9JvaBxenSr5pqAqHsHN86F6LqopiBHv1YCwBBlXxLNqhtYFOjPYI\":{\"dateCreated\":1755253608091,\"transaction\":{\"issuer\":\"https://dev-185756.okta.com/oauth2/default\",\"urls\":{\"issuer\":\"https://dev-185756.okta.com/oauth2/default\",\"authorizeUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/authorize\",\"userinfoUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/userinfo\",\"tokenUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/token\",\"revokeUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/revoke\",\"logoutUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/logout\"},\"clientId\":\"0oa1kqlytbxIckJCs358\",\"redirectUri\":\"http://localhost:4200/implicit/callback\",\"responseType\":\"code\",\"scopes\":[\"openid\",\"application_roles\",\"profile\",\"email\",\"app_lbl\"],\"state\":\"K11FjxvyTOez9JvaBxenSr5pqAqHsHN86F6LqopiBHv1YCwBBlXxLNqhtYFOjPYI\",\"nonce\":\"WW0FVOkcXh7NYFLXTKfoJdSx89nWxXQiYkka7FGHkAxnT8AcGRyF61a5Ul1ETYnU\",\"ignoreSignature\":false,\"codeVerifier\":\"9289f711b7ba4adc3906dd54bb5c3b0185f6fe2e3d6\",\"codeChallengeMethod\":\"S256\",\"codeChallenge\":\"iMfSIFpv3COC7QUwn2HLHsFHj903Up6XsOcx0K-f-jI\"}},\"ne0GltTPZJ0A203QClafxi6a9N1BTBxkF7MiWn5ITPRqoMnIVs4S49GpN3epeDvq\":{\"dateCreated\":1755253617117,\"transaction\":{\"issuer\":\"https://dev-185756.okta.com/oauth2/default\",\"urls\":{\"issuer\":\"https://dev-185756.okta.com/oauth2/default\",\"authorizeUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/authorize\",\"userinfoUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/userinfo\",\"tokenUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/token\",\"revokeUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/revoke\",\"logoutUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/logout\"},\"clientId\":\"0oa1kqlytbxIckJCs358\",\"redirectUri\":\"http://localhost:4200/implicit/callback\",\"responseType\":\"code\",\"scopes\":[\"openid\",\"application_roles\",\"profile\",\"email\",\"app_lbl\"],\"state\":\"ne0GltTPZJ0A203QClafxi6a9N1BTBxkF7MiWn5ITPRqoMnIVs4S49GpN3epeDvq\",\"nonce\":\"QMaaeGz1DihUFZhRGGn40vURwyByy2MVjeevCtk79XW2RVKabJJG2o4iO5QE2EGu\",\"ignoreSignature\":false,\"codeVerifier\":\"a59bc8f14702f00964cb626429cfda448c95c1abb62\",\"codeChallengeMethod\":\"S256\",\"codeChallenge\":\"NHq0-rvWx3Rz7LsepGFYhY5PLJYR6n99cG2XGGUsZso\"}}}",
+        "okta-token-storage": "{\"idToken\":{\"idToken\":\"eyJraWQiOiIzdXlSREJZYngwMFR6eXRlWXpuS181cml0Y0U5SnpyMks1QXNqOEVfVTdzIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiIwMHUxbGVoZ2J0eFE0ZG9OSTM1OCIsIm5hbWUiOiJTaXRlIEFkbWluIiwiZW1haWwiOiJzaXRlLWFkbWluQHlvcG1haWwuY29tIiwidmVyIjoxLCJpc3MiOiJodHRwczovL2Rldi0xODU3NTYub2t0YS5jb20vb2F1dGgyL2RlZmF1bHQiLCJhdWQiOiIwb2Exa3FseXRieElja0pDczM1OCIsImlhdCI6MTc1NTI2MTEwMCwiZXhwIjoxNzU1MjY0NzAwLCJqdGkiOiJJRC40c1hLdmpMTV9qaFJ6WmN5RVdmdVBMRF94MGRwWnFFSER3ZDczWkY3ckFBIiwiYW1yIjpbInB3ZCJdLCJpZHAiOiIwMG8xdDdyZzZtb3ZETldWVTM1NyIsIm5vbmNlIjoiV2tOdTRKdVBlSDVEV2NZTkhoTEMxcHBGR1RYcGh2bjJkcEI0MkdFYm9oTFh4OVpNN0F1ekFqYUVLMUhmWTJnTyIsInByZWZlcnJlZF91c2VybmFtZSI6InNpdGUtYWRtaW5AeW9wbWFpbC5jb20iLCJhdXRoX3RpbWUiOjE3NTUyNTM2OTgsImF0X2hhc2giOiI1VFVYNmI0UTRWVEROUVpNLWRMWk1RIiwibGFuZyI6ImVuLXVzIn0.K-kwJTl7HvDgDNz9PkaZE-4iVDiGxoKcarpQQdUB7-tYT3zKfwmecC5-XnrX6X9u98P41gwZOEMs3g0qmioMzul3khtQJdR6sXk6Csknu48FMqrMAcE4lAcPzWfQ7KoSxHEyLKxWF_fFvuHx5nDBHypPvzuyCazFsDEXDSAyNQjYaiZmjKiXGIekcVQn6x1_o2IinZZ6mliSWrcl2gYEhYB_PG5THabQ5mq8R9UdxR6uyJsQ92dDgBz2doRP_QZKL_y7R4yXq8QOTfM_OXwLtPdBojd9cAIXgTpk-gxXCMdfezWpaKEth5HRddtIMfbcXl8snyKCZhBf18QKUT5psw\",\"claims\":{\"sub\":\"00u1lehgbtxQ4doNI358\",\"name\":\"Site Admin\",\"email\":\"site-admin@yopmail.com\",\"ver\":1,\"iss\":\"https://dev-185756.okta.com/oauth2/default\",\"aud\":\"0oa1kqlytbxIckJCs358\",\"iat\":1755261100,\"exp\":1755264700,\"jti\":\"ID.4sXKvjLM_jhRzZcyEWfuPLD_x0dpZqEHDwd73ZF7rAA\",\"amr\":[\"pwd\"],\"idp\":\"00o1t7rg6movDNWVU357\",\"nonce\":\"WkNu4JuPeH5DWcYNHhLC1ppFGTXphvn2dpB42GEbohLXx9ZM7AuzAjaEK1HfY2gO\",\"preferred_username\":\"site-admin@yopmail.com\",\"auth_time\":1755253698,\"at_hash\":\"5TUX6b4Q4VTDNQZM-dLZMQ\",\"lang\":\"en-us\"},\"expiresAt\":1755264700,\"scopes\":[\"application_roles\",\"openid\",\"profile\",\"email\",\"app_lbl\"],\"authorizeUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/authorize\",\"issuer\":\"https://dev-185756.okta.com/oauth2/default\",\"clientId\":\"0oa1kqlytbxIckJCs358\"},\"accessToken\":{\"accessToken\":\"eyJraWQiOiIzdXlSREJZYngwMFR6eXRlWXpuS181cml0Y0U5SnpyMks1QXNqOEVfVTdzIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULnJKMmVjOUZvNGpmZEhpLUhvcEZSdjhrWGU3ZlR0VWl1c1VpTUtCenFqTlEiLCJpc3MiOiJodHRwczovL2Rldi0xODU3NTYub2t0YS5jb20vb2F1dGgyL2RlZmF1bHQiLCJhdWQiOiJhcGk6Ly9kZWZhdWx0IiwiaWF0IjoxNzU1MjYxMTAwLCJleHAiOjE3NTUzNDc1MDAsImNpZCI6IjBvYTFrcWx5dGJ4SWNrSkNzMzU4IiwidWlkIjoiMDB1MWxlaGdidHhRNGRvTkkzNTgiLCJzY3AiOlsiYXBwbGljYXRpb25fcm9sZXMiLCJvcGVuaWQiLCJwcm9maWxlIiwiZW1haWwiLCJhcHBfbGJsIl0sImF1dGhfdGltZSI6MTc1NTI1MzY5OCwiYXBwbiI6ImFobWNhdGFsb2d0b29sdWlkZXYiLCJzdWIiOiJzaXRlLWFkbWluQHlvcG1haWwuY29tIiwiYXBwbl9ybHMiOiJ7XCJBcHBsaWNhdGlvbk5hbWVcIjpcImFobWNhdGFsb2d0b29sdWlkZXZcIixcIkFwcGxpY2F0aW9uUm9sZXNcIjpbe1wiUm9sZVwiOlwiU2l0ZUFkbWluXCIsXCJTY29wZXNcIjpbe1wiVHlwZVwiOlwic2l0ZUlkXCIsXCJWYWx1ZVwiOlwiNjg3NDllZDM4YjA1Njg5MWViYTNmYjlmXCJ9LHtcIlR5cGVcIjpcIkFjY291bnRJZFwiLFwiVmFsdWVcIjpcIkZlZWRsb3RDb3B5XCJ9XX1dfSIsIm9ubGluZV91c2VyIjpmYWxzZX0.q4TxfH71JIEN4kQAyG-eFZHSx7GpwAVXpG9XSsYaH09-p6JTP2v8cHUfP89vp7N0gAnToUKDl4-rh2bY8GUx3s9shNgKQgmWmmWeOZQM3aXImBFgdfC6zIhLhsM7mz31awhhG1sH7MAnWi90w6I9oQ23L-Wrx3mF37v1vT_pSKNxOMbPAlrgknXfSuVvmJf9KdIi_ccacEQV9hEMfy7wOj1xXDIXO8vGDbLaPOyyUVYI0OQWnyCwHfgDEvEu0S1IHHpeXspfFXhXsTwPws7scUOv9JNZ8IwMj5ZQLLWc1PY9UJ3kqeRwonYLYlWR7vY3GhcH1KSQckhynZxO6Yw09Q\",\"claims\":{\"ver\":1,\"jti\":\"AT.rJ2ec9Fo4jfdHi-HopFRv8kXe7fTtUiusUiMKBzqjNQ\",\"iss\":\"https://dev-185756.okta.com/oauth2/default\",\"aud\":\"api://default\",\"iat\":1755261100,\"exp\":1755347500,\"cid\":\"0oa1kqlytbxIckJCs358\",\"uid\":\"00u1lehgbtxQ4doNI358\",\"scp\":[\"application_roles\",\"openid\",\"profile\",\"email\",\"app_lbl\"],\"auth_time\":1755253698,\"appn\":\"ahmcatalogtooluidev\",\"sub\":\"site-admin@yopmail.com\",\"appn_rls\":\"{\\\"ApplicationName\\\":\\\"ahmcatalogtooluidev\\\",\\\"ApplicationRoles\\\":[{\\\"Role\\\":\\\"SiteAdmin\\\",\\\"Scopes\\\":[{\\\"Type\\\":\\\"siteId\\\",\\\"Value\\\":\\\"68749ed38b056891eba3fb9f\\\"},{\\\"Type\\\":\\\"AccountId\\\",\\\"Value\\\":\\\"FeedlotCopy\\\"}]}]}\",\"online_user\":false},\"expiresAt\":1755347500,\"tokenType\":\"Bearer\",\"scopes\":[\"application_roles\",\"openid\",\"profile\",\"email\",\"app_lbl\"],\"authorizeUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/authorize\",\"userinfoUrl\":\"https://dev-185756.okta.com/oauth2/default/v1/userinfo\"}}",
+        "protocols": "[{\"id\":\"protocol-001\",\"name\":\"Canine Vaccination Protocol\",\"diagnosis\":\"Preventive care for canine diseases\",\"steps\":[{\"name\":\"Initial Vaccination\",\"events\":[{\"id\":\"event-001\",\"name\":\"Administer Rabies Vaccine\",\"displayName\":\"Rabies Vaccine Administration\",\"description\":\"Administer the rabies vaccine to the dog.\",\"diagnosis\":\"Rabies prevention\",\"inputParameters\":\"singleAnimal\",\"incrementTreatmentsCount\":true,\"category\":\"treatment\",\"fields\":[{\"id\":\"field-001\",\"name\":\"vaccineType\",\"displayName\":\"Vaccine Type\",\"fieldType\":\"System\",\"fieldValueType\":\"String\",\"validation\":true,\"validationType\":\"string\",\"description\":\"Type of vaccine administered.\",\"defaultValue\":\"Rabies\",\"mandatory\":true,\"updateValidationType\":\"none\",\"lookupTableValues\":[\"Rabies\",\"Distemper\",\"Parvovirus\"],\"constantValue\":null,\"nullable\":false,\"UIComponent\":\"dropdown\"}],\"actions\":[{\"id\":\"action-001\",\"name\":\"Log Vaccination\",\"extraParameters\":[{\"key\":\"timestamp\",\"value\":\"2025-04-23T10:44:09Z\"}],\"operationTypes\":[\"create\",\"update\"]}]}]}]},{\"id\":\"protocol-002\",\"name\":\"Feline Health Check Protocol\",\"diagnosis\":\"Routine health check for felines\",\"steps\":[{\"name\":\"Annual Checkup\",\"events\":[{\"id\":\"event-002\",\"name\":\"Conduct Health Assessment\",\"displayName\":\"Health Assessment for Cats\",\"description\":\"Perform a comprehensive health assessment.\",\"diagnosis\":\"General health check\",\"inputParameters\":\"group\",\"incrementTreatmentsCount\":false,\"category\":\"inventory\",\"fields\":[{\"id\":\"field-002\",\"name\":\"weight\",\"displayName\":\"Weight\",\"fieldType\":\"Custom\",\"fieldValueType\":\"Double\",\"validation\":true,\"validationType\":\"number\",\"description\":\"Weight of the cat in kilograms.\",\"defaultValue\":0,\"mandatory\":true,\"updateValidationType\":\"none\",\"lookupTableValues\":[],\"constantValue\":null,\"nullable\":false,\"UIComponent\":\"number-input\"}],\"actions\":[{\"id\":\"action-002\",\"name\":\"Record Assessment\",\"extraParameters\":[{\"key\":\"assessmentDate\",\"value\":\"2025-04-23\"}],\"operationTypes\":[\"create\"]}]}]},{\"name\":\"Dental Examination\",\"events\":[{\"id\":\"event-003\",\"name\":\"Perform Dental Float\",\"displayName\":\"Dental Float Procedure\",\"description\":\"Perform a dental float on the horse.\",\"diagnosis\":\"Dental health maintenance\",\"inputParameters\":\"singleAnimal\",\"incrementTreatmentsCount\":true,\"category\":\"treatment\",\"fields\":[{\"id\":\"field-003\",\"name\":\"sedationRequired\",\"displayName\":\"Sedation Required\",\"fieldType\":\"System\",\"fieldValueType\":\"Boolean\",\"validation\":false,\"validationType\":\"none\",\"description\":\"Indicates if sedation is required for the procedure.\",\"defaultValue\":false,\"mandatory\":false,\"updateValidationType\":\"none\",\"lookupTableValues\":[],\"constantValue\":null,\"nullable\":true,\"UIComponent\":\"checkbox\"}],\"actions\":[{\"id\":\"action-003\",\"name\":\"Schedule Follow-up\",\"extraParameters\":[{\"key\":\"followUpDate\",\"value\":\"2025-05-23\"}],\"operationTypes\":[\"create\",\"update\"]},{\"id\":\"action-004\",\"name\":\"Schedule Follow-up 2\",\"extraParameters\":[{\"key\":\"followUpDate\",\"value\":\"2025-05-23\"}],\"operationTypes\":[\"create\",\"update\"]},{\"id\":\"action-005\",\"name\":\"Schedule Follow-up 3\",\"extraParameters\":[{\"key\":\"followUpDate\",\"value\":\"2025-05-23\"}],\"operationTypes\":[\"create\",\"update\"]}]}]}]},{\"id\":\"protocol-003\",\"name\":\"Equine Dental Care Protocol\",\"diagnosis\":\"Dental care for horses\",\"steps\":[{\"name\":\"Dental Examination\",\"events\":[{\"id\":\"event-003\",\"name\":\"Perform Dental Float\",\"displayName\":\"Dental Float Procedure\",\"description\":\"Perform a dental float on the horse.\",\"diagnosis\":\"Dental health maintenance\",\"inputParameters\":\"singleAnimal\",\"incrementTreatmentsCount\":true,\"category\":\"treatment\",\"fields\":[{\"id\":\"field-003\",\"name\":\"sedationRequired\",\"displayName\":\"Sedation Required\",\"fieldType\":\"System\",\"fieldValueType\":\"Boolean\",\"validation\":false,\"validationType\":\"none\",\"description\":\"Indicates if sedation is required for the procedure.\",\"defaultValue\":false,\"mandatory\":false,\"updateValidationType\":\"none\",\"lookupTableValues\":[],\"constantValue\":null,\"nullable\":true,\"UIComponent\":\"checkbox\"}],\"actions\":[{\"id\":\"action-003\",\"name\":\"Schedule Follow-up\",\"extraParameters\":[{\"key\":\"followUpDate\",\"value\":\"2025-05-23\"}],\"operationTypes\":[\"create\",\"update\"]}]}]}]}]",
+        "siteDrugs": "[{\"Id\":\"111231231232\",\"DrugName\":\"DRAAXINS\",\"Diagnosis\":\"Respiratory, Reproductive\",\"ProductType\":\"Vaccine\",\"SiteId\":\"\",\"IsDisplayed\":false,\"IsSiteDrug\":true},{\"Id\":\"1234567890\",\"DrugName\":\"Vetmedin\",\"Diagnosis\":\"Heart failure\",\"ProductType\":\"Tablet\",\"SiteId\":\"\",\"IsDisplayed\":false,\"IsSiteDrug\":true},{\"Id\":\"9876543210\",\"DrugName\":\"Cerenia\",\"Diagnosis\":\"Nausea, vomiting, motion sickness\",\"ProductType\":\"Injection\",\"SiteId\":\"\",\"IsDisplayed\":false,\"IsSiteDrug\":true},{\"Id\":\"7654321980\",\"DrugName\":\"Simparica\",\"Diagnosis\":\"Flea infestation, tick infestation\",\"ProductType\":\"Chewable tablet\",\"SiteId\":\"\",\"IsDisplayed\":true,\"IsSiteDrug\":true},{\"Id\":\"6543218790\",\"DrugName\":\"Metacam\",\"Diagnosis\":\"Pain, inflammation\",\"ProductType\":\"Oral suspension\",\"SiteId\":\"\",\"IsDisplayed\":false,\"IsSiteDrug\":true}]"
+      }
+    }
+  }
+}
+
+[2025-08-15T12:46:36.433Z] OUTGOING: {
+  "type": "command",
+  "id": "73865bc7-7897-46a3-8336-8d7f860b2871",
+  "data": {
+    "command": "get_session_storage",
+    "params": {}
+  }
+}
+
+[2025-08-15T12:46:36.436Z] INCOMING: {
+  "type": "command_response",
+  "id": "73865bc7-7897-46a3-8336-8d7f860b2871",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1713408284,
+      "items": {}
+    }
+  }
+}
+
+[2025-08-15T12:47:43.795Z] OUTGOING: {
+  "type": "command",
+  "id": "0e6e78e3-bbc7-4c9c-8588-39a7e8f012a3",
+  "data": {
+    "command": "get_session_storage",
+    "params": {}
+  }
+}
+
+[2025-08-15T12:47:43.797Z] INCOMING: {
+  "type": "command_response",
+  "id": "0e6e78e3-bbc7-4c9c-8588-39a7e8f012a3",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1713408284,
+      "items": {
+        "redirectUrl": "https://localhost:4200/catalog/fields"
+      }
+    }
+  }
+}
+
+[2025-08-15T12:48:21.891Z] OUTGOING: {
+  "type": "command",
+  "id": "b1716adc-39d7-467a-8fa8-275ecf212a94",
+  "data": {
+    "command": "get_cookies",
+    "params": {}
+  }
+}
+
+[2025-08-15T12:48:21.895Z] INCOMING: {
+  "type": "command_response",
+  "id": "b1716adc-39d7-467a-8fa8-275ecf212a94",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1713408284,
+      "url": "http://localhost:4200/catalog",
+      "cookies": []
+    }
+  }
+}
+
+[2025-08-15T12:48:45.942Z] OUTGOING: {
+  "type": "command",
+  "id": "9c06d722-f209-4417-841e-5b4a827083f4",
+  "data": {
+    "command": "get_cookies",
+    "params": {}
+  }
+}
+
+[2025-08-15T12:48:45.952Z] INCOMING: {
+  "type": "command_response",
+  "id": "9c06d722-f209-4417-841e-5b4a827083f4",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1713408284,
+      "url": "http://localhost:4200/catalog",
+      "cookies": [
+        {
+          "domain": "localhost",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "test cookie",
+          "path": "/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "coookie monster"
+        }
+      ]
+    }
+  }
+}

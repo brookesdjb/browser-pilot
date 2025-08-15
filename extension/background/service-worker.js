@@ -88,6 +88,15 @@ class ConsoleLogCollector {
         case 'get_current_url':
           result = await this.getCurrentUrl(params);
           break;
+        case 'get_local_storage':
+          result = await this.getLocalStorage(params);
+          break;
+        case 'get_session_storage':
+          result = await this.getSessionStorage(params);
+          break;
+        case 'get_cookies':
+          result = await this.getCookies(params);
+          break;
         case 'cleanup_navigation':
           this.cleanupNavigationListener(params.commandId);
           result = { success: true, message: 'Navigation listener cleaned up' };
@@ -236,6 +245,80 @@ class ConsoleLogCollector {
         url: activeTab.url,
         title: activeTab.title
       };
+    }
+  }
+
+  async getLocalStorage(params) {
+    const { tabId } = params;
+    const targetTabId = tabId || (await chrome.tabs.query({ active: true, currentWindow: true }))[0].id;
+    
+    try {
+      const result = await chrome.scripting.executeScript({
+        target: { tabId: targetTabId },
+        func: () => {
+          const items = {};
+          for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            items[key] = localStorage.getItem(key);
+          }
+          return items;
+        }
+      });
+      
+      return {
+        tabId: targetTabId,
+        items: result[0].result
+      };
+    } catch (error) {
+      throw new Error(`Failed to get local storage: ${error.message}`);
+    }
+  }
+
+  async getSessionStorage(params) {
+    const { tabId } = params;
+    const targetTabId = tabId || (await chrome.tabs.query({ active: true, currentWindow: true }))[0].id;
+    
+    try {
+      const result = await chrome.scripting.executeScript({
+        target: { tabId: targetTabId },
+        func: () => {
+          const items = {};
+          for (let i = 0; i < sessionStorage.length; i++) {
+            const key = sessionStorage.key(i);
+            items[key] = sessionStorage.getItem(key);
+          }
+          return items;
+        }
+      });
+      
+      return {
+        tabId: targetTabId,
+        items: result[0].result
+      };
+    } catch (error) {
+      throw new Error(`Failed to get session storage: ${error.message}`);
+    }
+  }
+
+  async getCookies(params) {
+    const { tabId } = params;
+    const targetTabId = tabId || (await chrome.tabs.query({ active: true, currentWindow: true }))[0].id;
+    
+    try {
+      const tab = await chrome.tabs.get(targetTabId);
+      const url = new URL(tab.url);
+      
+      const cookies = await chrome.cookies.getAll({
+        domain: url.hostname
+      });
+      
+      return {
+        tabId: targetTabId,
+        url: tab.url,
+        cookies: cookies
+      };
+    } catch (error) {
+      throw new Error(`Failed to get cookies: ${error.message}`);
     }
   }
   

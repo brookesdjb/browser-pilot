@@ -7,11 +7,12 @@ import { program } from 'commander';
 import { promises as fs } from 'fs';
 import { ConsoleLogsTool } from './tools/console-logs.js';
 import { BrowserNavigationTool } from './tools/browser-navigation.js';
+import { BrowserStorageTool } from './tools/browser-storage.js';
 import { versionTool, executeGetVersion } from './tools/version.js';
 import { ExtensionBridge } from './utils/extension-bridge.js';
 
 const SERVER_NAME = 'enhanced-browser-mcp';
-const SERVER_VERSION = '0.7.2';
+const SERVER_VERSION = '0.8.0';
 
 async function createServer(wsLogFilePath?: string): Promise<Server> {
   const server = new Server(
@@ -32,6 +33,7 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
   // Initialize tools
   const consoleLogsTool = new ConsoleLogsTool(extensionBridge);
   const browserNavigationTool = new BrowserNavigationTool(extensionBridge);
+  const browserStorageTool = new BrowserStorageTool(extensionBridge);
 
   // List available tools
   server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -40,6 +42,9 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
         consoleLogsTool.getSchema(),
         browserNavigationTool.getNavigateSchema(),
         browserNavigationTool.getCurrentUrlSchema(),
+        browserStorageTool.getLocalStorageSchema(),
+        browserStorageTool.getSessionStorageSchema(),
+        browserStorageTool.getCookiesSchema(),
         versionTool
       ],
     };
@@ -59,6 +64,15 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
           
         case 'get_current_url':
           return await browserNavigationTool.executeGetCurrentUrl(args);
+          
+        case 'get_local_storage':
+          return await browserStorageTool.executeGetLocalStorage(args);
+          
+        case 'get_session_storage':
+          return await browserStorageTool.executeGetSessionStorage(args);
+          
+        case 'get_cookies':
+          return await browserStorageTool.executeGetCookies(args);
           
         case 'get_version':
           const versionInfo = await executeGetVersion();

@@ -1,0 +1,30 @@
+[2025-08-15T11:48:45.632Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T11:48:45.650Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T11:48:45.674Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T11:48:45.703Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T11:48:45.704Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T11:48:45.722Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+

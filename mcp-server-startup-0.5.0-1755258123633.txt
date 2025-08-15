@@ -1,0 +1,93 @@
+Hello World! MCP Server v0.5.0 started at 2025-08-15T11:42:03.633Z
+
+=== WebSocket Messages ===
+
+[2025-08-15T11:42:03.640Z] SYSTEM: ExtensionBridge initialized with WebSocket logging
+
+[2025-08-15T11:48:38.867Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T11:48:38.889Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T11:48:45.632Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "749faf07-b05c-4e64-ad91-10c3f486e835",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "Enhanced Browser MCP content script loaded",
+    "timestamp": 1755258525631,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:48:45.650Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "3fdefbfc-095e-4a3f-a6b9-254f49bfca40",
+    "tabId": 1713408284,
+    "level": "debug",
+    "message": "[vite] connecting...",
+    "timestamp": 1755258525650,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:48:45.674Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "3eabfe1a-20d5-4ad8-965e-b00ed2a8ff5a",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "Angular is running in development mode.",
+    "timestamp": 1755258525674,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:48:45.704Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T11:48:45.703Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "94ba4df7-af44-432f-8a3c-34f827d6711c",
+    "tabId": 1713408284,
+    "level": "debug",
+    "message": "[vite] connected.",
+    "timestamp": 1755258525703,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:48:45.722Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}

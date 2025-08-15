@@ -1,0 +1,90 @@
+[2025-08-15T12:34:21.803Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:21.824Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:21.849Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:21.883Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T12:34:21.883Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:21.904Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T12:34:23.731Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:23.747Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:23.771Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:23.802Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:23.804Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T12:34:23.820Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T12:34:43.413Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:43.428Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:43.454Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:43.480Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T12:34:43.482Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T12:34:43.503Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+

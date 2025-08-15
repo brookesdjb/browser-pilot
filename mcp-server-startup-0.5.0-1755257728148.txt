@@ -1,0 +1,244 @@
+
+[2025-08-15T11:42:16.921Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "25a21cd0-d53c-4a21-9923-af57de2534b3",
+  "data": {
+    "event": "status_changed",
+    "status": "loading",
+    "url": "http://localhost:4200/catalog",
+    "title": "AHM catalog tool",
+    "tabId": 1713408284,
+    "timestamp": 1755258136921
+  }
+}
+
+[2025-08-15T11:42:16.930Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "cace4e8f-2215-45f6-8de6-eb3e882c2cb3",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "Enhanced Browser MCP content script loaded",
+    "timestamp": 1755258136929,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:42:16.951Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "9f047e4d-8737-4de0-a05e-3110fe3e2e3b",
+    "tabId": 1713408284,
+    "level": "debug",
+    "message": "[vite] connecting...",
+    "timestamp": 1755258136951,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:42:16.978Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "9923dd6c-09d9-41f3-a25e-730cca148e14",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "Angular is running in development mode.",
+    "timestamp": 1755258136977,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:42:17.008Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T11:42:17.008Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "25a21cd0-d53c-4a21-9923-af57de2534b3",
+  "data": {
+    "event": "status_changed",
+    "status": "complete",
+    "url": "http://localhost:4200/catalog",
+    "title": "AHM catalog tool",
+    "tabId": 1713408284,
+    "timestamp": 1755258137008
+  }
+}
+
+[2025-08-15T11:42:17.009Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "64274500-c2e5-495b-9689-4cca1d3770f1",
+    "tabId": 1713408284,
+    "level": "debug",
+    "message": "[vite] connected.",
+    "timestamp": 1755258137009,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:42:17.034Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "25a21cd0-d53c-4a21-9923-af57de2534b3",
+  "data": {
+    "event": "status_changed",
+    "status": "loading",
+    "url": "http://localhost:4200/catalog",
+    "title": "AHM catalog tool",
+    "tabId": 1713408284,
+    "timestamp": 1755258137034
+  }
+}
+
+[2025-08-15T11:42:17.035Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T11:42:17.035Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "25a21cd0-d53c-4a21-9923-af57de2534b3",
+  "data": {
+    "event": "status_changed",
+    "status": "complete",
+    "url": "http://localhost:4200/catalog",
+    "title": "AHM catalog tool",
+    "tabId": 1713408284,
+    "timestamp": 1755258137034
+  }
+}
+
+[2025-08-15T11:46:25.661Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "25a21cd0-d53c-4a21-9923-af57de2534b3",
+  "data": {
+    "event": "status_changed",
+    "status": "loading",
+    "url": "http://localhost:4200/catalog",
+    "title": "AHM catalog tool",
+    "tabId": 1713408284,
+    "timestamp": 1755258385660
+  }
+}
+
+[2025-08-15T11:46:25.668Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "7dea11af-14bf-4073-a1be-d4a7abcc8048",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "Enhanced Browser MCP content script loaded",
+    "timestamp": 1755258385668,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:46:25.685Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "af9072c4-1872-48c1-bbf3-bbf8c4e452f2",
+    "tabId": 1713408284,
+    "level": "debug",
+    "message": "[vite] connecting...",
+    "timestamp": 1755258385685,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:46:25.710Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "b12a7539-ff15-42e2-954f-dc7d06c48cd1",
+    "tabId": 1713408284,
+    "level": "log",
+    "message": "Angular is running in development mode.",
+    "timestamp": 1755258385710,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:46:25.741Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T11:46:25.742Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "25a21cd0-d53c-4a21-9923-af57de2534b3",
+  "data": {
+    "event": "status_changed",
+    "status": "complete",
+    "url": "http://localhost:4200/catalog",
+    "title": "AHM catalog tool",
+    "tabId": 1713408284,
+    "timestamp": 1755258385741
+  }
+}
+
+[2025-08-15T11:46:25.740Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "1c128927-9f62-49b3-b694-2d674cf0d118",
+    "tabId": 1713408284,
+    "level": "debug",
+    "message": "[vite] connected.",
+    "timestamp": 1755258385740,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T11:46:25.757Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "25a21cd0-d53c-4a21-9923-af57de2534b3",
+  "data": {
+    "event": "status_changed",
+    "status": "loading",
+    "url": "http://localhost:4200/catalog",
+    "title": "AHM catalog tool",
+    "tabId": 1713408284,
+    "timestamp": 1755258385756
+  }
+}
+
+[2025-08-15T11:46:25.757Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1713408284,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/catalog"
+  }
+}
+
+[2025-08-15T11:46:25.757Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "25a21cd0-d53c-4a21-9923-af57de2534b3",
+  "data": {
+    "event": "status_changed",
+    "status": "complete",
+    "url": "http://localhost:4200/catalog",
+    "title": "AHM catalog tool",
+    "tabId": 1713408284,
+    "timestamp": 1755258385757
+  }
+}
