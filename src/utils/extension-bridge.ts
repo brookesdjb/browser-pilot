@@ -154,7 +154,7 @@ export class ExtensionBridge {
         ws.send(JSON.stringify({ 
           type: 'connection_confirmed', 
           sessionId: this.sessionId,
-          serverVersion: '0.9.0'
+          serverVersion: '0.12.0'
         }));
       });
 
