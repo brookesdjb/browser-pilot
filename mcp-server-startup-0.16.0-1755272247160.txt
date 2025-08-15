@@ -1,5 +1,0 @@
-Hello World! MCP Server v0.16.0 started at 2025-08-15T15:37:27.160Z
-
-=== WebSocket Messages ===
-
-[2025-08-15T15:37:27.176Z] SYSTEM: ExtensionBridge initialized with WebSocket logging

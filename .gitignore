@@ -30,6 +30,11 @@ Thumbs.db
 logs/
 *.log
 
+# Debug files
+enhanced-browser-mcp-debug-*.txt
+enhanced-browser-mcp-startup-*.txt
+mcp-server-startup-*.txt
+
 # Extension builds
 extension/dist/
 extension/build/

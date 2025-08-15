@@ -1,3 +1,0 @@
-Hello World! MCP Server v0.13.0 started at 2025-08-15T14:07:59.479Z
-
-=== WebSocket Messages ===

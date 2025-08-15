@@ -1,11 +1,11 @@
 {
-  "name": "enhanced-browser-mcp",
+  "name": "browser-pilot",
   "version": "0.15.0",
-  "description": "Enhanced MCP server for browser automation with full DevTools access",
+  "description": "MCP server for intelligent browser automation with Chrome DevTools integration",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "enhanced-browser-mcp": "dist/index.js"
+    "browser-pilot": "dist/index.js"
   },
   "scripts": {
     "build": "tsc && chmod +x dist/index.js",
@@ -18,7 +18,10 @@
     "browser",
     "automation",
     "chrome",
-    "devtools"
+    "devtools",
+    "pilot",
+    "web-automation",
+    "testing"
   ],
   "author": "",
   "license": "MIT",

@@ -1,2 +1,0 @@
-MCP Server started at 2025-08-15T14:11:41.243Z
-Session ID: bf4b5b3e-725d-4730-9b05-4fefab73836d
