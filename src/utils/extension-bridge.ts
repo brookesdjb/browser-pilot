@@ -154,7 +154,7 @@ export class ExtensionBridge {
         ws.send(JSON.stringify({ 
           type: 'connection_confirmed', 
           sessionId: this.sessionId,
-          serverVersion: '0.12.0'
+          serverVersion: '0.15.0'
         }));
       });
 
@@ -816,7 +816,46 @@ export class ExtensionBridge {
   }
 
   async isExtensionConnected(): Promise<boolean> {
-    return this.extensionClients.size > 0;
+    // Quick check first
+    if (this.extensionClients.size === 0) {
+      console.error('No extension clients connected');
+      return false;
+    }
+
+    // Check if we have any active WebSocket connections
+    const activeConnections = Array.from(this.extensionClients).filter(
+      client => client.readyState === 1 // WebSocket.OPEN
+    );
+    
+    if (activeConnections.length === 0) {
+      console.error('No active extension WebSocket connections');
+      return false;
+    }
+
+    // Test actual connectivity with a simple ping command, but be more lenient
+    try {
+      const result = await Promise.race([
+        this.sendCommand('get_current_url', {}, 3000),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Connection test timeout')), 2500)
+        )
+      ]);
+      
+      const isConnected = result && typeof result === 'object' && 'success' in result;
+      console.error(`Extension connection test result: ${isConnected ? 'Connected' : 'Failed'}`);
+      return isConnected;
+    } catch (error) {
+      console.error('Extension connection test failed:', error instanceof Error ? error.message : String(error));
+      
+      // Fallback: if we have active WebSocket connections, assume connected
+      // This handles cases where the extension is connected but not responding to commands
+      if (activeConnections.length > 0) {
+        console.error('Using fallback connection detection: active WebSocket found');
+        return true;
+      }
+      
+      return false;
+    }
   }
 
   getWebSocketPort(): number {

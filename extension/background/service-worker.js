@@ -104,6 +104,18 @@ class ConsoleLogCollector {
         case 'get_cookies':
           result = await this.getCookies(params);
           break;
+        case 'get_dom_snapshot':
+          result = await this.getDomSnapshot(params);
+          break;
+        case 'take_screenshot':
+          result = await this.takeScreenshot(params);
+          break;
+        case 'find_clickable_element':
+          result = await this.findClickableElement(params);
+          break;
+        case 'click_element_by_identifier':
+          result = await this.clickElementByIdentifier(params);
+          break;
         case 'cleanup_navigation':
           this.cleanupNavigationListener(params.commandId);
           result = { success: true, message: 'Navigation listener cleaned up' };
@@ -332,6 +344,272 @@ class ConsoleLogCollector {
   async getMcpServerVersion() {
     // Return the version we got from connection confirmation
     return Promise.resolve(this.mcpServerVersion || 'Unknown');
+  }
+
+  async getDomSnapshot(params) {
+    const { tabId, includeStyles = false, selector } = params;
+    const targetTabId = tabId || (await chrome.tabs.query({ active: true, currentWindow: true }))[0].id;
+    
+    try {
+      const tab = await chrome.tabs.get(targetTabId);
+      
+      const result = await chrome.scripting.executeScript({
+        target: { tabId: targetTabId },
+        func: (selectorParam, includeStylesParam) => {
+          const selector = selectorParam;
+          const includeStyles = includeStylesParam;
+          try {
+            let element;
+            let elementCount = 1;
+            
+            if (selector) {
+              // Get specific element
+              element = document.querySelector(selector);
+              if (!element) {
+                return {
+                  error: `No element found matching selector: ${selector}`,
+                  elementCount: 0
+                };
+              }
+            } else {
+              // Get full document
+              element = document.documentElement;
+              elementCount = document.querySelectorAll('*').length;
+            }
+            
+            let html;
+            
+            if (includeStyles && element === document.documentElement) {
+              // For full document with styles, include computed styles
+              const elementsWithStyles = [];
+              const allElements = element.querySelectorAll('*');
+              
+              allElements.forEach(el => {
+                const computedStyles = window.getComputedStyle(el);
+                const styles = {};
+                
+                // Get key style properties
+                const importantProps = [
+                  'display', 'position', 'top', 'left', 'width', 'height',
+                  'margin', 'padding', 'background-color', 'color', 'font-size',
+                  'font-family', 'border', 'z-index', 'opacity', 'visibility'
+                ];
+                
+                importantProps.forEach(prop => {
+                  const value = computedStyles.getPropertyValue(prop);
+                  if (value && value !== 'initial' && value !== 'auto') {
+                    styles[prop] = value;
+                  }
+                });
+                
+                if (Object.keys(styles).length > 0) {
+                  el.setAttribute('data-computed-styles', JSON.stringify(styles));
+                }
+              });
+              
+              html = element.outerHTML;
+              
+              // Clean up - remove the data attributes we added
+              allElements.forEach(el => {
+                el.removeAttribute('data-computed-styles');
+              });
+            } else {
+              // Standard HTML without computed styles
+              html = element.outerHTML;
+            }
+            
+            return {
+              html: html,
+              elementCount: selector ? 1 : elementCount,
+              selector: selector || null
+            };
+            
+          } catch (error) {
+            return {
+              error: `DOM snapshot error: ${error.message}`,
+              html: '',
+              elementCount: 0
+            };
+          }
+        },
+        args: [selector || null, includeStyles || false]
+      });
+      
+      const scriptResult = result[0].result;
+      
+      if (scriptResult.error) {
+        throw new Error(scriptResult.error);
+      }
+      
+      return {
+        tabId: targetTabId,
+        url: tab.url,
+        title: tab.title,
+        html: scriptResult.html,
+        elementCount: scriptResult.elementCount,
+        selector: scriptResult.selector,
+        includeStyles: includeStyles
+      };
+      
+    } catch (error) {
+      throw new Error(`Failed to get DOM snapshot: ${error.message}`);
+    }
+  }
+
+  async takeScreenshot(params) {
+    const { tabId, fullPage = false, quality = 90, format = 'png', selector } = params;
+    const targetTabId = tabId || (await chrome.tabs.query({ active: true, currentWindow: true }))[0].id;
+    
+    try {
+      const tab = await chrome.tabs.get(targetTabId);
+      let dataUrl;
+      let dimensions = null;
+      
+      if (selector) {
+        // Screenshot specific element
+        const result = await chrome.scripting.executeScript({
+          target: { tabId: targetTabId },
+          func: (selectorParam) => {
+            const element = document.querySelector(selectorParam);
+            if (!element) {
+              return { error: `No element found matching selector: ${selectorParam}` };
+            }
+            
+            const rect = element.getBoundingClientRect();
+            return {
+              rect: {
+                x: rect.x,
+                y: rect.y,
+                width: rect.width,
+                height: rect.height
+              }
+            };
+          },
+          args: [selector]
+        });
+        
+        const scriptResult = result[0].result;
+        if (scriptResult.error) {
+          throw new Error(scriptResult.error);
+        }
+        
+        const rect = scriptResult.rect;
+        
+        // Capture visible tab first
+        const fullScreenshot = await chrome.tabs.captureVisibleTab(tab.windowId, {
+          format: format,
+          quality: format === 'jpeg' ? quality : undefined
+        });
+        
+        // Use canvas to crop the element
+        const croppedDataUrl = await this.cropImage(fullScreenshot, rect);
+        dataUrl = croppedDataUrl;
+        dimensions = { width: Math.round(rect.width), height: Math.round(rect.height) };
+        
+      } else if (fullPage) {
+        // Full page screenshot - scroll through page
+        dataUrl = await this.captureFullPageScreenshot(targetTabId, format, quality);
+        
+        // Get page dimensions
+        const pageDimensions = await chrome.scripting.executeScript({
+          target: { tabId: targetTabId },
+          func: () => ({
+            width: document.documentElement.scrollWidth,
+            height: document.documentElement.scrollHeight
+          })
+        });
+        
+        dimensions = pageDimensions[0].result;
+        
+      } else {
+        // Viewport screenshot
+        dataUrl = await chrome.tabs.captureVisibleTab(tab.windowId, {
+          format: format,
+          quality: format === 'jpeg' ? quality : undefined
+        });
+        
+        // Get viewport dimensions
+        const viewportDimensions = await chrome.scripting.executeScript({
+          target: { tabId: targetTabId },
+          func: () => ({
+            width: window.innerWidth,
+            height: window.innerHeight
+          })
+        });
+        
+        dimensions = viewportDimensions[0].result;
+      }
+      
+      return {
+        tabId: targetTabId,
+        url: tab.url,
+        title: tab.title,
+        dataUrl: dataUrl,
+        dimensions: dimensions,
+        format: format,
+        fullPage: fullPage,
+        selector: selector || null
+      };
+      
+    } catch (error) {
+      throw new Error(`Failed to take screenshot: ${error.message}`);
+    }
+  }
+
+  async captureFullPageScreenshot(tabId, format, quality) {
+    // Get page dimensions and current scroll position
+    const pageInfo = await chrome.scripting.executeScript({
+      target: { tabId: tabId },
+      func: () => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        scrollHeight: document.documentElement.scrollHeight,
+        viewportWidth: window.innerWidth,
+        viewportHeight: window.innerHeight,
+        currentScrollX: window.scrollX,
+        currentScrollY: window.scrollY
+      })
+    });
+    
+    const { scrollWidth, scrollHeight, viewportWidth, viewportHeight, currentScrollX, currentScrollY } = pageInfo[0].result;
+    
+    // Calculate how many screenshots we need
+    const horizontalSteps = Math.ceil(scrollWidth / viewportWidth);
+    const verticalSteps = Math.ceil(scrollHeight / viewportHeight);
+    
+    // If page fits in viewport, just take one screenshot
+    if (horizontalSteps === 1 && verticalSteps === 1) {
+      const tab = await chrome.tabs.get(tabId);
+      return await chrome.tabs.captureVisibleTab(tab.windowId, {
+        format: format,
+        quality: format === 'jpeg' ? quality : undefined
+      });
+    }
+    
+    // For now, just take viewport screenshot as full page stitching is complex
+    // TODO: Implement proper full page stitching
+    const tab = await chrome.tabs.get(tabId);
+    const screenshot = await chrome.tabs.captureVisibleTab(tab.windowId, {
+      format: format,
+      quality: format === 'jpeg' ? quality : undefined
+    });
+    
+    // Restore original scroll position
+    await chrome.scripting.executeScript({
+      target: { tabId: tabId },
+      func: (x, y) => {
+        window.scrollTo(x, y);
+      },
+      args: [currentScrollX, currentScrollY]
+    });
+    
+    return screenshot;
+  }
+
+  async cropImage(dataUrl, rect) {
+    // For now, just return the original image since cropping in service worker is complex
+    // TODO: Implement proper image cropping using offscreen canvas when supported
+    console.log('Element screenshot requested, but cropping not yet supported. Returning full viewport screenshot.');
+    return dataUrl;
   }
   
   setupTabListeners() {
@@ -588,6 +866,253 @@ class ConsoleLogCollector {
     
     return filteredLogs.slice(0, limit);
   }
+
+  async findClickableElement(params) {
+    const { tabId, selector, text } = params;
+    const targetTabId = tabId || (await chrome.tabs.query({ active: true, currentWindow: true }))[0].id;
+    
+    try {
+      const result = await chrome.scripting.executeScript({
+        target: { tabId: targetTabId },
+        func: (selectorParam, textParam) => {
+          const selector = selectorParam;
+          const text = textParam;
+          
+          // Function to get element coordinates relative to viewport
+          const getElementCoords = (element) => {
+            const rect = element.getBoundingClientRect();
+            return {
+              x: rect.left,
+              y: rect.top,
+              width: rect.width,
+              height: rect.height
+            };
+          };
+          
+          // Function to check if element is visible and clickable
+          const isElementClickable = (element) => {
+            const style = window.getComputedStyle(element);
+            return style.display !== 'none' && 
+                   style.visibility !== 'hidden' && 
+                   style.opacity !== '0' &&
+                   element.offsetWidth > 0 && 
+                   element.offsetHeight > 0;
+          };
+          
+          // Function to generate CSS selector for element
+          const generateSelector = (element) => {
+            if (element.id) return `#${element.id}`;
+            if (element.className && typeof element.className === 'string') {
+              const classes = element.className.split(' ').filter(c => c.trim());
+              if (classes.length > 0) return `.${classes.join('.')}`;
+            }
+            return element.tagName.toLowerCase();
+          };
+          
+          let targetElement = null;
+          
+          // Search by selector first
+          if (selector) {
+            try {
+              const elements = document.querySelectorAll(selector);
+              for (const element of elements) {
+                if (isElementClickable(element)) {
+                  targetElement = element;
+                  break;
+                }
+              }
+            } catch (error) {
+              console.log('Invalid selector:', selector);
+            }
+          }
+          
+          // Search by text if no element found by selector
+          if (!targetElement && text) {
+            const clickableSelectors = [
+              'button', 'a', '[onclick]', '[role="button"]', 
+              'input[type="button"]', 'input[type="submit"]', 
+              '.btn', '.button', '.link', '.nav-link',
+              'li', 'div[onclick]', 'span[onclick]'
+            ];
+            
+            for (const sel of clickableSelectors) {
+              const elements = document.querySelectorAll(sel);
+              for (const element of elements) {
+                const elementText = element.textContent || element.innerText || '';
+                if (elementText.toLowerCase().includes(text.toLowerCase()) && isElementClickable(element)) {
+                  targetElement = element;
+                  break;
+                }
+              }
+              if (targetElement) break;
+            }
+          }
+          
+          if (!targetElement) {
+            return { 
+              error: `No clickable element found${selector ? ` with selector "${selector}"` : ''}${text ? ` containing text "${text}"` : ''}` 
+            };
+          }
+          
+          const coords = getElementCoords(targetElement);
+          const elementText = targetElement.textContent || targetElement.innerText || '';
+          
+          return {
+            selector: generateSelector(targetElement),
+            text: elementText.trim().substring(0, 100), // Limit text length
+            tagName: targetElement.tagName.toLowerCase(),
+            coordinates: coords,
+            isVisible: true,
+            isClickable: true
+          };
+        },
+        args: [selector || null, text || null]
+      });
+      
+      const scriptResult = result[0].result;
+      
+      if (scriptResult.error) {
+        return { success: false, error: scriptResult.error };
+      }
+      
+      return {
+        success: true,
+        data: scriptResult
+      };
+      
+    } catch (error) {
+      return { 
+        success: false, 
+        error: `Failed to find clickable element: ${error.message}` 
+      };
+    }
+  }
+
+
+  async clickElementByIdentifier(params) {
+    const { tabId, selector, text } = params;
+    const targetTabId = tabId || (await chrome.tabs.query({ active: true, currentWindow: true }))[0].id;
+    
+    try {
+      const result = await chrome.scripting.executeScript({
+        target: { tabId: targetTabId },
+        func: (selectorParam, textParam) => {
+          console.log('=== MCP Extension: Starting element click by identifier ===');
+          console.log('Selector:', selectorParam, 'Text:', textParam);
+          
+          // Subtle background flash to show we're running
+          const originalBg = document.body.style.backgroundColor;
+          document.body.style.backgroundColor = 'rgba(255, 255, 0, 0.1)';
+          
+          let targetElement = null;
+          let method = '';
+          
+          // First try selector if provided
+          if (selectorParam) {
+            try {
+              const elements = document.querySelectorAll(selectorParam);
+              for (const element of elements) {
+                const style = window.getComputedStyle(element);
+                if (style.display !== 'none' && 
+                    style.visibility !== 'hidden' && 
+                    style.opacity !== '0' &&
+                    element.offsetWidth > 0 && 
+                    element.offsetHeight > 0) {
+                  targetElement = element;
+                  method = `selector: ${selectorParam}`;
+                  break;
+                }
+              }
+            } catch (error) {
+              console.log('Invalid selector:', selectorParam);
+            }
+          }
+          
+          // Then try text search if no element found and text provided
+          if (!targetElement && textParam) {
+            const clickableSelectors = [
+              'button', 'a', '[onclick]', '[role="button"]', 
+              'input[type="button"]', 'input[type="submit"]', 
+              '.btn', '.button', '.link', '.nav-link',
+              'li', 'div[onclick]', 'span[onclick]'
+            ];
+            
+            for (const sel of clickableSelectors) {
+              const elements = document.querySelectorAll(sel);
+              for (const element of elements) {
+                const elementText = element.textContent || element.innerText || '';
+                const style = window.getComputedStyle(element);
+                if (elementText.toLowerCase().includes(textParam.toLowerCase()) &&
+                    style.display !== 'none' && 
+                    style.visibility !== 'hidden' && 
+                    style.opacity !== '0' &&
+                    element.offsetWidth > 0 && 
+                    element.offsetHeight > 0) {
+                  targetElement = element;
+                  method = `text: "${textParam}" in ${sel}`;
+                  break;
+                }
+              }
+              if (targetElement) break;
+            }
+          }
+          
+          if (targetElement) {
+            console.log('MCP Extension: Found target element:', targetElement);
+            console.log('MCP Extension: Method:', method);
+            console.log('MCP Extension: About to click element...');
+            
+            targetElement.click();
+            
+            console.log('MCP Extension: Clicked element - SUCCESS!');
+            
+            // Subtle green flash to show success
+            setTimeout(() => {
+              document.body.style.backgroundColor = 'rgba(0, 255, 0, 0.1)';
+              setTimeout(() => {
+                document.body.style.backgroundColor = originalBg;
+              }, 300);
+            }, 200);
+            
+            return {
+              success: true,
+              message: `Element found and clicked successfully via ${method}`,
+              elementText: (targetElement.textContent || targetElement.innerText || '').trim().substring(0, 100),
+              elementTag: targetElement.tagName.toLowerCase(),
+              selector: method.startsWith('selector:') ? selectorParam : null
+            };
+          } else {
+            console.log('MCP Extension: Target element NOT found');
+            
+            // Subtle red flash to show failure
+            document.body.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+            setTimeout(() => {
+              document.body.style.backgroundColor = originalBg;
+            }, 300);
+            
+            return {
+              success: false,
+              message: `No clickable element found${selectorParam ? ` with selector "${selectorParam}"` : ''}${textParam ? ` containing text "${textParam}"` : ''}`
+            };
+          }
+        },
+        args: [selector || null, text || null]
+      });
+      
+      const scriptResult = result[0].result;
+      console.log('Element click result:', scriptResult);
+      return scriptResult;
+      
+    } catch (error) {
+      console.error('Failed to execute element click:', error);
+      return { 
+        success: false, 
+        error: `Failed to execute element click: ${error.message}` 
+      };
+    }
+  }
+
+
 }
 
 // Initialize the console log collector

@@ -11,11 +11,12 @@ import { BrowserStorageTool } from './tools/browser-storage.js';
 import { BrowserNetworkTool } from './tools/browser-network.js';
 import { BrowserDomTool } from './tools/browser-dom.js';
 import { BrowserScreenshotTool } from './tools/browser-screenshot.js';
+import { BrowserAutomationTool } from './tools/browser-automation.js';
 import { versionTool, executeGetVersion } from './tools/version.js';
 import { ExtensionBridge } from './utils/extension-bridge.js';
 
 const SERVER_NAME = 'enhanced-browser-mcp';
-const SERVER_VERSION = '0.13.0';
+const SERVER_VERSION = '0.16.0';
 
 async function createServer(wsLogFilePath?: string): Promise<Server> {
   const server = new Server(
@@ -40,6 +41,7 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
   const browserNetworkTool = new BrowserNetworkTool(extensionBridge);
   const browserDomTool = new BrowserDomTool(extensionBridge);
   const browserScreenshotTool = new BrowserScreenshotTool(extensionBridge);
+  const browserAutomationTool = new BrowserAutomationTool(extensionBridge);
 
   // List available tools
   server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -54,6 +56,7 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
         browserNetworkTool.getSchema(),
         browserDomTool.getSchema(),
         browserScreenshotTool.getSchema(),
+        browserAutomationTool.getClickElementSchema(),
         versionTool
       ],
     };
@@ -91,6 +94,9 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
           
         case 'take_screenshot':
           return await browserScreenshotTool.execute(args);
+          
+        case 'click_element':
+          return await browserAutomationTool.executeClickElement(args);
           
         case 'get_version':
           const versionInfo = await executeGetVersion();

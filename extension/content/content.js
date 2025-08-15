@@ -3,35 +3,28 @@
 
 console.log('Enhanced Browser MCP content script loaded');
 
-// Inject a bridge script to communicate with MCP server
-const script = document.createElement('script');
-script.textContent = `
-  // MCP Bridge for webpage communication
-  window.mcpBridge = {
-    async getConsoleLogs(params = {}) {
-      return new Promise((resolve) => {
-        window.postMessage({
-          type: 'mcp_get_console_logs',
-          params,
-          id: Math.random().toString(36).substring(2)
-        }, '*');
-        
-        const handler = (event) => {
-          if (event.data.type === 'mcp_console_logs_response') {
-            window.removeEventListener('message', handler);
-            resolve(event.data.data);
-          }
-        };
-        window.addEventListener('message', handler);
-      });
-    }
-  };
-  
-  console.log('MCP Bridge injected into page');
-`;
+// Create MCP Bridge without inline scripts to avoid CSP issues
+window.mcpBridge = {
+  async getConsoleLogs(params = {}) {
+    return new Promise((resolve) => {
+      window.postMessage({
+        type: 'mcp_get_console_logs',
+        params,
+        id: Math.random().toString(36).substring(2)
+      }, '*');
+      
+      const handler = (event) => {
+        if (event.data.type === 'mcp_console_logs_response') {
+          window.removeEventListener('message', handler);
+          resolve(event.data.data);
+        }
+      };
+      window.addEventListener('message', handler);
+    });
+  }
+};
 
-document.documentElement.appendChild(script);
-script.remove();
+console.log('MCP Bridge created in content script');
 
 // Listen for messages from the injected script
 window.addEventListener('message', async (event) => {
