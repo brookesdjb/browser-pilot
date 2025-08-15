@@ -1,0 +1,1136 @@
+Hello World! MCP Server v0.17.0 started at 2025-08-15T15:53:21.643Z
+
+=== WebSocket Messages ===
+
+[2025-08-15T15:53:21.650Z] SYSTEM: ExtensionBridge initialized with WebSocket logging
+
+[2025-08-15T15:53:29.742Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "SenseHub - Sign In",
+    "url": "https://dev-185756.okta.com/"
+  }
+}
+
+[2025-08-15T15:53:29.784Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "SenseHub - Sign In",
+    "url": "https://dev-185756.okta.com/"
+  }
+}
+
+[2025-08-15T15:53:44.619Z] OUTGOING: {
+  "type": "command",
+  "id": "fccc82d4-8d7f-4ad2-ae59-8ed9d0b39934",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:53:44.620Z] INCOMING: {
+  "type": "command_response",
+  "id": "fccc82d4-8d7f-4ad2-ae59-8ed9d0b39934",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "https://dev-185756.okta.com/",
+      "title": "SenseHub - Sign In"
+    }
+  }
+}
+
+[2025-08-15T15:53:44.621Z] OUTGOING: {
+  "type": "command",
+  "id": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "data": {
+    "command": "navigate_to_url",
+    "params": {
+      "url": "https://browsermcp.io"
+    }
+  }
+}
+
+[2025-08-15T15:53:44.621Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "data": {
+    "event": "navigation_started",
+    "requestedUrl": "https://browsermcp.io",
+    "tabId": 1094724651,
+    "timestamp": 1755273224621
+  }
+}
+
+[2025-08-15T15:53:44.650Z] INCOMING: {
+  "type": "command_response",
+  "id": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "data": {
+    "success": true,
+    "data": {
+      "success": true,
+      "message": "Navigation initiated, streaming events...",
+      "tabId": 1094724651
+    }
+  }
+}
+
+[2025-08-15T15:53:44.686Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "data": {
+    "event": "url_changed",
+    "url": "https://browsermcp.io/",
+    "tabId": 1094724651,
+    "timestamp": 1755273224685
+  }
+}
+
+[2025-08-15T15:53:44.686Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "data": {
+    "event": "status_changed",
+    "status": "loading",
+    "url": "https://browsermcp.io/",
+    "title": "browsermcp.io",
+    "tabId": 1094724651,
+    "timestamp": 1755273224685
+  }
+}
+
+[2025-08-15T15:53:44.692Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "49d66658-20bf-43d4-b255-85312e193156",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Enhanced Browser MCP content script loaded",
+    "timestamp": 1755273224692,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:53:44.693Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "data": {
+    "event": "title_changed",
+    "title": "Browser MCP - Automate your browser with AI",
+    "url": "https://browsermcp.io/",
+    "tabId": 1094724651,
+    "timestamp": 1755273224693
+  }
+}
+
+[2025-08-15T15:53:44.693Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "94e5cc61-1733-4f8a-b86a-a6cd87635202",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Bridge created in content script",
+    "timestamp": 1755273224692,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:53:44.775Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "data": {
+    "event": "status_changed",
+    "status": "loading",
+    "url": "https://browsermcp.io/",
+    "title": "Browser MCP - Automate your browser with AI",
+    "tabId": 1094724651,
+    "timestamp": 1755273224775
+  }
+}
+
+[2025-08-15T15:53:44.798Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "86bd0947-0fcc-4c79-afcb-fd0bf5d5fca0",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "[Vercel Web Analytics] Failed to load script from /_vercel/insights/script.js. Be sure to enable Web Analytics for your project and deploy again. See https://vercel.com/docs/analytics/quickstart for more information.",
+    "timestamp": 1755273224797,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:53:44.801Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "Browser MCP - Automate your browser with AI",
+    "url": "https://browsermcp.io/"
+  }
+}
+
+[2025-08-15T15:53:44.801Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "data": {
+    "event": "status_changed",
+    "status": "complete",
+    "url": "https://browsermcp.io/",
+    "title": "Browser MCP - Automate your browser with AI",
+    "tabId": 1094724651,
+    "timestamp": 1755273224800
+  }
+}
+
+[2025-08-15T15:53:46.623Z] OUTGOING: {
+  "type": "command",
+  "id": "7fe385b5-05b5-46d4-a034-60a103ca23d0",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:53:46.625Z] INCOMING: {
+  "type": "command_response",
+  "id": "7fe385b5-05b5-46d4-a034-60a103ca23d0",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "https://browsermcp.io/",
+      "title": "Browser MCP - Automate your browser with AI"
+    }
+  }
+}
+
+[2025-08-15T15:53:46.625Z] OUTGOING: {
+  "type": "command",
+  "id": "a0822549-87a0-4599-9a2d-798c677b77eb",
+  "data": {
+    "command": "cleanup_navigation",
+    "params": {
+      "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+    }
+  }
+}
+
+[2025-08-15T15:53:46.625Z] INCOMING: {
+  "type": "command_response",
+  "id": "a0822549-87a0-4599-9a2d-798c677b77eb",
+  "data": {
+    "success": true,
+    "data": {
+      "success": true,
+      "message": "Navigation listener cleaned up"
+    }
+  }
+}
+
+[2025-08-15T15:53:49.676Z] OUTGOING: {
+  "type": "command",
+  "id": "33156a98-6633-445f-8aba-e727357a44c4",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:53:49.677Z] OUTGOING: {
+  "type": "command",
+  "id": "d3687066-2b1f-4e94-9ac6-be49f9209173",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:53:49.678Z] OUTGOING: {
+  "type": "command",
+  "id": "463d65ce-7608-4cf6-924d-a63ec7972b60",
+  "data": {
+    "command": "click_element_by_identifier",
+    "params": {
+      "tabId": 1094724651,
+      "text": "Sign in"
+    }
+  }
+}
+
+[2025-08-15T15:53:49.679Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "1a88d129-07a8-420a-bf06-0310bbe6a6e6",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "=== MCP Extension: Starting element click by identifier ===",
+    "timestamp": 1755273229679,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:53:49.678Z] INCOMING: {
+  "type": "command_response",
+  "id": "d3687066-2b1f-4e94-9ac6-be49f9209173",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "https://browsermcp.io/",
+      "title": "Browser MCP - Automate your browser with AI"
+    }
+  }
+}
+
+[2025-08-15T15:53:49.679Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "06f4c170-489b-4930-80c6-bb2725823067",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Selector: {\"type\":\"null\"} Text: Sign in",
+    "timestamp": 1755273229679,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:53:49.677Z] INCOMING: {
+  "type": "command_response",
+  "id": "33156a98-6633-445f-8aba-e727357a44c4",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "https://browsermcp.io/",
+      "title": "Browser MCP - Automate your browser with AI"
+    }
+  }
+}
+
+[2025-08-15T15:53:49.680Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "c8ea81ad-b743-4f56-a590-a8efa5ae11e4",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Extension: Target element NOT found",
+    "timestamp": 1755273229679,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:53:49.680Z] INCOMING: {
+  "type": "command_response",
+  "id": "463d65ce-7608-4cf6-924d-a63ec7972b60",
+  "data": {
+    "success": true,
+    "data": {
+      "message": "No clickable element found containing text \"Sign in\"",
+      "success": false
+    }
+  }
+}
+
+[2025-08-15T15:54:17.012Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "37083475-3fc3-4673-abf9-01731241b33f",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Enhanced Browser MCP content script loaded",
+    "timestamp": 1755273257012,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:17.012Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "24db70d3-1840-4a9b-867b-d18123e1a42e",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Bridge created in content script",
+    "timestamp": 1755273257012,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:17.039Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "d40e973f-13da-494e-9c35-a57907fd794e",
+    "tabId": 1094724651,
+    "level": "debug",
+    "message": "[vite] connecting...",
+    "timestamp": 1755273257039,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:17.058Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "bd75262c-01c2-49c5-b1d5-d3be2ee1d939",
+    "tabId": 1094724651,
+    "level": "debug",
+    "message": "[vite] connected.",
+    "timestamp": 1755273257057,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:17.155Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "fca14928-e9ce-4c39-a0d1-a3110675155d",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Angular is running in development mode.",
+    "timestamp": 1755273257154,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:17.189Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/login"
+  }
+}
+
+[2025-08-15T15:54:47.739Z] OUTGOING: {
+  "type": "command",
+  "id": "bfaa51aa-a543-493f-9264-309e55d27af8",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:54:47.740Z] INCOMING: {
+  "type": "command_response",
+  "id": "bfaa51aa-a543-493f-9264-309e55d27af8",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:54:47.743Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "data": {
+    "event": "navigation_started",
+    "requestedUrl": "http://localhost:4200",
+    "tabId": 1094724651,
+    "timestamp": 1755273287740
+  }
+}
+
+[2025-08-15T15:54:47.740Z] OUTGOING: {
+  "type": "command",
+  "id": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "data": {
+    "command": "navigate_to_url",
+    "params": {
+      "url": "http://localhost:4200"
+    }
+  }
+}
+
+[2025-08-15T15:54:47.776Z] INCOMING: {
+  "type": "command_response",
+  "id": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "data": {
+    "success": true,
+    "data": {
+      "success": true,
+      "message": "Navigation initiated, streaming events...",
+      "tabId": 1094724651
+    }
+  }
+}
+
+[2025-08-15T15:54:47.783Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "data": {
+    "event": "url_changed",
+    "url": "http://localhost:4200/",
+    "tabId": 1094724651,
+    "timestamp": 1755273287783
+  }
+}
+
+[2025-08-15T15:54:47.783Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "data": {
+    "event": "status_changed",
+    "status": "loading",
+    "url": "http://localhost:4200/",
+    "title": "localhost:4200",
+    "tabId": 1094724651,
+    "timestamp": 1755273287783
+  }
+}
+
+[2025-08-15T15:54:47.786Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "605f79ad-20f4-4346-8aab-a13f88b110b6",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Bridge created in content script",
+    "timestamp": 1755273287785,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:47.785Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "4599e95b-e9ed-4bed-ab50-881cc61d6aa1",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Enhanced Browser MCP content script loaded",
+    "timestamp": 1755273287785,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:47.786Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "data": {
+    "event": "title_changed",
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/",
+    "tabId": 1094724651,
+    "timestamp": 1755273287785
+  }
+}
+
+[2025-08-15T15:54:47.805Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "6eead236-5d46-4ff9-b9be-69ceded4cf32",
+    "tabId": 1094724651,
+    "level": "debug",
+    "message": "[vite] connecting...",
+    "timestamp": 1755273287805,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:47.830Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "a3fb89ae-7b53-4579-838c-d4e775e606bf",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Angular is running in development mode.",
+    "timestamp": 1755273287830,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:47.871Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "data": {
+    "event": "url_changed",
+    "url": "http://localhost:4200/login",
+    "tabId": 1094724651,
+    "timestamp": 1755273287870
+  }
+}
+
+[2025-08-15T15:54:47.871Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "data": {
+    "event": "status_changed",
+    "status": "loading",
+    "url": "http://localhost:4200/login",
+    "title": "AHM catalog tool",
+    "tabId": 1094724651,
+    "timestamp": 1755273287870
+  }
+}
+
+[2025-08-15T15:54:47.872Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/login"
+  }
+}
+
+[2025-08-15T15:54:47.872Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "73bb8e8f-4b90-43d9-b480-2eee28d44cc6",
+    "tabId": 1094724651,
+    "level": "debug",
+    "message": "[vite] connected.",
+    "timestamp": 1755273287872,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:47.872Z] INCOMING: {
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "data": {
+    "event": "status_changed",
+    "status": "complete",
+    "url": "http://localhost:4200/login",
+    "title": "AHM catalog tool",
+    "tabId": 1094724651,
+    "timestamp": 1755273287871
+  }
+}
+
+[2025-08-15T15:54:49.743Z] OUTGOING: {
+  "type": "command",
+  "id": "3d7bb6f8-8ccd-473d-b7c4-acad95519726",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:54:49.745Z] INCOMING: {
+  "type": "command_response",
+  "id": "3d7bb6f8-8ccd-473d-b7c4-acad95519726",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:54:49.745Z] OUTGOING: {
+  "type": "command",
+  "id": "224497aa-8b2c-4556-a872-5941efa5b6e8",
+  "data": {
+    "command": "cleanup_navigation",
+    "params": {
+      "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+    }
+  }
+}
+
+[2025-08-15T15:54:49.746Z] INCOMING: {
+  "type": "command_response",
+  "id": "224497aa-8b2c-4556-a872-5941efa5b6e8",
+  "data": {
+    "success": true,
+    "data": {
+      "success": true,
+      "message": "Navigation listener cleaned up"
+    }
+  }
+}
+
+[2025-08-15T15:54:53.305Z] INCOMING: {
+  "type": "command_response",
+  "id": "353b8954-55a5-4a6f-810f-1991826bc43c",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:54:53.306Z] INCOMING: {
+  "type": "command_response",
+  "id": "dd30a212-bace-41e2-b9ec-ebca4a3d2a3a",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:54:53.307Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "9ca30e4d-ec07-4b6d-9b12-73564e0728fd",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "=== MCP Extension: Starting element click by identifier ===",
+    "timestamp": 1755273293307,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:53.304Z] OUTGOING: {
+  "type": "command",
+  "id": "353b8954-55a5-4a6f-810f-1991826bc43c",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:54:53.308Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "9741164f-3c08-458c-a481-ea169f830fa8",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Selector: [data-testid=\"login-button\"] Text: {\"type\":\"null\"}",
+    "timestamp": 1755273293307,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:53.308Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "b0fff5d2-ac48-45b4-8e08-06d1dc4a1f36",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Extension: Found target element: {\"description\":\"button.button.default\",\"overflow\":true,\"properties\":[{\"name\":\"disabled\",\"type\":\"boolean\",\"value\":\"false\"},{\"name\":\"form\",\"subtype\":\"null\",\"type\":\"object\",\"value\":\"null\"},{\"name\":\"formAction\",\"type\":\"string\",\"value\":\"http://localhost:4200/login\"},{\"name\":\"formEnctype\",\"type\":\"string\",\"value\":\"\"},{\"name\":\"formMethod\",\"type\":\"string\",\"value\":\"\"}],\"subtype\":\"node\",\"type\":\"object\"}",
+    "timestamp": 1755273293307,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:53.305Z] OUTGOING: {
+  "type": "command",
+  "id": "dd30a212-bace-41e2-b9ec-ebca4a3d2a3a",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:54:53.306Z] OUTGOING: {
+  "type": "command",
+  "id": "4d8ea49c-7e47-4356-a891-fd31ec3e8f81",
+  "data": {
+    "command": "click_element_by_identifier",
+    "params": {
+      "tabId": 1094724651,
+      "selector": "[data-testid=\"login-button\"]"
+    }
+  }
+}
+
+[2025-08-15T15:54:53.308Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "8e74cc2d-1262-4e17-ab3c-978162b42322",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Extension: About to click element...",
+    "timestamp": 1755273293308,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:53.309Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "9c9ffe5e-6763-458a-b09a-8b362e19c264",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Extension: Clicked element - SUCCESS!",
+    "timestamp": 1755273293309,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:53.308Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "aa2dcd46-7ecf-407b-9b86-0e6065937f2c",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Extension: Method: selector: [data-testid=\"login-button\"]",
+    "timestamp": 1755273293307,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:53.311Z] INCOMING: {
+  "type": "command_response",
+  "id": "4d8ea49c-7e47-4356-a891-fd31ec3e8f81",
+  "data": {
+    "success": true,
+    "data": {
+      "elementTag": "button",
+      "elementText": "Login",
+      "message": "Element found and clicked successfully via selector: [data-testid=\"login-button\"]",
+      "selector": "[data-testid=\"login-button\"]",
+      "success": true
+    }
+  }
+}
+
+[2025-08-15T15:54:53.315Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "1e279b7c-eaed-4efa-bb52-7dbdce148338",
+    "tabId": 1094724651,
+    "level": "warning",
+    "message": "[okta-auth-sdk] WARN: a saved auth transaction exists in storage. This may indicate another auth flow is already in progress.",
+    "timestamp": 1755273293315,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:53.690Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "7f0ed3cd-5def-4cd7-a3ca-e6d8f811996f",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Bridge created in content script",
+    "timestamp": 1755273293689,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:53.690Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "d03b4b54-5a25-4591-ad9f-5979189d6031",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Enhanced Browser MCP content script loaded",
+    "timestamp": 1755273293689,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:53.778Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "SenseHub - Sign In",
+    "url": "https://dev-185756.okta.com/oauth2/default/v1/authorize?client_id=0oa1kqlytbxIckJCs358&code_challenge=1sSyYmveM2ZWGXT-vYwDZxouMTUpkfQxyNSDvzRCtmA&code_challenge_method=S256&nonce=ojNDrgBYTC8LfTsI4ViDPsRgnWct90NsGwSzj4xF8rgcG9x05K1q57WoEOWYNjvw&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Fimplicit%2Fcallback&response_type=code&state=HAnynoTqHlCgOhYpdETO0PzGlngAy5d4dK1e1vnJlxRXjLfUbhRcCFObIMwlHnCH&scope=openid%20application_roles%20profile%20email%20app_lbl"
+  }
+}
+
+[2025-08-15T15:54:53.808Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "SenseHub - Sign In",
+    "url": "https://dev-185756.okta.com/oauth2/default/v1/authorize?client_id=0oa1kqlytbxIckJCs358&code_challenge=1sSyYmveM2ZWGXT-vYwDZxouMTUpkfQxyNSDvzRCtmA&code_challenge_method=S256&nonce=ojNDrgBYTC8LfTsI4ViDPsRgnWct90NsGwSzj4xF8rgcG9x05K1q57WoEOWYNjvw&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Fimplicit%2Fcallback&response_type=code&state=HAnynoTqHlCgOhYpdETO0PzGlngAy5d4dK1e1vnJlxRXjLfUbhRcCFObIMwlHnCH&scope=openid%20application_roles%20profile%20email%20app_lbl"
+  }
+}
+
+[2025-08-15T15:54:53.868Z] INCOMING: {
+  "type": "network_request",
+  "data": {
+    "id": "65120.50",
+    "tabId": 1094724651,
+    "method": "POST",
+    "url": "https://dev-185756.okta.com/api/v1/authn/introspect",
+    "requestHeaders": {
+      "Accept": "application/json",
+      "Accept-Language": "en",
+      "Content-Type": "application/json",
+      "Referer": "",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+      "X-Okta-User-Agent-Extended": "okta-auth-js/7.11.0 okta-signin-widget-7.34.0",
+      "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-ch-ua-platform-version": "\"15.6.0\""
+    },
+    "requestBody": "{\"stateToken\":\"00oez7sJjBeLX4VNc44zz9SkIooGr1jQlXXJB1TdyR\"}",
+    "timing": {
+      "startTime": 71767711.981
+    },
+    "timestamp": 1755273293868,
+    "type": "fetch"
+  }
+}
+
+[2025-08-15T15:54:53.885Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "SenseHub - Sign In",
+    "url": "https://dev-185756.okta.com/signin/refresh-auth-state/00oez7sJjBeLX4VNc44zz9SkIooGr1jQlXXJB1TdyR"
+  }
+}
+
+[2025-08-15T15:54:54.040Z] INCOMING: {
+  "type": "network_request",
+  "data": {
+    "id": "65120.50",
+    "tabId": 1094724651,
+    "method": "POST",
+    "url": "https://dev-185756.okta.com/api/v1/authn/introspect",
+    "requestHeaders": {
+      "Accept": "application/json",
+      "Accept-Language": "en",
+      "Content-Type": "application/json",
+      "Referer": "",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+      "X-Okta-User-Agent-Extended": "okta-auth-js/7.11.0 okta-signin-widget-7.34.0",
+      "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-ch-ua-platform-version": "\"15.6.0\""
+    },
+    "requestBody": "{\"stateToken\":\"00oez7sJjBeLX4VNc44zz9SkIooGr1jQlXXJB1TdyR\"}",
+    "timing": {
+      "startTime": 71767711.981
+    },
+    "timestamp": 1755273293868,
+    "type": "fetch",
+    "status": 200,
+    "statusText": "",
+    "responseHeaders": {
+      "accept-ch": "Sec-CH-UA-Platform-Version",
+      "access-control-allow-credentials": "true",
+      "access-control-allow-headers": "Content-Type",
+      "access-control-allow-origin": "https://dev-185756.okta.com",
+      "cache-control": "no-cache, no-store",
+      "content-encoding": "gzip",
+      "content-security-policy": "default-src 'self' dev-185756.okta.com *.oktacdn.com; connect-src 'self' dev-185756.okta.com dev-185756-admin.okta.com *.oktacdn.com *.mixpanel.com *.mapbox.com dev-185756.kerberos.okta.com https://oinmanager.okta.com data: *.ingest.sentry.io; script-src 'unsafe-inline' 'self' 'report-sample' dev-185756.okta.com *.oktacdn.com; style-src 'unsafe-inline' 'self' 'report-sample' dev-185756.okta.com *.oktacdn.com; frame-src 'self' dev-185756.okta.com dev-185756-admin.okta.com login.okta.com *.vidyard.com; img-src 'self' dev-185756.okta.com *.oktacdn.com *.tiles.mapbox.com *.mapbox.com *.vidyard.com data: blob:; font-src 'self' dev-185756.okta.com data: *.oktacdn.com fonts.gstatic.com; frame-ancestors 'self'",
+      "content-type": "application/json",
+      "date": "Fri, 15 Aug 2025 15:54:53 GMT",
+      "expires": "0",
+      "p3p": "CP=\"HONK\"",
+      "pragma": "no-cache",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "server": "nginx",
+      "strict-transport-security": "max-age=315360000; includeSubDomains",
+      "vary": "Accept-Encoding, Origin",
+      "x-content-type-options": "nosniff",
+      "x-okta-request-id": "e60326cfb2fc39876967b9e2397d347f",
+      "x-rate-limit-limit": "600",
+      "x-rate-limit-remaining": "599",
+      "x-rate-limit-reset": "1755273353",
+      "x-xss-protection": "0"
+    },
+    "responseSize": 1339
+  }
+}
+
+[2025-08-15T15:54:54.041Z] INCOMING: {
+  "type": "network_request",
+  "data": {
+    "id": "65120.50",
+    "tabId": 1094724651,
+    "method": "POST",
+    "url": "https://dev-185756.okta.com/api/v1/authn/introspect",
+    "requestHeaders": {
+      "Accept": "application/json",
+      "Accept-Language": "en",
+      "Content-Type": "application/json",
+      "Referer": "",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+      "X-Okta-User-Agent-Extended": "okta-auth-js/7.11.0 okta-signin-widget-7.34.0",
+      "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-ch-ua-platform-version": "\"15.6.0\""
+    },
+    "requestBody": "{\"stateToken\":\"00oez7sJjBeLX4VNc44zz9SkIooGr1jQlXXJB1TdyR\"}",
+    "timing": {
+      "startTime": 71767711.981,
+      "duration": 242.63799999654293
+    },
+    "timestamp": 1755273293868,
+    "type": "fetch",
+    "status": 200,
+    "statusText": "",
+    "responseHeaders": {
+      "accept-ch": "Sec-CH-UA-Platform-Version",
+      "access-control-allow-credentials": "true",
+      "access-control-allow-headers": "Content-Type",
+      "access-control-allow-origin": "https://dev-185756.okta.com",
+      "cache-control": "no-cache, no-store",
+      "content-encoding": "gzip",
+      "content-security-policy": "default-src 'self' dev-185756.okta.com *.oktacdn.com; connect-src 'self' dev-185756.okta.com dev-185756-admin.okta.com *.oktacdn.com *.mixpanel.com *.mapbox.com dev-185756.kerberos.okta.com https://oinmanager.okta.com data: *.ingest.sentry.io; script-src 'unsafe-inline' 'self' 'report-sample' dev-185756.okta.com *.oktacdn.com; style-src 'unsafe-inline' 'self' 'report-sample' dev-185756.okta.com *.oktacdn.com; frame-src 'self' dev-185756.okta.com dev-185756-admin.okta.com login.okta.com *.vidyard.com; img-src 'self' dev-185756.okta.com *.oktacdn.com *.tiles.mapbox.com *.mapbox.com *.vidyard.com data: blob:; font-src 'self' dev-185756.okta.com data: *.oktacdn.com fonts.gstatic.com; frame-ancestors 'self'",
+      "content-type": "application/json",
+      "date": "Fri, 15 Aug 2025 15:54:53 GMT",
+      "expires": "0",
+      "p3p": "CP=\"HONK\"",
+      "pragma": "no-cache",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "server": "nginx",
+      "strict-transport-security": "max-age=315360000; includeSubDomains",
+      "vary": "Accept-Encoding, Origin",
+      "x-content-type-options": "nosniff",
+      "x-okta-request-id": "e60326cfb2fc39876967b9e2397d347f",
+      "x-rate-limit-limit": "600",
+      "x-rate-limit-remaining": "599",
+      "x-rate-limit-reset": "1755273353",
+      "x-xss-protection": "0"
+    },
+    "responseSize": 1339
+  }
+}
+
+[2025-08-15T15:54:54.071Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "SenseHub - Sign In",
+    "url": "https://dev-185756.okta.com/"
+  }
+}
+
+[2025-08-15T15:54:59.923Z] OUTGOING: {
+  "type": "command",
+  "id": "28486a0f-a8e3-4bee-9285-89cc03503fcc",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:54:59.924Z] INCOMING: {
+  "type": "command_response",
+  "id": "28486a0f-a8e3-4bee-9285-89cc03503fcc",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "https://dev-185756.okta.com/",
+      "title": "SenseHub - Sign In"
+    }
+  }
+}
+
+[2025-08-15T15:54:59.924Z] OUTGOING: {
+  "type": "command",
+  "id": "c9481212-fea2-42e2-9e94-91be6eb98248",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:54:59.924Z] INCOMING: {
+  "type": "command_response",
+  "id": "c9481212-fea2-42e2-9e94-91be6eb98248",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "https://dev-185756.okta.com/",
+      "title": "SenseHub - Sign In"
+    }
+  }
+}
+
+[2025-08-15T15:54:59.924Z] OUTGOING: {
+  "type": "command",
+  "id": "5d3402f7-381b-46c2-aebf-f110a8acb7a9",
+  "data": {
+    "command": "type_text_in_element",
+    "params": {
+      "tabId": 1094724651,
+      "text": "username",
+      "textToType": "testuser123"
+    }
+  }
+}
+
+[2025-08-15T15:54:59.926Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "e1b2508d-4b2c-46e1-ba89-33cb410f83ae",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "=== MCP Extension: Starting text input ===",
+    "timestamp": 1755273299925,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:59.926Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "a15e13bd-9c34-4422-92a2-6aab99e77a2d",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Selector: {\"type\":\"null\"} Text: username TextToType: testuser123",
+    "timestamp": 1755273299925,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:59.926Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "abfc1e14-644b-4a9b-a377-1049d22dd9d4",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "MCP Extension: Target input element NOT found",
+    "timestamp": 1755273299926,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:54:59.928Z] INCOMING: {
+  "type": "command_response",
+  "id": "5d3402f7-381b-46c2-aebf-f110a8acb7a9",
+  "data": {
+    "success": true,
+    "data": {
+      "message": "No input element found containing text \"username\"",
+      "success": false
+    }
+  }
+}

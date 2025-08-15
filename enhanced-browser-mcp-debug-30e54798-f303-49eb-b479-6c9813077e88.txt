@@ -1,118 +1,355 @@
-[2025-08-15T13:07:50.157Z] ExtensionBridge initialized
-{
-  "sessionId": "30e54798-f303-49eb-b479-6c9813077e88"
-}
-
-[2025-08-15T13:08:39.764Z] WebSocket message received
-{
-  "type": "tab_info"
-}
-
-[2025-08-15T13:08:39.840Z] WebSocket message received
-{
-  "type": "tab_info"
-}
-
-[2025-08-15T13:08:39.853Z] WebSocket message received
+[2025-08-15T13:29:48.396Z] WebSocket message received
 {
   "type": "console_log"
 }
 
-[2025-08-15T13:08:39.853Z] WebSocket message received
+[2025-08-15T13:29:48.416Z] WebSocket message received
 {
   "type": "console_log"
 }
 
-[2025-08-15T13:08:39.853Z] WebSocket message received
+[2025-08-15T13:29:48.440Z] WebSocket message received
 {
   "type": "console_log"
 }
 
-[2025-08-15T13:08:39.853Z] WebSocket message received
-{
-  "type": "console_log"
-}
-
-[2025-08-15T13:08:39.853Z] WebSocket message received
-{
-  "type": "console_log"
-}
-
-[2025-08-15T13:08:39.854Z] WebSocket message received
-{
-  "type": "console_log"
-}
-
-[2025-08-15T13:08:39.854Z] WebSocket message received
-{
-  "type": "console_log"
-}
-
-[2025-08-15T13:08:39.854Z] WebSocket message received
-{
-  "type": "console_log"
-}
-
-[2025-08-15T13:08:39.856Z] WebSocket message received
-{
-  "type": "console_log"
-}
-
-[2025-08-15T13:08:39.856Z] WebSocket message received
-{
-  "type": "console_log"
-}
-
-[2025-08-15T13:08:39.856Z] WebSocket message received
-{
-  "type": "console_log"
-}
-
-[2025-08-15T13:08:39.854Z] WebSocket message received
-{
-  "type": "console_log"
-}
-
-[2025-08-15T13:08:39.864Z] WebSocket message received
+[2025-08-15T13:29:48.457Z] WebSocket message received
 {
   "type": "network_request"
 }
 
-[2025-08-15T13:08:39.864Z] Network request added/updated
+[2025-08-15T13:29:48.457Z] Network request added/updated
 {
   "tabId": 1713408284,
-  "requestId": "66152.4299",
+  "requestId": "66152.4431",
   "method": "GET",
-  "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
-  "totalRequests": 1
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "totalRequests": 3
 }
 
-[2025-08-15T13:08:41.006Z] Network request added/updated
+[2025-08-15T13:29:48.474Z] WebSocket message received
 {
-  "tabId": 1713408284,
-  "requestId": "66152.4299",
-  "method": "GET",
-  "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
-  "status": 200,
-  "totalRequests": 1
+  "type": "tab_info"
 }
 
-[2025-08-15T13:08:41.006Z] WebSocket message received
+[2025-08-15T13:29:48.475Z] WebSocket message received
 {
   "type": "network_request"
 }
 
-[2025-08-15T13:08:41.575Z] Network request added/updated
+[2025-08-15T13:29:48.475Z] Network request added/updated
 {
   "tabId": 1713408284,
-  "requestId": "66152.4299",
+  "requestId": "66152.4431",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "status": 200,
+  "totalRequests": 3
+}
+
+[2025-08-15T13:29:48.494Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:29:48.495Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.4431",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "status": 200,
+  "totalRequests": 3
+}
+
+[2025-08-15T13:29:48.511Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T13:29:48.523Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.523Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.523Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.523Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.472Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.523Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.523Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.524Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.524Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.524Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.527Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.527Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.527Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:48.537Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.4485",
+  "method": "GET",
+  "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+  "totalRequests": 4
+}
+
+[2025-08-15T13:29:48.537Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:29:49.335Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:29:49.335Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.4485",
   "method": "GET",
   "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
   "status": 200,
-  "totalRequests": 1
+  "totalRequests": 4
 }
 
-[2025-08-15T13:08:41.575Z] WebSocket message received
+[2025-08-15T13:29:49.677Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:29:49.677Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.4485",
+  "method": "GET",
+  "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+  "status": 200,
+  "totalRequests": 4
+}
+
+[2025-08-15T13:29:52.212Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.230Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.254Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.270Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.4524",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "totalRequests": 5
+}
+
+[2025-08-15T13:29:52.270Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:29:52.289Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T13:29:52.289Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.290Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:29:52.290Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.4524",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "status": 200,
+  "totalRequests": 5
+}
+
+[2025-08-15T13:29:52.302Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:29:52.302Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.4524",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "status": 200,
+  "totalRequests": 5
+}
+
+[2025-08-15T13:29:52.328Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T13:29:52.339Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.339Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.339Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.341Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.340Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.341Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.339Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.341Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.341Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.342Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.343Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.343Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T13:29:52.350Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:29:52.350Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.4578",
+  "method": "GET",
+  "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+  "totalRequests": 6
+}
+
+[2025-08-15T13:29:53.013Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T13:29:53.013Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.4578",
+  "method": "GET",
+  "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+  "status": 200,
+  "totalRequests": 6
+}
+
+[2025-08-15T13:29:53.233Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "66152.4578",
+  "method": "GET",
+  "url": "http://localhost:4200/ahm-catalog-tool-api/api/v1/drugs/site-admin/drug-settings?siteId=68749ed38b056891eba3fb9f",
+  "status": 200,
+  "totalRequests": 6
+}
+
+[2025-08-15T13:29:53.233Z] WebSocket message received
 {
   "type": "network_request"
 }

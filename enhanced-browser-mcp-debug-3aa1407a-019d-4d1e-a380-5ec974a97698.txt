@@ -1,0 +1,791 @@
+[2025-08-15T15:53:21.650Z] ExtensionBridge initialized
+{
+  "sessionId": "3aa1407a-019d-4d1e-a380-5ec974a97698"
+}
+
+[2025-08-15T15:53:29.742Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T15:53:29.785Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T15:53:44.620Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "fccc82d4-8d7f-4ad2-ae59-8ed9d0b39934"
+}
+
+[2025-08-15T15:53:44.621Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:44.621Z] Navigation event received
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "event": "navigation_started"
+}
+
+[2025-08-15T15:53:44.621Z] Navigation state initialized
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "requestedUrl": "https://browsermcp.io"
+}
+
+[2025-08-15T15:53:44.621Z] Event added to navigation state
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "eventCount": 1,
+  "event": {
+    "event": "navigation_started",
+    "timestamp": 1755273224621,
+    "requestedUrl": "https://browsermcp.io",
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:53:44.621Z] Cleared network requests for new navigation
+{
+  "tabId": 1094724651,
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:44.650Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:44.650Z] Received command response for active navigation, ignoring immediate resolution
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:44.686Z] Navigation event received
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "event": "url_changed",
+  "url": "https://browsermcp.io/"
+}
+
+[2025-08-15T15:53:44.686Z] Event added to navigation state
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "eventCount": 2,
+  "event": {
+    "event": "url_changed",
+    "url": "https://browsermcp.io/",
+    "timestamp": 1755273224685,
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:53:44.686Z] Updated last stable URL
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "url": "https://browsermcp.io/"
+}
+
+[2025-08-15T15:53:44.686Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:44.686Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:44.686Z] Navigation event received
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "event": "status_changed",
+  "url": "https://browsermcp.io/",
+  "status": "loading"
+}
+
+[2025-08-15T15:53:44.686Z] Event added to navigation state
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "eventCount": 3,
+  "event": {
+    "event": "status_changed",
+    "url": "https://browsermcp.io/",
+    "status": "loading",
+    "timestamp": 1755273224685,
+    "title": "browsermcp.io",
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:53:44.694Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:44.693Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:53:44.693Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:53:44.694Z] Navigation event received
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "event": "title_changed",
+  "url": "https://browsermcp.io/"
+}
+
+[2025-08-15T15:53:44.694Z] Event added to navigation state
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "eventCount": 4,
+  "event": {
+    "event": "title_changed",
+    "url": "https://browsermcp.io/",
+    "timestamp": 1755273224693,
+    "title": "Browser MCP - Automate your browser with AI",
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:53:44.775Z] Navigation event received
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "event": "status_changed",
+  "url": "https://browsermcp.io/",
+  "status": "loading"
+}
+
+[2025-08-15T15:53:44.775Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:44.775Z] Event added to navigation state
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "eventCount": 5,
+  "event": {
+    "event": "status_changed",
+    "url": "https://browsermcp.io/",
+    "status": "loading",
+    "timestamp": 1755273224775,
+    "title": "Browser MCP - Automate your browser with AI",
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:53:44.798Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:53:44.801Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T15:53:44.801Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:44.801Z] Navigation event received
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "event": "status_changed",
+  "url": "https://browsermcp.io/",
+  "status": "complete"
+}
+
+[2025-08-15T15:53:44.801Z] Event added to navigation state
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "eventCount": 6,
+  "event": {
+    "event": "status_changed",
+    "url": "https://browsermcp.io/",
+    "status": "complete",
+    "timestamp": 1755273224800,
+    "title": "Browser MCP - Automate your browser with AI",
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:53:46.623Z] Completing navigation after timeout
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "eventCount": 6,
+  "lastStableUrl": "https://browsermcp.io/"
+}
+
+[2025-08-15T15:53:46.625Z] Got current tab state
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a",
+  "currentState": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "https://browsermcp.io/",
+      "title": "Browser MCP - Automate your browser with AI"
+    }
+  }
+}
+
+[2025-08-15T15:53:46.625Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "7fe385b5-05b5-46d4-a034-60a103ca23d0"
+}
+
+[2025-08-15T15:53:46.625Z] Resolving pending command with timeout result
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:46.625Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "a0822549-87a0-4599-9a2d-798c677b77eb"
+}
+
+[2025-08-15T15:53:46.623Z] 2-second timeout reached, completing navigation
+{
+  "commandId": "8e7d2e93-62ad-4866-9dc9-00bb2012da7a"
+}
+
+[2025-08-15T15:53:49.677Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "33156a98-6633-445f-8aba-e727357a44c4"
+}
+
+[2025-08-15T15:53:49.680Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:53:49.678Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "d3687066-2b1f-4e94-9ac6-be49f9209173"
+}
+
+[2025-08-15T15:53:49.679Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:53:49.679Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:53:49.680Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "463d65ce-7608-4cf6-924d-a63ec7972b60"
+}
+
+[2025-08-15T15:54:17.012Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:17.012Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:17.040Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:17.058Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:17.155Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:17.189Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T15:54:47.740Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "bfaa51aa-a543-493f-9264-309e55d27af8"
+}
+
+[2025-08-15T15:54:47.743Z] Event added to navigation state
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "eventCount": 1,
+  "event": {
+    "event": "navigation_started",
+    "timestamp": 1755273287740,
+    "requestedUrl": "http://localhost:4200",
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:54:47.743Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:47.743Z] Cleared network requests for new navigation
+{
+  "tabId": 1094724651,
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:47.743Z] Navigation state initialized
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "requestedUrl": "http://localhost:4200"
+}
+
+[2025-08-15T15:54:47.743Z] Navigation event received
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "event": "navigation_started"
+}
+
+[2025-08-15T15:54:47.776Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:47.776Z] Received command response for active navigation, ignoring immediate resolution
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:47.783Z] Navigation event received
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "event": "url_changed",
+  "url": "http://localhost:4200/"
+}
+
+[2025-08-15T15:54:47.783Z] Event added to navigation state
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "eventCount": 2,
+  "event": {
+    "event": "url_changed",
+    "url": "http://localhost:4200/",
+    "timestamp": 1755273287783,
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:54:47.783Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:47.783Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:47.784Z] Event added to navigation state
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "eventCount": 3,
+  "event": {
+    "event": "status_changed",
+    "url": "http://localhost:4200/",
+    "status": "loading",
+    "timestamp": 1755273287783,
+    "title": "localhost:4200",
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:54:47.785Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:47.783Z] Updated last stable URL
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "url": "http://localhost:4200/"
+}
+
+[2025-08-15T15:54:47.784Z] Navigation event received
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "event": "status_changed",
+  "url": "http://localhost:4200/",
+  "status": "loading"
+}
+
+[2025-08-15T15:54:47.786Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:47.786Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:47.786Z] Navigation event received
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "event": "title_changed",
+  "url": "http://localhost:4200/"
+}
+
+[2025-08-15T15:54:47.786Z] Event added to navigation state
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "eventCount": 4,
+  "event": {
+    "event": "title_changed",
+    "url": "http://localhost:4200/",
+    "timestamp": 1755273287785,
+    "title": "AHM catalog tool",
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:54:47.805Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:47.830Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:47.871Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:47.871Z] Updated last stable URL
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "url": "http://localhost:4200/login"
+}
+
+[2025-08-15T15:54:47.871Z] Event added to navigation state
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "eventCount": 5,
+  "event": {
+    "event": "url_changed",
+    "url": "http://localhost:4200/login",
+    "timestamp": 1755273287870,
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:54:47.871Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:47.871Z] Navigation event received
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "event": "status_changed",
+  "url": "http://localhost:4200/login",
+  "status": "loading"
+}
+
+[2025-08-15T15:54:47.871Z] Event added to navigation state
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "eventCount": 6,
+  "event": {
+    "event": "status_changed",
+    "url": "http://localhost:4200/login",
+    "status": "loading",
+    "timestamp": 1755273287870,
+    "title": "AHM catalog tool",
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:54:47.872Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T15:54:47.871Z] Navigation event received
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "event": "url_changed",
+  "url": "http://localhost:4200/login"
+}
+
+[2025-08-15T15:54:47.872Z] WebSocket message received
+{
+  "type": "navigation_event",
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:47.872Z] Navigation event received
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "event": "status_changed",
+  "url": "http://localhost:4200/login",
+  "status": "complete"
+}
+
+[2025-08-15T15:54:47.872Z] Event added to navigation state
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "eventCount": 7,
+  "event": {
+    "event": "status_changed",
+    "url": "http://localhost:4200/login",
+    "status": "complete",
+    "timestamp": 1755273287871,
+    "title": "AHM catalog tool",
+    "tabId": 1094724651
+  }
+}
+
+[2025-08-15T15:54:47.872Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:49.743Z] Completing navigation after timeout
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "eventCount": 7,
+  "lastStableUrl": "http://localhost:4200/login"
+}
+
+[2025-08-15T15:54:49.743Z] 2-second timeout reached, completing navigation
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:49.745Z] Got current tab state
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10",
+  "currentState": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:54:49.745Z] Resolving pending command with timeout result
+{
+  "commandId": "b6ffa876-8e8c-4e86-9909-53ffacfccd10"
+}
+
+[2025-08-15T15:54:49.746Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "224497aa-8b2c-4556-a872-5941efa5b6e8"
+}
+
+[2025-08-15T15:54:49.745Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "3d7bb6f8-8ccd-473d-b7c4-acad95519726"
+}
+
+[2025-08-15T15:54:53.305Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "353b8954-55a5-4a6f-810f-1991826bc43c"
+}
+
+[2025-08-15T15:54:53.306Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "dd30a212-bace-41e2-b9ec-ebca4a3d2a3a"
+}
+
+[2025-08-15T15:54:53.307Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:53.308Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:53.308Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:53.308Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:53.308Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:53.309Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:53.311Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "4d8ea49c-7e47-4356-a891-fd31ec3e8f81"
+}
+
+[2025-08-15T15:54:53.315Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:53.690Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:53.690Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:53.778Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T15:54:53.808Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T15:54:53.868Z] Network request added/updated
+{
+  "tabId": 1094724651,
+  "requestId": "65120.50",
+  "method": "POST",
+  "url": "https://dev-185756.okta.com/api/v1/authn/introspect",
+  "totalRequests": 1
+}
+
+[2025-08-15T15:54:53.868Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T15:54:53.885Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T15:54:54.041Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T15:54:54.041Z] Network request added/updated
+{
+  "tabId": 1094724651,
+  "requestId": "65120.50",
+  "method": "POST",
+  "url": "https://dev-185756.okta.com/api/v1/authn/introspect",
+  "status": 200,
+  "totalRequests": 1
+}
+
+[2025-08-15T15:54:54.041Z] Network request added/updated
+{
+  "tabId": 1094724651,
+  "requestId": "65120.50",
+  "method": "POST",
+  "url": "https://dev-185756.okta.com/api/v1/authn/introspect",
+  "status": 200,
+  "totalRequests": 1
+}
+
+[2025-08-15T15:54:54.040Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T15:54:54.071Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T15:54:59.924Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "28486a0f-a8e3-4bee-9285-89cc03503fcc"
+}
+
+[2025-08-15T15:54:59.926Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:59.924Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "c9481212-fea2-42e2-9e94-91be6eb98248"
+}
+
+[2025-08-15T15:54:59.926Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:59.926Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T15:54:59.928Z] WebSocket message received
+{
+  "type": "command_response",
+  "id": "5d3402f7-381b-46c2-aebf-f110a8acb7a9"
+}
+

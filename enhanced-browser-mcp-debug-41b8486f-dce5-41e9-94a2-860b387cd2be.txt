@@ -1,0 +1,74 @@
+[2025-08-15T14:22:17.472Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T14:22:17.487Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T14:22:17.537Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T14:22:17.537Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "26356.191",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "totalRequests": 27
+}
+
+[2025-08-15T14:22:17.553Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "26356.191",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "status": 200,
+  "totalRequests": 27
+}
+
+[2025-08-15T14:22:17.554Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+
+[2025-08-15T14:22:17.553Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T14:22:17.560Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T14:22:17.561Z] Network request added/updated
+{
+  "tabId": 1713408284,
+  "requestId": "26356.191",
+  "method": "GET",
+  "url": "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css",
+  "status": 200,
+  "totalRequests": 27
+}
+
+[2025-08-15T14:22:17.523Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T14:22:17.507Z] WebSocket message received
+{
+  "type": "console_log"
+}
+
+[2025-08-15T14:22:17.576Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+

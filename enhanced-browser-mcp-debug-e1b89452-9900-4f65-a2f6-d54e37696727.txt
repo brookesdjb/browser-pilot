@@ -1,0 +1,44 @@
+[2025-08-15T15:53:23.753Z] Network request added/updated
+{
+  "tabId": 1094724651,
+  "requestId": "63756.55",
+  "method": "POST",
+  "url": "https://o101443.ingest.sentry.io/api/4507506066849792/envelope/?sentry_key=728f6bd7e621314e88a26d7337d3fd61&sentry_version=7&sentry_client=sentry.javascript.browser%2F7.80.0",
+  "totalRequests": 4
+}
+
+[2025-08-15T15:53:23.753Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T15:53:23.823Z] Network request added/updated
+{
+  "tabId": 1094724651,
+  "requestId": "63756.55",
+  "method": "POST",
+  "url": "https://o101443.ingest.sentry.io/api/4507506066849792/envelope/?sentry_key=728f6bd7e621314e88a26d7337d3fd61&sentry_version=7&sentry_client=sentry.javascript.browser%2F7.80.0",
+  "status": 200,
+  "totalRequests": 4
+}
+
+[2025-08-15T15:53:23.823Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T15:53:23.874Z] WebSocket message received
+{
+  "type": "network_request"
+}
+
+[2025-08-15T15:53:23.874Z] Network request added/updated
+{
+  "tabId": 1094724651,
+  "requestId": "63756.55",
+  "method": "POST",
+  "url": "https://o101443.ingest.sentry.io/api/4507506066849792/envelope/?sentry_key=728f6bd7e621314e88a26d7337d3fd61&sentry_version=7&sentry_client=sentry.javascript.browser%2F7.80.0",
+  "status": 200,
+  "totalRequests": 4
+}
+

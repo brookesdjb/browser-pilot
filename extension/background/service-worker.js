@@ -116,6 +116,9 @@ class ConsoleLogCollector {
         case 'click_element_by_identifier':
           result = await this.clickElementByIdentifier(params);
           break;
+        case 'type_text_in_element':
+          result = await this.typeTextInElement(params);
+          break;
         case 'cleanup_navigation':
           this.cleanupNavigationListener(params.commandId);
           result = { success: true, message: 'Navigation listener cleaned up' };
@@ -1108,6 +1111,165 @@ class ConsoleLogCollector {
       return { 
         success: false, 
         error: `Failed to execute element click: ${error.message}` 
+      };
+    }
+  }
+
+  async typeTextInElement(params) {
+    const { tabId, selector, text, textToType, clearFirst = true, submit = false } = params;
+    const targetTabId = tabId || (await chrome.tabs.query({ active: true, currentWindow: true }))[0].id;
+    
+    try {
+      const result = await chrome.scripting.executeScript({
+        target: { tabId: targetTabId },
+        func: (selectorParam, textParam, textToTypeParam, clearFirstParam, submitParam) => {
+          console.log('=== MCP Extension: Starting text input ===');
+          console.log('Selector:', selectorParam, 'Text:', textParam, 'TextToType:', textToTypeParam);
+          
+          // Subtle background flash to show we're running
+          const originalBg = document.body.style.backgroundColor;
+          document.body.style.backgroundColor = 'rgba(0, 0, 255, 0.1)';
+          
+          let targetElement = null;
+          let method = '';
+          
+          // First try selector if provided
+          if (selectorParam) {
+            try {
+              const elements = document.querySelectorAll(selectorParam);
+              for (const element of elements) {
+                const style = window.getComputedStyle(element);
+                if (style.display !== 'none' && 
+                    style.visibility !== 'hidden' && 
+                    style.opacity !== '0' &&
+                    element.offsetWidth > 0 && 
+                    element.offsetHeight > 0) {
+                  targetElement = element;
+                  method = `selector: ${selectorParam}`;
+                  break;
+                }
+              }
+            } catch (error) {
+              console.log('Invalid selector:', selectorParam);
+            }
+          }
+          
+          // Then try text search if no element found and text provided
+          if (!targetElement && textParam) {
+            const inputSelectors = [
+              'input[type="text"]', 'input[type="email"]', 'input[type="password"]',
+              'input[type="search"]', 'input[type="url"]', 'input[type="tel"]',
+              'input:not([type])', 'textarea', '[contenteditable="true"]',
+              '.input', '.form-control', '[role="textbox"]'
+            ];
+            
+            for (const sel of inputSelectors) {
+              const elements = document.querySelectorAll(sel);
+              for (const element of elements) {
+                const elementText = element.placeholder || element.getAttribute('aria-label') || element.textContent || '';
+                const style = window.getComputedStyle(element);
+                if (elementText.toLowerCase().includes(textParam.toLowerCase()) &&
+                    style.display !== 'none' && 
+                    style.visibility !== 'hidden' && 
+                    style.opacity !== '0' &&
+                    element.offsetWidth > 0 && 
+                    element.offsetHeight > 0) {
+                  targetElement = element;
+                  method = `text: "${textParam}" in ${sel}`;
+                  break;
+                }
+              }
+              if (targetElement) break;
+            }
+          }
+          
+          if (targetElement) {
+            console.log('MCP Extension: Found target input element:', targetElement);
+            console.log('MCP Extension: Method:', method);
+            console.log('MCP Extension: About to type text...');
+            
+            // Focus the element first
+            targetElement.focus();
+            
+            // Clear existing text if requested
+            if (clearFirstParam) {
+              targetElement.value = '';
+            }
+            
+            // Set the text value
+            targetElement.value = textToTypeParam;
+            
+            // Trigger input events to notify frameworks like React/Angular
+            const inputEvent = new Event('input', { bubbles: true });
+            const changeEvent = new Event('change', { bubbles: true });
+            targetElement.dispatchEvent(inputEvent);
+            targetElement.dispatchEvent(changeEvent);
+            
+            // Submit if requested (press Enter)
+            if (submitParam) {
+              const keydownEvent = new KeyboardEvent('keydown', {
+                key: 'Enter',
+                code: 'Enter',
+                keyCode: 13,
+                which: 13,
+                bubbles: true
+              });
+              const keyupEvent = new KeyboardEvent('keyup', {
+                key: 'Enter',
+                code: 'Enter',
+                keyCode: 13,
+                which: 13,
+                bubbles: true
+              });
+              targetElement.dispatchEvent(keydownEvent);
+              targetElement.dispatchEvent(keyupEvent);
+            }
+            
+            console.log('MCP Extension: Text input completed - SUCCESS!');
+            
+            // Subtle green flash to show success
+            setTimeout(() => {
+              document.body.style.backgroundColor = 'rgba(0, 255, 0, 0.1)';
+              setTimeout(() => {
+                document.body.style.backgroundColor = originalBg;
+              }, 300);
+            }, 200);
+            
+            return {
+              success: true,
+              message: `Text "${textToTypeParam}" entered successfully via ${method}`,
+              elementType: targetElement.tagName.toLowerCase(),
+              elementPlaceholder: targetElement.placeholder || '',
+              selector: method.startsWith('selector:') ? selectorParam : null,
+              submitted: submitParam
+            };
+          } else {
+            console.log('MCP Extension: Target input element NOT found');
+            
+            // Subtle red flash to show failure
+            document.body.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+            setTimeout(() => {
+              document.body.style.backgroundColor = originalBg;
+            }, 300);
+            
+            return {
+              success: false,
+              message: `No input element found${selectorParam ? ` with selector "${selectorParam}"` : ''}${textParam ? ` containing text "${textParam}"` : ''}`
+            };
+          }
+        },
+        args: [selector || null, text || null, textToType, clearFirst, submit]
+      });
+      
+      const scriptResult = result[0].result;
+      console.log('Text input result:', scriptResult);
+      return scriptResult;
+      
+    } catch (error) {
+      console.error('Failed to execute text input:', error);
+      return { 
+        success: false, 
+        error: `Failed to execute text input: ${error.message}` 
       };
     }
   }

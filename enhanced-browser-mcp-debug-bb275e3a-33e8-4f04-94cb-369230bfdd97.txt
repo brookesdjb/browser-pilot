@@ -1,0 +1,5 @@
+[2025-08-15T14:54:41.150Z] WebSocket message received
+{
+  "type": "tab_info"
+}
+

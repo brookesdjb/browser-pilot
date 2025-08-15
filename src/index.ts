@@ -16,7 +16,7 @@ import { versionTool, executeGetVersion } from './tools/version.js';
 import { ExtensionBridge } from './utils/extension-bridge.js';
 
 const SERVER_NAME = 'enhanced-browser-mcp';
-const SERVER_VERSION = '0.16.0';
+const SERVER_VERSION = '0.17.0';
 
 async function createServer(wsLogFilePath?: string): Promise<Server> {
   const server = new Server(
@@ -57,6 +57,7 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
         browserDomTool.getSchema(),
         browserScreenshotTool.getSchema(),
         browserAutomationTool.getClickElementSchema(),
+        browserAutomationTool.getTypeTextSchema(),
         versionTool
       ],
     };
@@ -97,6 +98,9 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
           
         case 'click_element':
           return await browserAutomationTool.executeClickElement(args);
+          
+        case 'type_text':
+          return await browserAutomationTool.executeTypeText(args);
           
         case 'get_version':
           const versionInfo = await executeGetVersion();

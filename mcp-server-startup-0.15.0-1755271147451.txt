@@ -1,0 +1,536 @@
+Hello World! MCP Server v0.15.0 started at 2025-08-15T15:19:07.451Z
+
+=== WebSocket Messages ===
+
+[2025-08-15T15:19:07.457Z] SYSTEM: ExtensionBridge initialized with WebSocket logging
+
+[2025-08-15T15:19:35.695Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/login"
+  }
+}
+
+[2025-08-15T15:19:36.457Z] OUTGOING: {
+  "type": "command",
+  "id": "117f8f3e-552d-4eb8-a15d-516cfdc71a7a",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:19:36.459Z] OUTGOING: {
+  "type": "command",
+  "id": "966a79f1-6973-4db9-b8b9-2c6a0f20114c",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:19:36.459Z] INCOMING: {
+  "type": "command_response",
+  "id": "117f8f3e-552d-4eb8-a15d-516cfdc71a7a",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:19:36.473Z] INCOMING: {
+  "type": "command_response",
+  "id": "966a79f1-6973-4db9-b8b9-2c6a0f20114c",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:19:40.363Z] OUTGOING: {
+  "type": "command",
+  "id": "727807e2-785d-4e70-832e-3284aab06036",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:19:40.364Z] INCOMING: {
+  "type": "command_response",
+  "id": "727807e2-785d-4e70-832e-3284aab06036",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:19:40.365Z] OUTGOING: {
+  "type": "command",
+  "id": "412e7923-f7f8-43c5-8202-cb3d4eb46202",
+  "data": {
+    "command": "click_coordinates_cdp",
+    "params": {
+      "tabId": 1094724651,
+      "x": 531,
+      "y": 567
+    }
+  }
+}
+
+[2025-08-15T15:19:40.365Z] OUTGOING: {
+  "type": "command",
+  "id": "e6c970fd-164d-4da5-b01d-290344e0299b",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:19:40.365Z] INCOMING: {
+  "type": "command_response",
+  "id": "e6c970fd-164d-4da5-b01d-290344e0299b",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:19:40.366Z] INCOMING: {
+  "type": "command_response",
+  "id": "412e7923-f7f8-43c5-8202-cb3d4eb46202",
+  "data": {
+    "success": true,
+    "data": {
+      "success": false,
+      "error": "CDP click via extension failed: Another debugger is already attached to the tab with id: 1094724651."
+    }
+  }
+}
+
+[2025-08-15T15:19:44.473Z] OUTGOING: {
+  "type": "command",
+  "id": "1e50b835-b96a-465d-ba8b-79c0603b04e8",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:19:44.474Z] INCOMING: {
+  "type": "command_response",
+  "id": "be68af66-7bc6-4cac-892b-b30a4475149b",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:19:44.474Z] OUTGOING: {
+  "type": "command",
+  "id": "be68af66-7bc6-4cac-892b-b30a4475149b",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:19:44.474Z] INCOMING: {
+  "type": "command_response",
+  "id": "1e50b835-b96a-465d-ba8b-79c0603b04e8",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:19:47.984Z] OUTGOING: {
+  "type": "command",
+  "id": "28a67afe-a11c-4a26-8265-ff578dc9a978",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:19:47.986Z] INCOMING: {
+  "type": "command_response",
+  "id": "28a67afe-a11c-4a26-8265-ff578dc9a978",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:19:59.091Z] OUTGOING: {
+  "type": "command",
+  "id": "8bb6c9dc-3337-4756-b2f2-94b5aef28141",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:19:59.093Z] INCOMING: {
+  "type": "command_response",
+  "id": "8bb6c9dc-3337-4756-b2f2-94b5aef28141",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:20:20.760Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "bf7c0df8-c4b1-4bfa-b1a5-58c77d241264",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Enhanced Browser MCP content script loaded",
+    "timestamp": 1755271220760,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:20:20.752Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/login"
+  }
+}
+
+[2025-08-15T15:20:20.760Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "b0f1d59c-13d2-41a5-8a6f-54ad6db3ce8a",
+    "tabId": 1094724651,
+    "level": "debug",
+    "message": "[vite] connecting...",
+    "timestamp": 1755271220760,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:20:20.761Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "3c910e5c-5d6b-4389-9577-56acdcab850a",
+    "tabId": 1094724651,
+    "level": "log",
+    "message": "Angular is running in development mode.",
+    "timestamp": 1755271220760,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:20:20.761Z] INCOMING: {
+  "type": "console_log",
+  "data": {
+    "id": "87c5b414-a39d-4ed3-b573-952395dbcec6",
+    "tabId": 1094724651,
+    "level": "debug",
+    "message": "[vite] connected.",
+    "timestamp": 1755271220760,
+    "url": "page",
+    "lineNumber": 0
+  }
+}
+
+[2025-08-15T15:22:59.058Z] INCOMING: {
+  "type": "tab_info",
+  "data": {
+    "tabId": 1094724651,
+    "title": "AHM catalog tool",
+    "url": "http://localhost:4200/login"
+  }
+}
+
+[2025-08-15T15:23:15.078Z] OUTGOING: {
+  "type": "command",
+  "id": "8281ce05-ad50-4447-8255-dd6f0e192835",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:23:15.079Z] INCOMING: {
+  "type": "command_response",
+  "id": "8281ce05-ad50-4447-8255-dd6f0e192835",
+  "data": {
+    "success": false,
+    "error": "Cannot read properties of undefined (reading 'id')"
+  }
+}
+
+[2025-08-15T15:23:15.079Z] OUTGOING: {
+  "type": "command",
+  "id": "9224b29e-7fb2-4765-95ec-88104172515e",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:23:15.080Z] INCOMING: {
+  "type": "command_response",
+  "id": "9224b29e-7fb2-4765-95ec-88104172515e",
+  "data": {
+    "success": false,
+    "error": "Cannot read properties of undefined (reading 'id')"
+  }
+}
+
+[2025-08-15T15:23:18.768Z] OUTGOING: {
+  "type": "command",
+  "id": "3e79d4d2-a2d4-41f1-9cbd-a8bad1dab623",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:23:18.770Z] INCOMING: {
+  "type": "command_response",
+  "id": "7beb1e75-b87c-4b1f-a44f-aab1e4c198fe",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:23:18.769Z] INCOMING: {
+  "type": "command_response",
+  "id": "3e79d4d2-a2d4-41f1-9cbd-a8bad1dab623",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:23:18.770Z] OUTGOING: {
+  "type": "command",
+  "id": "7beb1e75-b87c-4b1f-a44f-aab1e4c198fe",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:23:22.467Z] OUTGOING: {
+  "type": "command",
+  "id": "b2943a53-d524-4618-832e-e1bcec262866",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:23:22.469Z] INCOMING: {
+  "type": "command_response",
+  "id": "b2943a53-d524-4618-832e-e1bcec262866",
+  "data": {
+    "success": false,
+    "error": "Cannot read properties of undefined (reading 'id')"
+  }
+}
+
+[2025-08-15T15:23:22.469Z] OUTGOING: {
+  "type": "command",
+  "id": "aab9ab70-a782-420b-8812-e33ca8162c41",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:23:22.470Z] INCOMING: {
+  "type": "command_response",
+  "id": "aab9ab70-a782-420b-8812-e33ca8162c41",
+  "data": {
+    "success": false,
+    "error": "Cannot read properties of undefined (reading 'id')"
+  }
+}
+
+[2025-08-15T15:23:51.425Z] INCOMING: {
+  "type": "command_response",
+  "id": "6ebd9b3a-3a94-4364-b79f-a5c030a579d5",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:23:51.426Z] OUTGOING: {
+  "type": "command",
+  "id": "6264ea86-c13f-4f47-9b5f-b672801447f1",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:23:51.413Z] OUTGOING: {
+  "type": "command",
+  "id": "6ebd9b3a-3a94-4364-b79f-a5c030a579d5",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:23:51.427Z] INCOMING: {
+  "type": "command_response",
+  "id": "6264ea86-c13f-4f47-9b5f-b672801447f1",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:23:51.427Z] OUTGOING: {
+  "type": "command",
+  "id": "35562164-2fd2-453b-ab1a-b2900e04e4a7",
+  "data": {
+    "command": "click_coordinates_cdp",
+    "params": {
+      "tabId": 1094724651,
+      "x": 531,
+      "y": 567
+    }
+  }
+}
+
+[2025-08-15T15:23:51.428Z] INCOMING: {
+  "type": "command_response",
+  "id": "35562164-2fd2-453b-ab1a-b2900e04e4a7",
+  "data": {
+    "success": true,
+    "data": {
+      "success": false,
+      "error": "CDP click via extension failed: Another debugger is already attached to the tab with id: 1094724651."
+    }
+  }
+}
+
+[2025-08-15T15:23:56.150Z] INCOMING: {
+  "type": "command_response",
+  "id": "791f7c9d-5638-424e-aa99-67abfa381947",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:23:56.147Z] OUTGOING: {
+  "type": "command",
+  "id": "dbf5e8ef-597c-47a9-8751-96df004b427e",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:23:56.149Z] OUTGOING: {
+  "type": "command",
+  "id": "791f7c9d-5638-424e-aa99-67abfa381947",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
+
+[2025-08-15T15:23:56.149Z] INCOMING: {
+  "type": "command_response",
+  "id": "dbf5e8ef-597c-47a9-8751-96df004b427e",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:24:00.096Z] INCOMING: {
+  "type": "command_response",
+  "id": "812d8616-f04e-4755-abd0-a0034949956c",
+  "data": {
+    "success": true,
+    "data": {
+      "tabId": 1094724651,
+      "url": "http://localhost:4200/login",
+      "title": "AHM catalog tool"
+    }
+  }
+}
+
+[2025-08-15T15:24:00.095Z] OUTGOING: {
+  "type": "command",
+  "id": "812d8616-f04e-4755-abd0-a0034949956c",
+  "data": {
+    "command": "get_current_url",
+    "params": {}
+  }
+}
