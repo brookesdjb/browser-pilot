@@ -9,11 +9,13 @@ import { ConsoleLogsTool } from './tools/console-logs.js';
 import { BrowserNavigationTool } from './tools/browser-navigation.js';
 import { BrowserStorageTool } from './tools/browser-storage.js';
 import { BrowserNetworkTool } from './tools/browser-network.js';
+import { BrowserDomTool } from './tools/browser-dom.js';
+import { BrowserScreenshotTool } from './tools/browser-screenshot.js';
 import { versionTool, executeGetVersion } from './tools/version.js';
 import { ExtensionBridge } from './utils/extension-bridge.js';
 
 const SERVER_NAME = 'enhanced-browser-mcp';
-const SERVER_VERSION = '0.9.0';
+const SERVER_VERSION = '0.13.0';
 
 async function createServer(wsLogFilePath?: string): Promise<Server> {
   const server = new Server(
@@ -36,6 +38,8 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
   const browserNavigationTool = new BrowserNavigationTool(extensionBridge);
   const browserStorageTool = new BrowserStorageTool(extensionBridge);
   const browserNetworkTool = new BrowserNetworkTool(extensionBridge);
+  const browserDomTool = new BrowserDomTool(extensionBridge);
+  const browserScreenshotTool = new BrowserScreenshotTool(extensionBridge);
 
   // List available tools
   server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -48,6 +52,8 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
         browserStorageTool.getSessionStorageSchema(),
         browserStorageTool.getCookiesSchema(),
         browserNetworkTool.getSchema(),
+        browserDomTool.getSchema(),
+        browserScreenshotTool.getSchema(),
         versionTool
       ],
     };
@@ -79,6 +85,12 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
           
         case 'get_network_requests':
           return await browserNetworkTool.execute(args);
+          
+        case 'get_dom_snapshot':
+          return await browserDomTool.execute(args);
+          
+        case 'take_screenshot':
+          return await browserScreenshotTool.execute(args);
           
         case 'get_version':
           const versionInfo = await executeGetVersion();
