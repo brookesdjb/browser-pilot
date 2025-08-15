@@ -23,6 +23,7 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
     {
       name: SERVER_NAME,
       version: SERVER_VERSION,
+      description: 'Enhanced Browser MCP with automation tools. Best Practice: Use get_dom_snapshot before click_element or type_text to inspect page structure and find correct selectors.',
     },
     {
       capabilities: {

@@ -396,7 +396,7 @@ export class BrowserDomTool {
   getSchema() {
     return {
       name: 'get_dom_snapshot',
-      description: 'Get a snapshot of the current page DOM',
+      description: 'Get a snapshot of the current page DOM. ESSENTIAL: Use this tool before click_element or type_text to inspect page structure, find correct element selectors, and identify dynamic IDs. This prevents selector failures and ensures reliable automation.',
       inputSchema: {
         type: 'object',
         properties: {

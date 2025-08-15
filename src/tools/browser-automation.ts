@@ -31,7 +31,7 @@ export class BrowserAutomationTool {
   getClickElementSchema() {
     return {
       name: 'click_element',
-      description: 'Click on web elements using JavaScript execution via Chrome extension',
+      description: 'Click on web elements using JavaScript execution via Chrome extension. IMPORTANT: Use get_dom_snapshot first to inspect elements and find correct selectors, especially for dynamic content with generated IDs.',
       inputSchema: {
         type: 'object',
         properties: {
@@ -42,7 +42,7 @@ export class BrowserAutomationTool {
           },
           selector: {
             type: 'string',
-            description: 'CSS selector to identify element to click (e.g., "button", ".drugs-link", "#submit")',
+            description: 'CSS selector to identify element to click (e.g., "button", ".drugs-link", "#submit"). Use get_dom_snapshot to find exact selectors for dynamic elements.',
             optional: true
           },
           text: {
@@ -70,7 +70,7 @@ export class BrowserAutomationTool {
   getTypeTextSchema() {
     return {
       name: 'type_text',
-      description: 'Type text into input elements using JavaScript execution via Chrome extension',
+      description: 'Type text into input elements using JavaScript execution via Chrome extension. IMPORTANT: Use get_dom_snapshot first to inspect input elements and find correct selectors, as form field IDs are often dynamically generated.',
       inputSchema: {
         type: 'object',
         properties: {
@@ -81,7 +81,7 @@ export class BrowserAutomationTool {
           },
           selector: {
             type: 'string',
-            description: 'CSS selector to identify input element (e.g., "input[type=\'email\']", "#username", ".search-box")',
+            description: 'CSS selector to identify input element (e.g., "input[type=\'email\']", "#username", ".search-box"). Use get_dom_snapshot to find exact selectors for dynamic form fields.',
             optional: true
           },
           text: {
@@ -171,7 +171,7 @@ export class BrowserAutomationTool {
         return {
           content: [{ 
             type: 'text', 
-            text: responseText + `❌ **Error:** Must specify either selector or text to identify click target` 
+            text: responseText + `❌ **Error:** Must specify either selector or text to identify click target\\n\\n💡 **Tip:** Use get_dom_snapshot to inspect page elements first.` 
           }],
           isError: true,
         };
@@ -232,7 +232,8 @@ export class BrowserAutomationTool {
         
         responseText += `🎉 **Element Click Complete**`;
       } else {
-        responseText += `❌ **Element Click Failed:** ${clickResult.error || clickResult.message}`;
+        responseText += `❌ **Element Click Failed:** ${clickResult.error || clickResult.message}\\n\\n`;
+        responseText += `💡 **Suggestion:** Use get_dom_snapshot to inspect the page structure and find the correct element selectors.`;
         return {
           content: [{ type: 'text', text: responseText }],
           isError: true,
@@ -365,7 +366,8 @@ export class BrowserAutomationTool {
         
         responseText += `🎉 **Text Input Complete**`;
       } else {
-        responseText += `❌ **Text Input Failed:** ${typeResult.error || typeResult.message}`;
+        responseText += `❌ **Text Input Failed:** ${typeResult.error || typeResult.message}\\n\\n`;
+        responseText += `💡 **Suggestion:** Use get_dom_snapshot to inspect form elements and find the correct input field selectors.`;
         return {
           content: [{ type: 'text', text: responseText }],
           isError: true,
