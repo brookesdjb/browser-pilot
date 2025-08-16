@@ -125,6 +125,39 @@ class ConsoleLogCollector {
     } catch (error) {
       console.log('Ping failed:', error);
       this.isConnected = false;
+      
+      // Trigger reconnection on ping failure (connection likely lost)
+      console.log('Ping failure detected, triggering reconnection...');
+      
+      // Disconnect the current port if it exists
+      if (this.nativePort) {
+        try {
+          this.nativePort.disconnect();
+        } catch (disconnectError) {
+          console.log('Error disconnecting failed port:', disconnectError);
+        }
+        this.nativePort = null;
+      }
+      
+      // Clear all pending commands
+      this.pendingCommands.forEach((command, id) => {
+        clearTimeout(command.timeout);
+        command.reject(new Error('Connection lost during ping failure'));
+      });
+      this.pendingCommands.clear();
+      
+      // Start reconnection process
+      if (this.reconnectAttempts < this.maxReconnectAttempts) {
+        this.reconnectAttempts++;
+        const delay = Math.min(this.reconnectDelay * Math.pow(1.5, this.reconnectAttempts), 30000);
+        console.log(`Reconnecting after ping failure in ${delay}ms (attempt ${this.reconnectAttempts})`);
+        
+        setTimeout(() => {
+          this.connectToNativeHost();
+        }, delay);
+      } else {
+        console.log('Max reconnect attempts reached after ping failure');
+      }
     }
   }
   
@@ -134,6 +167,11 @@ class ConsoleLogCollector {
         console.error('Invalid message from native host:', message);
         return;
       }
+      
+      // If we're receiving messages, the connection must be active
+      // This ensures the connection status is accurate even if pings fail
+      this.isConnected = true;
+      this.reconnectAttempts = 0; // Reset reconnect attempts on successful message
       
       console.log('Received message from native host:', message.type);
       
@@ -174,6 +212,16 @@ class ConsoleLogCollector {
         case 'mcp_client_disconnected':
           // MCP client disconnected from native host
           console.log('MCP client disconnected:', message.data.clientId);
+          break;
+          
+        case 'command_response':
+          // Handle response from a command
+          if (message.id && this.pendingCommands.has(message.id)) {
+            const command = this.pendingCommands.get(message.id);
+            clearTimeout(command.timeout);
+            this.pendingCommands.delete(message.id);
+            command.resolve(message.data);
+          }
           break;
           
         case 'pong':
@@ -1379,8 +1427,17 @@ class ConsoleLogCollector {
   }
 
   getConnectionStatus() {
+    // More reliable connection status - if the port exists at all, we're likely connected
+    const portExists = !!this.nativePort;
+    
+    // Update isConnected based on port existence as a fallback
+    if (portExists && !this.isConnected) {
+      console.log('Connection status mismatch - port exists but isConnected=false, fixing...');
+      this.isConnected = true;
+    }
+    
     return {
-      isConnected: this.isConnected,
+      isConnected: this.isConnected || portExists,  // Use either signal
       reconnectAttempts: this.reconnectAttempts,
       reconnecting: this.reconnectAttempts > 0 && this.reconnectAttempts < this.maxReconnectAttempts
     };
@@ -1419,6 +1476,11 @@ class ConsoleLogCollector {
   async forceReconnect() {
     console.log('Force reconnecting to native host...');
     
+    // Stop the ping interval temporarily to avoid interference
+    if (this.pingInterval) {
+      clearInterval(this.pingInterval);
+    }
+    
     // First, detach all debuggers to clean up state
     await this.detachAllDebuggers();
     
@@ -1445,11 +1507,22 @@ class ConsoleLogCollector {
     // Try to reconnect immediately
     try {
       await this.connectToNativeHost();
+      
+      // Restart ping interval
+      this.pingInterval = setInterval(() => {
+        this.pingNativeHost();
+      }, 30000);
+      
       return {
         success: true,
         message: 'Reconnection initiated'
       };
     } catch (error) {
+      // Restart ping interval even on failure
+      this.pingInterval = setInterval(() => {
+        this.pingNativeHost();
+      }, 30000);
+      
       return {
         success: false,
         error: error.message
@@ -1463,9 +1536,12 @@ const consoleCollector = new ConsoleLogCollector();
 
 // Handle messages from popup or content scripts
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log('Service Worker: Received message:', message.type);
+  
   if (message.type === 'mcp_check_connection') {
     // Check if native host is connected
     const status = consoleCollector.getConnectionStatus();
+    console.log('Service Worker: Sending connection status:', status);
     sendResponse(status);
     return true;
   }
@@ -1473,6 +1549,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'get_debugger_status') {
     // Get debugger attachment status
     const status = consoleCollector.getDebuggerStatus();
+    console.log('Service Worker: Sending debugger status:', status);
     sendResponse(status);
     return true;
   }
@@ -1523,8 +1600,41 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 // Extension startup
 chrome.runtime.onStartup.addListener(() => {
   console.log('Browser Pilot extension started');
+  // Extension restarted, force a fresh connection check
+  if (consoleCollector) {
+    setTimeout(() => {
+      consoleCollector.pingNativeHost();
+    }, 1000);
+  }
 });
 
 chrome.runtime.onInstalled.addListener(() => {
   console.log('Browser Pilot extension installed or updated');
 });
+
+// Handle service worker suspension/resumption
+chrome.runtime.onSuspend.addListener(() => {
+  console.log('Browser Pilot service worker suspending...');
+});
+
+chrome.runtime.onSuspendCanceled.addListener(() => {
+  console.log('Browser Pilot service worker suspension canceled');
+  // Check connection after suspension cancellation
+  if (consoleCollector) {
+    setTimeout(() => {
+      consoleCollector.pingNativeHost();
+    }, 500);
+  }
+});
+
+// Add visibility change handling for when Chrome comes back from background
+if (typeof document !== 'undefined') {
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && consoleCollector) {
+      console.log('Chrome became visible, checking connection...');
+      setTimeout(() => {
+        consoleCollector.pingNativeHost();
+      }, 500);
+    }
+  });
+}

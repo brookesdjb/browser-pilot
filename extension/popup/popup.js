@@ -19,26 +19,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     tabTitleEl.textContent = tab.title || 'Untitled Tab';
     tabUrlEl.textContent = tab.url || 'No URL';
     
-    // Test extension functionality
-    const response = await chrome.runtime.sendMessage({
-      type: 'mcp_get_console_logs',
-      params: { tabId: tab.id, limit: 1 }
-    });
+    // Wait a moment for service worker to initialize if needed
+    await new Promise(resolve => setTimeout(resolve, 100));
     
-    if (response.success) {
-      // Get total logs count for this tab
-      const allLogs = await chrome.runtime.sendMessage({
+    // Check connection statuses first
+    await checkNativeHostConnection();
+    await checkDebuggerStatus();
+    
+    // Then try to get console logs
+    try {
+      const response = await chrome.runtime.sendMessage({
         type: 'mcp_get_console_logs',
         params: { tabId: tab.id, limit: 1000 }
       });
       
-      logsCountEl.textContent = allLogs.data.length;
-      
-      // Check connection statuses
-      await checkNativeHostConnection();
-      await checkDebuggerStatus();
-      
-    } else {
+      if (response && response.success && response.data) {
+        logsCountEl.textContent = response.data.length;
+      } else {
+        logsCountEl.textContent = '0';
+      }
+    } catch (logsError) {
+      console.log('Could not get console logs:', logsError);
       logsCountEl.textContent = '0';
     }
     
@@ -52,6 +53,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Set up button handlers
   reconnectBtn.addEventListener('click', handleReconnect);
   resetDebuggerBtn.addEventListener('click', handleResetDebugger);
+  
+  // Set up periodic status refresh
+  const refreshInterval = setInterval(async () => {
+    console.log('Popup: Refreshing status...');
+    await checkNativeHostConnection();
+    await checkDebuggerStatus();
+  }, 5000); // Refresh every 5 seconds
+  
+  // Clean up interval when popup closes
+  window.addEventListener('beforeunload', () => {
+    clearInterval(refreshInterval);
+  });
 });
 
 async function checkNativeHostConnection() {
@@ -62,9 +75,13 @@ async function checkNativeHostConnection() {
   
   try {
     // Check if Native Host is connected through the service worker
+    console.log('Popup: Checking native host connection...');
+    
     const response = await chrome.runtime.sendMessage({
       type: 'mcp_check_connection'
     });
+    
+    console.log('Popup: Received connection response:', response);
     
     if (response && response.isConnected) {
       mcpConnectionEl.textContent = 'Connected';
@@ -75,13 +92,19 @@ async function checkNativeHostConnection() {
       mcpConnectionEl.textContent = `Reconnecting (Attempt ${response.reconnectAttempts})`;
       mcpStatusEl.className = 'status disconnected';
       mcpVersionEl.style.display = 'none';
-    } else {
+    } else if (response) {
       mcpConnectionEl.textContent = 'Not Connected';
       mcpStatusEl.className = 'status disconnected';
       mcpVersionEl.style.display = 'none';
+      console.log('Popup: Native host not connected, response:', response);
+    } else {
+      mcpConnectionEl.textContent = 'No Response';
+      mcpStatusEl.className = 'status disconnected';
+      mcpVersionEl.style.display = 'none';
+      console.log('Popup: No response from service worker');
     }
   } catch (error) {
-    mcpConnectionEl.textContent = 'Unknown';
+    mcpConnectionEl.textContent = 'Error';
     mcpStatusEl.className = 'status disconnected';
     mcpVersionEl.style.display = 'none';
     console.error('Error checking Native Host connection:', error);
@@ -94,9 +117,13 @@ async function checkDebuggerStatus() {
   const attachedTabsEl = document.getElementById('attached-tabs');
   
   try {
+    console.log('Popup: Checking debugger status...');
+    
     const response = await chrome.runtime.sendMessage({
       type: 'get_debugger_status'
     });
+    
+    console.log('Popup: Received debugger response:', response);
     
     if (response && response.success) {
       const attachedCount = response.attachedTabs || 0;
@@ -109,10 +136,16 @@ async function checkDebuggerStatus() {
         debuggerConnectionEl.textContent = 'Not Attached';
         debuggerStatusEl.className = 'status disconnected';
       }
-    } else {
+    } else if (response) {
       debuggerConnectionEl.textContent = 'Unknown';
       debuggerStatusEl.className = 'status disconnected';
       attachedTabsEl.textContent = '0';
+      console.log('Popup: Debugger status failed, response:', response);
+    } else {
+      debuggerConnectionEl.textContent = 'No Response';
+      debuggerStatusEl.className = 'status disconnected';
+      attachedTabsEl.textContent = '0';
+      console.log('Popup: No debugger response from service worker');
     }
   } catch (error) {
     debuggerConnectionEl.textContent = 'Error';
