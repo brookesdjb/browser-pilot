@@ -16,6 +16,7 @@ class ConsoleLogCollector {
     this.maxReconnectAttempts = 5;
     this.reconnectDelay = 2000; // Start with 2 seconds
     this.navigationListeners = new Map();
+    this.pingFailures = 0;      // Track consecutive ping failures
 
     // Connect to native messaging host
     this.connectToNativeHost();
@@ -115,6 +116,7 @@ class ConsoleLogCollector {
       if (response && response.type === 'pong') {
         this.isConnected = true;
         this.reconnectAttempts = 0; // Reset reconnect attempts on successful ping
+        this.pingFailures = 0;      // Reset ping failure counter on success
         console.log('Ping successful, native host is connected');
         
         // Log the number of connected MCP clients
@@ -124,39 +126,29 @@ class ConsoleLogCollector {
       }
     } catch (error) {
       console.log('Ping failed:', error);
-      this.isConnected = false;
       
-      // Trigger reconnection on ping failure (connection likely lost)
-      console.log('Ping failure detected, triggering reconnection...');
+      // Don't trigger immediate reconnection - just log it as a warning
+      // and let the connection be tested naturally when needed
+      console.log('Ping failure detected - will monitor connection');
       
-      // Disconnect the current port if it exists
-      if (this.nativePort) {
-        try {
-          this.nativePort.disconnect();
-        } catch (disconnectError) {
-          console.log('Error disconnecting failed port:', disconnectError);
-        }
-        this.nativePort = null;
-      }
+      // Mark connected status as "uncertain" but don't disconnect
+      // This prevents aggressive reconnection while still letting us know
+      // the connection may have issues
+      this.pingFailures = (this.pingFailures || 0) + 1;
       
-      // Clear all pending commands
-      this.pendingCommands.forEach((command, id) => {
-        clearTimeout(command.timeout);
-        command.reject(new Error('Connection lost during ping failure'));
-      });
-      this.pendingCommands.clear();
-      
-      // Start reconnection process
-      if (this.reconnectAttempts < this.maxReconnectAttempts) {
-        this.reconnectAttempts++;
-        const delay = Math.min(this.reconnectDelay * Math.pow(1.5, this.reconnectAttempts), 30000);
-        console.log(`Reconnecting after ping failure in ${delay}ms (attempt ${this.reconnectAttempts})`);
+      // Only disconnect and reconnect after multiple consecutive failures
+      // This avoids reconnection churn from temporary network issues
+      if (this.pingFailures > 3) {
+        console.log(`Multiple ping failures (${this.pingFailures}) detected, considering connection lost`);
+        this.isConnected = false;
         
-        setTimeout(() => {
-          this.connectToNativeHost();
-        }, delay);
-      } else {
-        console.log('Max reconnect attempts reached after ping failure');
+        // Don't forcibly disconnect - let Chrome handle that if needed
+        // Just clean up pending commands
+        this.pendingCommands.forEach((command, id) => {
+          clearTimeout(command.timeout);
+          command.reject(new Error('Connection lost due to multiple ping failures'));
+        });
+        this.pendingCommands.clear();
       }
     }
   }
@@ -1436,10 +1428,16 @@ class ConsoleLogCollector {
       this.isConnected = true;
     }
     
+    // If we have consecutive ping failures but not enough to fully disconnect,
+    // we're in a "degraded" state but still connected
+    const pingFailureWarning = this.pingFailures > 0 && this.pingFailures <= 3;
+    
     return {
       isConnected: this.isConnected || portExists,  // Use either signal
       reconnectAttempts: this.reconnectAttempts,
-      reconnecting: this.reconnectAttempts > 0 && this.reconnectAttempts < this.maxReconnectAttempts
+      reconnecting: this.reconnectAttempts > 0 && this.reconnectAttempts < this.maxReconnectAttempts,
+      pingFailures: this.pingFailures || 0,
+      degraded: pingFailureWarning
     };
   }
 
@@ -1467,6 +1465,39 @@ class ConsoleLogCollector {
     this.attachedTabs.clear();
     console.log('All debuggers detached');
     
+    // Schedule re-attachment after a small delay
+    // This allows Chrome to fully release debugger resources
+    setTimeout(async () => {
+      console.log('Re-attaching debuggers to active tabs...');
+      const tabs = await chrome.tabs.query({});
+      
+      // Start with active tab
+      const activeTabs = tabs.filter(tab => tab.active);
+      for (const tab of activeTabs) {
+        if (tab.id) {
+          await this.attachDebuggerToTab(tab.id);
+        }
+      }
+      
+      // Then attach to other regular tabs (skip chrome://, extension://, etc)
+      const regularTabs = tabs.filter(tab => 
+        !tab.active && 
+        tab.url && 
+        !tab.url.startsWith('chrome:') && 
+        !tab.url.startsWith('edge:') && 
+        !tab.url.startsWith('brave:') && 
+        !tab.url.startsWith('extension:')
+      );
+      
+      for (const tab of regularTabs) {
+        if (tab.id) {
+          await this.attachDebuggerToTab(tab.id);
+        }
+      }
+      
+      console.log(`Re-attached debuggers to ${this.attachedTabs.size} tabs`);
+    }, 500);
+    
     return {
       success: true,
       detachedTabs: attachedTabIds.length
@@ -1481,7 +1512,11 @@ class ConsoleLogCollector {
       clearInterval(this.pingInterval);
     }
     
+    // Save the list of currently attached tabs for re-attaching later
+    const previouslyAttachedTabs = Array.from(this.attachedTabs);
+    
     // First, detach all debuggers to clean up state
+    // Note: detachAllDebuggers now handles re-attachment automatically
     await this.detachAllDebuggers();
     
     // Disconnect from native host if connected
@@ -1494,7 +1529,9 @@ class ConsoleLogCollector {
       this.nativePort = null;
     }
     
-    this.isConnected = false;
+    // Set to reconnecting state rather than disconnected
+    // This prevents popup from flickering "Not Connected"
+    this.isConnected = false; 
     this.reconnectAttempts = 0;
     
     // Clear all pending commands
@@ -1513,15 +1550,30 @@ class ConsoleLogCollector {
         this.pingNativeHost();
       }, 30000);
       
+      // Connection successful - we need to tell popup right away
+      this.isConnected = true;
+      
       return {
         success: true,
-        message: 'Reconnection initiated'
+        message: 'Reconnection initiated',
+        reconnected: true
       };
     } catch (error) {
+      console.error('Force reconnect failed:', error);
+      
       // Restart ping interval even on failure
       this.pingInterval = setInterval(() => {
         this.pingNativeHost();
       }, 30000);
+      
+      // Make another attempt after a short delay 
+      // (this helps when native host takes a moment to release resources)
+      setTimeout(() => {
+        console.log('Making second reconnection attempt...');
+        this.connectToNativeHost().catch(err => {
+          console.error('Second reconnection attempt failed:', err);
+        });
+      }, 1000);
       
       return {
         success: false,
