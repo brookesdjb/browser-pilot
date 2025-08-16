@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Pilot - AI-Powered Browser Automation</title>
+    <meta name="description" content="A comprehensive browser automation solution with Chrome DevTools integration, designed for AI assistants using the Model Context Protocol.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <span class="nav-icon">🚀</span>
+                Browser Pilot
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#quickstart">Quick Start</a>
+                <a href="#examples">Examples</a>
+                <a href="#architecture">Architecture</a>
+                <a href="https://github.com/brookesdjb/browser-pilot" target="_blank" class="github-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+            <button class="nav-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Browser Automation<br>
+                    <span class="gradient-text">for AI Assistants</span>
+                </h1>
+                <p class="hero-description">
+                    A comprehensive browser automation solution with Chrome DevTools integration, 
+                    designed for AI assistants using the Model Context Protocol.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#quickstart" class="btn btn-primary">Get Started</a>
+                    <a href="https://github.com/brookesdjb/browser-pilot" target="_blank" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">🚀</div>
+                        <div class="stat-label">Multi-Platform</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">⚡</div>
+                        <div class="stat-label">Fast & Reliable</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">🔧</div>
+                        <div class="stat-label">DevTools Integration</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Core Automation</h3>
+                    <p>Click, type, hover, and interact with elements. Navigate URLs, go back/forward, refresh pages. Complete keyboard input and form submission.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Full Storage Access</h3>
+                    <p>Access localStorage, sessionStorage, and cookies. Complete visibility into browser storage for comprehensive automation scenarios.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Network Monitoring</h3>
+                    <p>Monitor HTTP requests/responses, headers, and timing. Track network activity for debugging and performance analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3>Screenshots & DOM</h3>
+                    <p>Take screenshots and capture DOM snapshots. Visual testing and element inspection capabilities built-in.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>DevTools Integration</h3>
+                    <p>Direct Chrome DevTools Protocol access. Real-time console logs, performance metrics, and debugging capabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔀</div>
+                    <h3>Multi-Instance Support</h3>
+                    <p>Run multiple AI assistants with a single browser instance. No port conflicts or connection state issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start Section -->
+    <section id="quickstart" class="quickstart">
+        <div class="container">
+            <h2 class="section-title">Quick Start</h2>
+            <div class="quickstart-tabs">
+                <button class="tab-button active" data-tab="auto">Automatic Install</button>
+                <button class="tab-button" data-tab="manual">Manual Install</button>
+            </div>
+            
+            <div class="tab-content active" id="auto">
+                <div class="install-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Clone Repository</h3>
+                            <div class="code-block">
+                                <code>git clone https://github.com/brookesdjb/browser-pilot.git<br>cd browser-pilot</code>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Run Installer</h3>
+                            <div class="platform-tabs">
+                                <button class="platform-btn active" data-platform="unix">macOS/Linux</button>
+                                <button class="platform-btn" data-platform="windows">Windows</button>
+                            </div>
+                            <div class="platform-content active" id="unix">
+                                <div class="code-block">
+                                    <code>chmod +x install.sh<br>./install.sh</code>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                            </div>
+                            <div class="platform-content" id="windows">
+                                <div class="code-block">
+                                    <code># Run in Administrator PowerShell<br>powershell -ExecutionPolicy Bypass -File .\install.ps1</code>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Start Using</h3>
+                            <div class="code-block">
+                                <code>npx browser-pilot</code>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="manual">
+                <div class="install-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Build MCP Server</h3>
+                            <div class="code-block">
+                                <code>npm install<br>npm run build</code>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Build Native Host</h3>
+                            <div class="code-block">
+                                <code>cd native-host<br>npm install<br>npm run build<br>cd ..</code>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Install Chrome Extension</h3>
+                            <p>1. Open Chrome → <code>chrome://extensions</code><br>
+                               2. Enable Developer Mode<br>
+                               3. Click "Load unpacked" → Select <code>extension</code> folder</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="examples" class="examples">
+        <div class="container">
+            <h2 class="section-title">Usage Examples</h2>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h3>Basic Navigation & Interaction</h3>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">import browserPilot from 'browser-pilot';
+
+// Connect to the browser
+await browserPilot.connect();
+
+// Navigate to a URL
+await browserPilot.navigateToUrl('https://example.com');
+
+// Click an element
+await browserPilot.clickElement({ 
+  selector: '#login-button' 
+});
+
+// Type text and submit
+await browserPilot.typeText({
+  selector: 'input[name="search"]',
+  textToType: 'browser automation',
+  submit: true
+});</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+
+                <div class="example-card">
+                    <h3>Screenshots & Storage</h3>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// Take a screenshot
+const screenshot = await browserPilot.takeScreenshot({
+  fullPage: true,
+  saveToFile: true
+});
+
+// Access local storage
+const storage = await browserPilot.getLocalStorage();
+console.log('Stored data:', storage);
+
+// Get cookies
+const cookies = await browserPilot.getCookies();
+console.log('Session cookies:', cookies);</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+
+                <div class="example-card">
+                    <h3>Network & Console Monitoring</h3>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// Monitor network requests
+const requests = await browserPilot.getNetworkRequests({
+  method: 'POST',
+  limit: 10
+});
+
+// Get console logs
+const logs = await browserPilot.getConsoleLogs({
+  level: 'error',
+  limit: 50
+});
+
+// Get DOM snapshot
+const dom = await browserPilot.getDomSnapshot({
+  selector: '.main-content'
+});</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="use-cases">
+                <h3>Common Use Cases</h3>
+                <div class="use-case-grid">
+                    <div class="use-case">
+                        <h4>🤖 AI Assistant Integration</h4>
+                        <p>Perfect for Claude Code, ChatGPT, and other AI assistants that need to interact with web pages</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>🧪 Web Testing</h4>
+                        <p>Automated testing scenarios with full DevTools access and network monitoring</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>📊 Data Extraction</h4>
+                        <p>Scrape data from dynamic websites with JavaScript execution and storage access</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>🔧 Development Tools</h4>
+                        <p>Build custom development workflows with browser automation and debugging</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <h2 class="section-title">Architecture</h2>
+            <div class="architecture-content">
+                <div class="architecture-diagram">
+                    <div class="diagram-container">
+                        <div class="component mcp-client">
+                            <div class="component-title">MCP Client</div>
+                            <div class="component-subtitle">(Claude Code)</div>
+                        </div>
+                        <div class="connection">
+                            <div class="connection-label">WebSocket</div>
+                            <div class="connection-line"></div>
+                        </div>
+                        <div class="component native-host">
+                            <div class="component-title">Browser Pilot</div>
+                            <div class="component-subtitle">Native Host</div>
+                        </div>
+                        <div class="connection">
+                            <div class="connection-label">Native Messaging</div>
+                            <div class="connection-line"></div>
+                        </div>
+                        <div class="component chrome">
+                            <div class="component-title">Chrome</div>
+                            <div class="component-subtitle">Extension</div>
+                        </div>
+                    </div>
+                    <div class="multi-client">
+                        <div class="component mcp-client">
+                            <div class="component-title">MCP Client</div>
+                            <div class="component-subtitle">(Other LLM)</div>
+                        </div>
+                        <div class="connection multi">
+                            <div class="connection-line multi"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="architecture-benefits">
+                    <h3>Why This Architecture?</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit">
+                            <div class="benefit-icon">🔐</div>
+                            <h4>Secure Communication</h4>
+                            <p>Uses Chrome's Native Messaging API for secure, permission-controlled communication</p>
+                        </div>
+                        <div class="benefit">
+                            <div class="benefit-icon">🚀</div>
+                            <h4>Multi-Client Support</h4>
+                            <p>Multiple AI assistants can connect simultaneously without port conflicts</p>
+                        </div>
+                        <div class="benefit">
+                            <div class="benefit-icon">🔄</div>
+                            <h4>Reliable Connections</h4>
+                            <p>Automatic reconnection, heartbeat system, and graceful degradation</p>
+                        </div>
+                        <div class="benefit">
+                            <div class="benefit-icon">🌍</div>
+                            <h4>Cross-Platform</h4>
+                            <p>Works seamlessly on Windows, macOS, and Linux</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Browser Pilot</h4>
+                    <p>AI-powered browser automation with Chrome DevTools integration</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <a href="https://github.com/brookesdjb/browser-pilot">GitHub Repository</a>
+                    <a href="https://github.com/brookesdjb/browser-pilot/releases">Releases</a>
+                    <a href="https://github.com/brookesdjb/browser-pilot/issues">Issues</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="https://github.com/brookesdjb/browser-pilot/blob/main/README.md">Documentation</a>
+                    <a href="https://modelcontextprotocol.io">Model Context Protocol</a>
+                    <a href="https://developer.chrome.com/docs/extensions/">Chrome Extensions</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Browser Pilot. Released under the MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

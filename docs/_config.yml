@@ -1,0 +1,47 @@
+# GitHub Pages configuration for Browser Pilot
+title: "Browser Pilot"
+description: "AI-powered browser automation with Chrome DevTools integration"
+url: "https://brookesdjb.github.io"
+baseurl: "/browser-pilot"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: null
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - package.json
+  - package-lock.json
+  - node_modules/
+  - .gitignore
+
+# Include files
+include:
+  - _pages
+
+# Site settings
+author: "Browser Pilot Contributors"
+github_username: brookesdjb
+repository: brookesdjb/browser-pilot
+
+# SEO settings
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Social media
+social:
+  name: Browser Pilot
+  links:
+    - https://github.com/brookesdjb/browser-pilot
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+      author: "Browser Pilot Contributors"

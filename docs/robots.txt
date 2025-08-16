@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://brookesdjb.github.io/browser-pilot/sitemap.xml
