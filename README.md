@@ -34,9 +34,25 @@ Browser Pilot uses Chrome's Native Messaging API for reliable, secure communicat
 └─────────────────┘
 ```
 
+### Communication Flow
+
+1. **MCP Clients → Native Host**: WebSocket connection (port 9876)
+2. **Native Host → Chrome Extension**: Chrome's Native Messaging API
+3. **Chrome Extension → Browser**: Chrome's JavaScript APIs and DevTools Protocol
+
+### Connection Reliability Features
+
+- Automatic reconnection with exponential backoff
+- Progressive degradation through connection states (connected, degraded, disconnected)
+- Ping/pong heartbeat system with conservative failure handling
+- Automatic debugger attachment and management
+- Graceful handling of browser backgrounding and tab focus changes
+
 This architecture ensures:
 - Multiple AI assistants can connect simultaneously
 - No port conflicts or connection state issues
+- Resilient connections even during browser backgrounding
+- Graceful recovery from network or extension interruptions
 - Reliable cross-platform operation
 - Secure communication via Chrome's permission model
 
