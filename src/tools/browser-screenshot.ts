@@ -1,6 +1,7 @@
 import { CallToolResult, ImageContent, TextContent } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { ExtensionBridge } from '../utils/extension-bridge.js';
+import { BrowserInterface } from '../types/browser-interface.js';
 import { promises as fs } from 'fs';
 import { join } from 'path';
 
@@ -15,9 +16,9 @@ const TakeScreenshotSchema = z.object({
 });
 
 export class BrowserScreenshotTool {
-  private bridge: ExtensionBridge;
+  private bridge: BrowserInterface;
 
-  constructor(bridge: ExtensionBridge) {
+  constructor(bridge: BrowserInterface) {
     this.bridge = bridge;
   }
 
@@ -97,7 +98,7 @@ export class BrowserScreenshotTool {
     try {
       const params = TakeScreenshotSchema.parse(args || {});
 
-      const isConnected = await this.bridge.isExtensionConnected();
+      const isConnected = await this.bridge.isConnected();
       if (!isConnected) {
         return {
           content: [{ type: 'text', text: 'Chrome extension is not connected. Please ensure the Enhanced Browser MCP extension is installed and running.' }],

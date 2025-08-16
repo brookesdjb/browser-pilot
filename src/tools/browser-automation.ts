@@ -1,6 +1,7 @@
 import { CallToolResult, TextContent, ImageContent } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { ExtensionBridge } from '../utils/extension-bridge.js';
+import { BrowserInterface } from '../types/browser-interface.js';
 
 const ClickElementSchema = z.object({
   tabId: z.number().optional().describe('Tab ID to perform action on (current active tab if not specified)'),
@@ -22,9 +23,9 @@ const TypeTextSchema = z.object({
 });
 
 export class BrowserAutomationTool {
-  private bridge: ExtensionBridge;
+  private bridge: BrowserInterface;
 
-  constructor(bridge: ExtensionBridge) {
+  constructor(bridge: BrowserInterface) {
     this.bridge = bridge;
   }
 
@@ -128,7 +129,7 @@ export class BrowserAutomationTool {
     try {
       const params = ClickElementSchema.parse(args || {});
 
-      const isConnected = await this.bridge.isExtensionConnected();
+      const isConnected = await this.bridge.isConnected();
       if (!isConnected) {
         return {
           content: [{ type: 'text', text: 'Chrome extension is not connected. Please ensure the Enhanced Browser MCP extension is installed and running.' }],
@@ -256,7 +257,7 @@ export class BrowserAutomationTool {
     try {
       const params = TypeTextSchema.parse(args || {});
 
-      const isConnected = await this.bridge.isExtensionConnected();
+      const isConnected = await this.bridge.isConnected();
       if (!isConnected) {
         return {
           content: [{ type: 'text', text: 'Chrome extension is not connected. Please ensure the Enhanced Browser MCP extension is installed and running.' }],

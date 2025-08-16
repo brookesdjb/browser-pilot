@@ -13,17 +13,43 @@ import { BrowserDomTool } from './tools/browser-dom.js';
 import { BrowserScreenshotTool } from './tools/browser-screenshot.js';
 import { BrowserAutomationTool } from './tools/browser-automation.js';
 import { versionTool, executeGetVersion } from './tools/version.js';
-import { ExtensionBridge } from './utils/extension-bridge.js';
+import browserPilotClient from './mcp-client/browser-pilot-client.js';
+import { join } from 'path';
+import { homedir } from 'os';
 
-const SERVER_NAME = 'enhanced-browser-mcp';
-const SERVER_VERSION = '0.17.0';
+const SERVER_NAME = 'browser-pilot';
+const SERVER_VERSION = '1.0.0';
 
-async function createServer(wsLogFilePath?: string): Promise<Server> {
+// Check for Chrome Native Messaging Host installation
+async function checkNativeHostInstallation(): Promise<boolean> {
+  try {
+    // Check for manifest file in platform-specific location
+    let manifestPath = '';
+    if (process.platform === 'darwin') {
+      // macOS
+      manifestPath = join(homedir(), 'Library/Application Support/Google/Chrome/NativeMessagingHosts/com.brookesdjb.browser_pilot.json');
+    } else if (process.platform === 'linux') {
+      // Linux
+      manifestPath = join(homedir(), '.config/google-chrome/NativeMessagingHosts/com.brookesdjb.browser_pilot.json');
+    } else if (process.platform === 'win32') {
+      // Windows - Check via registry would be better, but we'll check typical location
+      manifestPath = join(homedir(), 'AppData/Local/BrowserPilot/com.brookesdjb.browser_pilot.json');
+    }
+
+    // Check if manifest file exists
+    await fs.access(manifestPath);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+async function createServer(logFilePath?: string): Promise<Server> {
   const server = new Server(
     {
       name: SERVER_NAME,
       version: SERVER_VERSION,
-      description: 'Enhanced Browser MCP with automation tools. Best Practice: Use get_dom_snapshot before click_element or type_text to inspect page structure and find correct selectors.',
+      description: 'Browser Pilot - Intelligent browser automation with Chrome DevTools integration. Best Practice: Use get_dom_snapshot before click_element or type_text to inspect page structure and find correct selectors.',
     },
     {
       capabilities: {
@@ -32,17 +58,14 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
     }
   );
 
-  // Initialize shared extension bridge
-  const extensionBridge = new ExtensionBridge(wsLogFilePath);
-  
-  // Initialize tools
-  const consoleLogsTool = new ConsoleLogsTool(extensionBridge);
-  const browserNavigationTool = new BrowserNavigationTool(extensionBridge);
-  const browserStorageTool = new BrowserStorageTool(extensionBridge);
-  const browserNetworkTool = new BrowserNetworkTool(extensionBridge);
-  const browserDomTool = new BrowserDomTool(extensionBridge);
-  const browserScreenshotTool = new BrowserScreenshotTool(extensionBridge);
-  const browserAutomationTool = new BrowserAutomationTool(extensionBridge);
+  // Initialize tools (now using browserPilotClient instead of extensionBridge)
+  const consoleLogsTool = new ConsoleLogsTool(browserPilotClient);
+  const browserNavigationTool = new BrowserNavigationTool(browserPilotClient);
+  const browserStorageTool = new BrowserStorageTool(browserPilotClient);
+  const browserNetworkTool = new BrowserNetworkTool(browserPilotClient);
+  const browserDomTool = new BrowserDomTool(browserPilotClient);
+  const browserScreenshotTool = new BrowserScreenshotTool(browserPilotClient);
+  const browserAutomationTool = new BrowserAutomationTool(browserPilotClient);
 
   // List available tools
   server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -151,26 +174,41 @@ async function createServer(wsLogFilePath?: string): Promise<Server> {
 // CLI setup
 program
   .name(SERVER_NAME)
-  .description('Enhanced MCP server for browser automation with full DevTools access')
+  .description('Browser Pilot - Intelligent browser automation with Chrome DevTools integration')
   .version(SERVER_VERSION)
-  .action(async () => {
-    // Write startup file
-    let startupFile: string;
+  .option('--debug', 'Enable debug logging')
+  .action(async (options) => {
+    console.error(`Browser Pilot v${SERVER_VERSION} starting...`);
+    
+    // Check for native host installation
+    const hostInstalled = await checkNativeHostInstallation();
+    if (!hostInstalled) {
+      console.error('Native messaging host not installed. Please run the installer script first.');
+      console.error('See installation instructions: https://github.com/brookesdjb/browser-pilot#installation');
+      process.exit(1);
+    }
+
+    // Configure client with debug flag if provided
+    browserPilotClient.debug = options.debug || false;
+    
+    // Connect to native host broker
     try {
-      startupFile = `mcp-server-startup-${SERVER_VERSION}-${Date.now()}.txt`;
-      await fs.writeFile(startupFile, `Hello World! MCP Server v${SERVER_VERSION} started at ${new Date().toISOString()}\n\n=== WebSocket Messages ===\n`);
-      console.error(`Startup file written: ${startupFile}`);
+      console.error('Connecting to Browser Pilot native host...');
+      await browserPilotClient.connect();
+      console.error('Connected to Browser Pilot native host!');
     } catch (error) {
-      console.error('Failed to write startup file:', error);
-      startupFile = '';
+      console.error('Failed to connect to Browser Pilot native host:', error instanceof Error ? error.message : String(error));
+      console.error('Please ensure the native host is installed and the browser extension is running.');
+      process.exit(1);
     }
     
-    const server = await createServer(startupFile);
+    // Create and connect MCP server
+    const server = await createServer();
     const transport = new StdioServerTransport();
     
-    console.error('Enhanced Browser MCP server starting...');
+    console.error('Browser Pilot MCP server starting...');
     await server.connect(transport);
-    console.error('Enhanced Browser MCP server connected');
+    console.error('Browser Pilot MCP server connected');
   });
 
 program.parse();

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Enhanced Browser MCP",
-  "version": "0.17.0",
-  "description": "Browser automation with full DevTools access for MCP",
+  "name": "Browser Pilot",
+  "version": "1.0.0",
+  "description": "Advanced browser automation with Chrome DevTools integration",
   
   "permissions": [
     "debugger",
@@ -10,12 +10,13 @@
     "activeTab",
     "storage",
     "scripting",
-    "cookies"
+    "cookies",
+    "nativeMessaging"
   ],
   "host_permissions": ["<all_urls>"],
   
   "background": {
-    "service_worker": "background/service-worker.js"
+    "service_worker": "background/service-worker-native.js"
   },
   
   "content_scripts": [{
@@ -26,6 +27,6 @@
   
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "Enhanced Browser MCP"
+    "default_title": "Browser Pilot"
   }
 }

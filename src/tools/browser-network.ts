@@ -1,6 +1,7 @@
 import { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { ExtensionBridge } from '../utils/extension-bridge.js';
+import { BrowserInterface } from '../types/browser-interface.js';
 
 const GetNetworkRequestsSchema = z.object({
   tabId: z.number().optional().describe('Tab ID to get network requests from (current active tab if not specified)'),
@@ -11,9 +12,9 @@ const GetNetworkRequestsSchema = z.object({
 });
 
 export class BrowserNetworkTool {
-  private bridge: ExtensionBridge;
+  private bridge: BrowserInterface;
 
-  constructor(bridge: ExtensionBridge) {
+  constructor(bridge: BrowserInterface) {
     this.bridge = bridge;
   }
 
@@ -61,7 +62,7 @@ export class BrowserNetworkTool {
     try {
       const params = GetNetworkRequestsSchema.parse(args || {});
 
-      const isConnected = await this.bridge.isExtensionConnected();
+      const isConnected = await this.bridge.isConnected();
       if (!isConnected) {
         return {
           content: [{ type: 'text', text: 'Chrome extension is not connected. Please ensure the Enhanced Browser MCP extension is installed and running.' }],

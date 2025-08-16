@@ -1,4 +1,4 @@
-// Enhanced Browser MCP - Popup Script
+// Browser Pilot - Popup Script
 
 document.addEventListener('DOMContentLoaded', async () => {
   const tabTitleEl = document.getElementById('tab-title');
@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       logsCountEl.textContent = allLogs.data.length;
       
-      // Check MCP server connection and get version
-      await checkMcpConnection();
+      // Check Native Host connection status
+      await checkNativeHostConnection();
       
     } else {
       throw new Error('Failed to get logs from extension');
@@ -47,36 +47,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-async function checkMcpConnection() {
+async function checkNativeHostConnection() {
   const mcpStatusEl = document.getElementById('mcp-status');
   const mcpConnectionEl = document.getElementById('mcp-connection');
   const mcpVersionEl = document.getElementById('mcp-version');
   const versionTextEl = document.getElementById('version-text');
   
   try {
-    // Check if MCP server is connected and get version info
+    // Check if Native Host is connected through the service worker
     const response = await chrome.runtime.sendMessage({
       type: 'mcp_check_connection'
     });
     
-    if (response && response.connected) {
+    if (response && response.isConnected) {
       mcpConnectionEl.textContent = 'Connected';
       mcpStatusEl.className = 'status connected';
-      
-      // Try to get version information
-      try {
-        const versionResponse = await chrome.runtime.sendMessage({
-          type: 'mcp_get_version'
-        });
-        
-        if (versionResponse && versionResponse.version) {
-          versionTextEl.textContent = versionResponse.version;
-          mcpVersionEl.style.display = 'block';
-        }
-      } catch (versionError) {
-        console.log('Could not fetch MCP server version:', versionError);
-      }
-      
+      mcpVersionEl.style.display = 'block';
+      versionTextEl.textContent = 'Native Host Connected';
+    } else if (response && response.reconnecting) {
+      mcpConnectionEl.textContent = `Reconnecting (Attempt ${response.reconnectAttempts})`;
+      mcpStatusEl.className = 'status disconnected';
+      mcpVersionEl.style.display = 'none';
     } else {
       mcpConnectionEl.textContent = 'Not Connected';
       mcpStatusEl.className = 'status disconnected';
@@ -86,5 +77,6 @@ async function checkMcpConnection() {
     mcpConnectionEl.textContent = 'Unknown';
     mcpStatusEl.className = 'status disconnected';
     mcpVersionEl.style.display = 'none';
+    console.error('Error checking Native Host connection:', error);
   }
 }

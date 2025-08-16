@@ -1,6 +1,7 @@
 import { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { ExtensionBridge } from '../utils/extension-bridge.js';
+import { BrowserInterface } from '../types/browser-interface.js';
 
 const NavigateToUrlSchema = z.object({
   url: z.string().url().describe('The URL to navigate to'),
@@ -13,9 +14,9 @@ const GetCurrentUrlSchema = z.object({
 });
 
 export class BrowserNavigationTool {
-  private bridge: ExtensionBridge;
+  private bridge: BrowserInterface;
 
-  constructor(bridge: ExtensionBridge) {
+  constructor(bridge: BrowserInterface) {
     this.bridge = bridge;
   }
 
@@ -72,7 +73,7 @@ export class BrowserNavigationTool {
       const params = NavigateToUrlSchema.parse(args || {});
 
       // Check if extension is connected
-      const isConnected = await this.bridge.isExtensionConnected();
+      const isConnected = await this.bridge.isConnected();
       if (!isConnected) {
         return {
           content: [
@@ -164,7 +165,7 @@ export class BrowserNavigationTool {
       const params = GetCurrentUrlSchema.parse(args || {});
 
       // Check if extension is connected
-      const isConnected = await this.bridge.isExtensionConnected();
+      const isConnected = await this.bridge.isConnected();
       if (!isConnected) {
         return {
           content: [
