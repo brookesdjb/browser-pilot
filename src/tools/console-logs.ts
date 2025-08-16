@@ -1,6 +1,7 @@
 import { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { ExtensionBridge } from '../utils/extension-bridge.js';
+import { BrowserInterface } from '../types/browser-interface.js';
 import type { GetConsoleLogsParams } from '../types/console.js';
 
 const GetConsoleLogsSchema = z.object({
@@ -11,9 +12,9 @@ const GetConsoleLogsSchema = z.object({
 });
 
 export class ConsoleLogsTool {
-  private bridge: ExtensionBridge;
+  private bridge: BrowserInterface;
 
-  constructor(bridge?: ExtensionBridge) {
+  constructor(bridge?: BrowserInterface) {
     this.bridge = bridge || new ExtensionBridge();
   }
 
@@ -58,7 +59,7 @@ export class ConsoleLogsTool {
       const params = GetConsoleLogsSchema.parse(args || {});
 
       // Check if extension is connected
-      const isConnected = await this.bridge.isExtensionConnected();
+      const isConnected = await this.bridge.isConnected();
       const connectionStatus = isConnected ? 'Connected to extension' : 'Using mock data (extension not connected)';
 
       // Get console logs from extension (now returns TabLogData[])
@@ -69,32 +70,32 @@ export class ConsoleLogsTool {
           content: [
             {
               type: 'text',
-              text: `${connectionStatus}\\n\\nNo console logs found matching the criteria.`,
+              text: `${connectionStatus}\n\nNo console logs found matching the criteria.`,
             },
           ],
         };
       }
 
       // Format logs grouped by tab
-      let output = `${connectionStatus}\\n\\n`;
+      let output = `${connectionStatus}\n\n`;
       let totalLogs = 0;
 
       tabLogData.forEach(tabData => {
         totalLogs += tabData.logs.length;
         
         // Tab header
-        output += `## Tab ${tabData.tabId}: ${tabData.tabTitle}\\n`;
-        output += `URL: ${tabData.tabUrl}\\n`;
-        output += `Showing ${tabData.logs.length} of ${tabData.totalCount} logs\\n\\n`;
+        output += `## Tab ${tabData.tabId}: ${tabData.tabTitle}\n`;
+        output += `URL: ${tabData.tabUrl}\n`;
+        output += `Showing ${tabData.logs.length} of ${tabData.totalCount} logs\n\n`;
 
         // Format logs for this tab
         const formattedLogs = tabData.logs.map(log => {
           const timestamp = new Date(log.timestamp).toISOString();
           const level = log.level.toUpperCase().padEnd(5);
           return `  [${timestamp}] ${level} ${log.message}${log.lineNumber ? ` (line ${log.lineNumber})` : ''}`;
-        }).join('\\n');
+        }).join('\n');
 
-        output += formattedLogs + '\\n\\n';
+        output += formattedLogs + '\n\n';
       });
 
       // Summary

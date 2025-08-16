@@ -5,6 +5,7 @@ import { join } from 'path';
 import { tmpdir } from 'os';
 import { WebSocketServer, WebSocket } from 'ws';
 import { randomUUID } from 'crypto';
+import { BrowserInterface } from '../types/browser-interface.js';
 
 interface ConsoleLog {
   id: string;
@@ -60,7 +61,11 @@ interface NetworkRequest {
   type: string; // xhr, fetch, document, etc.
 }
 
-export class ExtensionBridge {
+export class ExtensionBridge implements BrowserInterface {
+  // Keep isExtensionConnected for backward compatibility
+  async isExtensionConnected(): Promise<boolean> {
+    return this.isConnected();
+  }
   private sessionId: string;
   private logFilePath: string;
   private debugLogFilePath: string;
@@ -657,25 +662,34 @@ export class ExtensionBridge {
 
   async getConsoleLogs(params: any = {}): Promise<TabLogData[]> {
     try {
-      // If we have WebSocket connections, use real-time data
-      if (this.connectedClients.size > 0) {
-        return this.groupLogsByTab(this.logs, params);
+      // Use on-demand pull model - call the service worker's get_console_logs command
+      const result = await this.sendCommand('get_console_logs', params, 5000);
+      
+      if (result && result.success && result.data && result.data.success && result.data.data) {
+        // Extract the actual logs array from the nested structure
+        const logs = result.data.data;
+        
+        if (Array.isArray(logs)) {
+          // Convert to TabLogData format
+          return await this.convertServiceWorkerLogsToTabData(logs, params);
+        } else {
+          console.error('Console logs data is not an array:', typeof logs);
+          return this.generateMockTabLogs(params);
+        }
       }
-
-      // Try to read from session file
-      const logs = await this.readLogsFromFile(params);
-      if (logs.length > 0) {
-        return this.groupLogsByTab(logs, params);
-      }
-
-      // Fallback to mock data
-      console.warn('Extension not connected, using mock data');
+      
+      // Fallback to mock data if command fails
+      console.warn('Console logs command failed or returned no data, using mock data');
       return this.generateMockTabLogs(params);
-
     } catch (error) {
-      console.error('Failed to get console logs:', error);
+      console.error('Failed to get console logs from service worker:', error);
       return this.generateMockTabLogs(params);
     }
+  }
+
+  private async convertServiceWorkerLogsToTabData(logs: ConsoleLog[], params: any): Promise<TabLogData[]> {
+    // Group logs by tabId using the existing method
+    return await this.groupLogsByTab(logs, params);
   }
 
   private async readLogsFromFile(params: any): Promise<ConsoleLog[]> {
@@ -705,7 +719,7 @@ export class ExtensionBridge {
     }
   }
 
-  private groupLogsByTab(logs: ConsoleLog[], params: any): TabLogData[] {
+  private async groupLogsByTab(logs: ConsoleLog[], params: any): Promise<TabLogData[]> {
     const tabGroups = new Map<number, ConsoleLog[]>();
     
     // Group logs by tabId
@@ -718,14 +732,30 @@ export class ExtensionBridge {
     
     // Convert to TabLogData format
     const result: TabLogData[] = [];
-    tabGroups.forEach((tabLogs, tabId) => {
+    
+    for (const [tabId, tabLogs] of tabGroups) {
       const limit = params.limit || 50;
       const displayLogs = tabLogs.slice(0, limit);
       
-      // Get tab info from stored data or derive from URL
-      const tabInfo = this.tabInfo.get(tabId);
-      const tabTitle = tabInfo?.title || this.getTabTitle(tabLogs[0]?.url);
-      const tabUrl = tabInfo?.url || tabLogs[0]?.url;
+      // Try to get current tab info if this is the active tab
+      let tabTitle = `Tab ${tabId}`;
+      let tabUrl = 'Unknown URL';
+      
+      try {
+        // Get current tab info from extension (for active tab)
+        const currentTabInfo = await this.sendCommand('get_current_url', {}, 2000);
+        if (currentTabInfo && currentTabInfo.success && currentTabInfo.data && currentTabInfo.data.tabId === tabId) {
+          tabTitle = currentTabInfo.data.title || `Tab ${tabId}`;
+          tabUrl = currentTabInfo.data.url || 'Unknown URL';
+        }
+      } catch (error) {
+        // Fallback to stored tab info if available
+        const storedTabInfo = this.tabInfo.get(tabId);
+        if (storedTabInfo) {
+          tabTitle = storedTabInfo.title || `Tab ${tabId}`;
+          tabUrl = storedTabInfo.url || 'Unknown URL';
+        }
+      }
       
       result.push({
         tabId,
@@ -734,7 +764,7 @@ export class ExtensionBridge {
         logs: displayLogs,
         totalCount: tabLogs.length
       });
-    });
+    }
     
     return result.sort((a, b) => a.tabId - b.tabId);
   }
@@ -815,7 +845,7 @@ export class ExtensionBridge {
     return result;
   }
 
-  async isExtensionConnected(): Promise<boolean> {
+  async isConnected(): Promise<boolean> {
     // Quick check first
     if (this.extensionClients.size === 0) {
       console.error('No extension clients connected');
