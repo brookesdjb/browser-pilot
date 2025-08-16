@@ -54,12 +54,22 @@
   </div>
   
   <div id="mcp-status" class="status disconnected">
-    <strong>MCP Server:</strong> <span id="mcp-connection">Checking...</span><br>
+    <strong>Native Host:</strong> <span id="mcp-connection">Checking...</span><br>
     <small id="mcp-version" style="display: none;">Version: <span id="version-text">Unknown</span></small>
+  </div>
+  
+  <div id="debugger-status" class="status disconnected">
+    <strong>Debugger:</strong> <span id="debugger-connection">Checking...</span><br>
+    <small>Attached tabs: <span id="attached-tabs">0</span></small>
   </div>
   
   <div id="logs-info" class="logs-count">
     Console logs captured: <span id="logs-count">0</span>
+  </div>
+  
+  <div id="control-buttons" style="margin: 12px 0;">
+    <button id="reconnect-btn" style="padding: 6px 12px; margin-right: 8px; font-size: 12px; border: 1px solid #007bff; background: #007bff; color: white; border-radius: 4px; cursor: pointer;">Reconnect</button>
+    <button id="reset-debugger-btn" style="padding: 6px 12px; font-size: 12px; border: 1px solid #dc3545; background: #dc3545; color: white; border-radius: 4px; cursor: pointer;">Reset Debugger</button>
   </div>
   
   <div class="info">

@@ -75,9 +75,12 @@ class ConsoleLogCollector {
         data: {
           version: chrome.runtime.getManifest().version,
           userAgent: navigator.userAgent,
-          timestamp: Date.now()
+          timestamp: Date.now(),
+          attachedTabs: Array.from(this.attachedTabs)
         }
       });
+      
+      console.log(`Native host connected. Currently attached to ${this.attachedTabs.size} tabs.`);
       
     } catch (error) {
       console.error('Failed to connect to native host:', error);
@@ -809,6 +812,33 @@ class ConsoleLogCollector {
   
   async attachDebuggerToTab(tabId) {
     try {
+      // First check if we're already attached to this tab
+      if (this.attachedTabs.has(tabId)) {
+        console.log(`Debugger already attached to tab ${tabId}`);
+        return;
+      }
+      
+      // Check if another debugger is already attached by trying to get targets
+      try {
+        const targets = await chrome.debugger.getTargets();
+        const attachedTarget = targets.find(target => 
+          target.tabId === tabId && target.attached
+        );
+        
+        if (attachedTarget) {
+          console.log(`Another debugger is already attached to tab ${tabId}, detaching first...`);
+          try {
+            await chrome.debugger.detach({tabId});
+            // Wait a moment for cleanup
+            await new Promise(resolve => setTimeout(resolve, 100));
+          } catch (detachError) {
+            console.log(`Failed to detach existing debugger from tab ${tabId}:`, detachError.message);
+          }
+        }
+      } catch (targetsError) {
+        console.log(`Could not check debugger targets:`, targetsError.message);
+      }
+      
       // Attach debugger to tab
       await chrome.debugger.attach({tabId}, '1.3');
       
@@ -832,7 +862,13 @@ class ConsoleLogCollector {
       });
       
     } catch (error) {
-      console.log(`Failed to attach debugger to tab ${tabId}:`, error.message);
+      if (error.message.includes('already attached')) {
+        console.log(`Debugger already attached to tab ${tabId} (error caught)`);
+        // Try to mark as attached anyway, in case the state is out of sync
+        this.attachedTabs.add(tabId);
+      } else {
+        console.log(`Failed to attach debugger to tab ${tabId}:`, error.message);
+      }
     }
   }
   
@@ -1349,6 +1385,77 @@ class ConsoleLogCollector {
       reconnecting: this.reconnectAttempts > 0 && this.reconnectAttempts < this.maxReconnectAttempts
     };
   }
+
+  getDebuggerStatus() {
+    return {
+      success: true,
+      attachedTabs: this.attachedTabs.size,
+      attachedTabIds: Array.from(this.attachedTabs)
+    };
+  }
+
+  async detachAllDebuggers() {
+    console.log('Detaching all debuggers...');
+    const attachedTabIds = Array.from(this.attachedTabs);
+    
+    for (const tabId of attachedTabIds) {
+      try {
+        await this.detachDebuggerFromTab(tabId);
+        console.log(`Successfully detached debugger from tab ${tabId}`);
+      } catch (error) {
+        console.log(`Failed to detach debugger from tab ${tabId}:`, error.message);
+      }
+    }
+    
+    this.attachedTabs.clear();
+    console.log('All debuggers detached');
+    
+    return {
+      success: true,
+      detachedTabs: attachedTabIds.length
+    };
+  }
+
+  async forceReconnect() {
+    console.log('Force reconnecting to native host...');
+    
+    // First, detach all debuggers to clean up state
+    await this.detachAllDebuggers();
+    
+    // Disconnect from native host if connected
+    if (this.nativePort) {
+      try {
+        this.nativePort.disconnect();
+      } catch (error) {
+        console.log('Error disconnecting native port:', error.message);
+      }
+      this.nativePort = null;
+    }
+    
+    this.isConnected = false;
+    this.reconnectAttempts = 0;
+    
+    // Clear all pending commands
+    this.pendingCommands.forEach((command, id) => {
+      clearTimeout(command.timeout);
+      command.reject(new Error('Force reconnect initiated'));
+    });
+    this.pendingCommands.clear();
+    
+    // Try to reconnect immediately
+    try {
+      await this.connectToNativeHost();
+      return {
+        success: true,
+        message: 'Reconnection initiated'
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error.message
+      };
+    }
+  }
 }
 
 // Initialize the console log collector
@@ -1361,6 +1468,35 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const status = consoleCollector.getConnectionStatus();
     sendResponse(status);
     return true;
+  }
+  
+  if (message.type === 'get_debugger_status') {
+    // Get debugger attachment status
+    const status = consoleCollector.getDebuggerStatus();
+    sendResponse(status);
+    return true;
+  }
+  
+  if (message.type === 'force_reconnect') {
+    // Force reconnect to native host with cleanup
+    consoleCollector.forceReconnect()
+      .then(result => sendResponse(result))
+      .catch(error => sendResponse({
+        success: false,
+        error: error.message
+      }));
+    return true; // Async response
+  }
+  
+  if (message.type === 'reset_debugger') {
+    // Detach all debuggers and reset state
+    consoleCollector.detachAllDebuggers()
+      .then(result => sendResponse(result))
+      .catch(error => sendResponse({
+        success: false,
+        error: error.message
+      }));
+    return true; // Async response
   }
   
   if (message.type === 'mcp_get_console_logs') {

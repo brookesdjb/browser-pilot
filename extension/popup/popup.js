@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const mcpVersionEl = document.getElementById('mcp-version');
   const versionTextEl = document.getElementById('version-text');
   const logsCountEl = document.getElementById('logs-count');
+  const reconnectBtn = document.getElementById('reconnect-btn');
+  const resetDebuggerBtn = document.getElementById('reset-debugger-btn');
   
   try {
     // Get current tab info
@@ -32,11 +34,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       logsCountEl.textContent = allLogs.data.length;
       
-      // Check Native Host connection status
+      // Check connection statuses
       await checkNativeHostConnection();
+      await checkDebuggerStatus();
       
     } else {
-      throw new Error('Failed to get logs from extension');
+      logsCountEl.textContent = '0';
     }
     
   } catch (error) {
@@ -45,6 +48,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     mcpConnectionEl.textContent = 'Unknown';
     console.error('Popup error:', error);
   }
+  
+  // Set up button handlers
+  reconnectBtn.addEventListener('click', handleReconnect);
+  resetDebuggerBtn.addEventListener('click', handleResetDebugger);
 });
 
 async function checkNativeHostConnection() {
@@ -78,5 +85,102 @@ async function checkNativeHostConnection() {
     mcpStatusEl.className = 'status disconnected';
     mcpVersionEl.style.display = 'none';
     console.error('Error checking Native Host connection:', error);
+  }
+}
+
+async function checkDebuggerStatus() {
+  const debuggerStatusEl = document.getElementById('debugger-status');
+  const debuggerConnectionEl = document.getElementById('debugger-connection');
+  const attachedTabsEl = document.getElementById('attached-tabs');
+  
+  try {
+    const response = await chrome.runtime.sendMessage({
+      type: 'get_debugger_status'
+    });
+    
+    if (response && response.success) {
+      const attachedCount = response.attachedTabs || 0;
+      attachedTabsEl.textContent = attachedCount;
+      
+      if (attachedCount > 0) {
+        debuggerConnectionEl.textContent = 'Attached';
+        debuggerStatusEl.className = 'status connected';
+      } else {
+        debuggerConnectionEl.textContent = 'Not Attached';
+        debuggerStatusEl.className = 'status disconnected';
+      }
+    } else {
+      debuggerConnectionEl.textContent = 'Unknown';
+      debuggerStatusEl.className = 'status disconnected';
+      attachedTabsEl.textContent = '0';
+    }
+  } catch (error) {
+    debuggerConnectionEl.textContent = 'Error';
+    debuggerStatusEl.className = 'status disconnected';
+    attachedTabsEl.textContent = '0';
+    console.error('Error checking debugger status:', error);
+  }
+}
+
+async function handleReconnect() {
+  const reconnectBtn = document.getElementById('reconnect-btn');
+  const mcpConnectionEl = document.getElementById('mcp-connection');
+  
+  try {
+    reconnectBtn.disabled = true;
+    reconnectBtn.textContent = 'Reconnecting...';
+    mcpConnectionEl.textContent = 'Reconnecting...';
+    
+    const response = await chrome.runtime.sendMessage({
+      type: 'force_reconnect'
+    });
+    
+    if (response && response.success) {
+      // Wait a moment then refresh status
+      setTimeout(async () => {
+        await checkNativeHostConnection();
+        await checkDebuggerStatus();
+        reconnectBtn.disabled = false;
+        reconnectBtn.textContent = 'Reconnect';
+      }, 2000);
+    } else {
+      throw new Error('Reconnect failed');
+    }
+  } catch (error) {
+    console.error('Reconnect error:', error);
+    reconnectBtn.disabled = false;
+    reconnectBtn.textContent = 'Reconnect';
+    mcpConnectionEl.textContent = 'Reconnect Failed';
+  }
+}
+
+async function handleResetDebugger() {
+  const resetDebuggerBtn = document.getElementById('reset-debugger-btn');
+  const debuggerConnectionEl = document.getElementById('debugger-connection');
+  
+  try {
+    resetDebuggerBtn.disabled = true;
+    resetDebuggerBtn.textContent = 'Resetting...';
+    debuggerConnectionEl.textContent = 'Resetting...';
+    
+    const response = await chrome.runtime.sendMessage({
+      type: 'reset_debugger'
+    });
+    
+    if (response && response.success) {
+      // Wait a moment then refresh status
+      setTimeout(async () => {
+        await checkDebuggerStatus();
+        resetDebuggerBtn.disabled = false;
+        resetDebuggerBtn.textContent = 'Reset Debugger';
+      }, 1000);
+    } else {
+      throw new Error('Debugger reset failed');
+    }
+  } catch (error) {
+    console.error('Debugger reset error:', error);
+    resetDebuggerBtn.disabled = false;
+    resetDebuggerBtn.textContent = 'Reset Debugger';
+    debuggerConnectionEl.textContent = 'Reset Failed';
   }
 }
